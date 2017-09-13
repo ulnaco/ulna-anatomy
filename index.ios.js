@@ -13,6 +13,15 @@ import {
 
 import * as Screens from './Views';
 
+import {
+  MXInit,
+  MXTrack,
+} from 'rn-mixpanel-lite';
+
+MXInit('5df62a939c9625dfeb091400575b6c7f')
+MXTrack('YO')
+
+
 const anatomy = StackNavigator({
   initialRouteName: {
     mode: "modal",

@@ -37,6 +37,7 @@
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		2AF784FEE6384024B3EDAC35 /* libRCTAppleHealthKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83661CA2F2AF407FAF05F3C3 /* libRCTAppleHealthKit.a */; };
+		93D762D5641145B997973660 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B97A55D6EAA464CB4B2065F /* libRNDeviceInfo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -266,6 +267,8 @@
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		260057D1B7334DD1816F4DC1 /* RCTAppleHealthKit.xcodeproj */ = {isa = PBXFileReference; name = "RCTAppleHealthKit.xcodeproj"; path = "../node_modules/rn-apple-Healthkit/RCTAppleHealthKit.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		83661CA2F2AF407FAF05F3C3 /* libRCTAppleHealthKit.a */ = {isa = PBXFileReference; name = "libRCTAppleHealthKit.a"; path = "libRCTAppleHealthKit.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		3F256A998D6341F7AE29D2BA /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; name = "RNDeviceInfo.xcodeproj"; path = "../node_modules/react-native-device-info/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		9B97A55D6EAA464CB4B2065F /* libRNDeviceInfo.a */ = {isa = PBXFileReference; name = "libRNDeviceInfo.a"; path = "libRNDeviceInfo.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -295,6 +298,7 @@
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				2AF784FEE6384024B3EDAC35 /* libRCTAppleHealthKit.a in Frameworks */,
+				93D762D5641145B997973660 /* libRNDeviceInfo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,6 +468,7 @@
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				260057D1B7334DD1816F4DC1 /* RCTAppleHealthKit.xcodeproj */,
+				3F256A998D6341F7AE29D2BA /* RNDeviceInfo.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1012,10 +1017,12 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/rn-apple-Healthkit/RCTAppleHealthKit",
+					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 				);
 			};
 			name = Debug;
@@ -1037,10 +1044,12 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/rn-apple-Healthkit/RCTAppleHealthKit",
+					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 				);
 			};
 			name = Release;
@@ -1063,6 +1072,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/rn-apple-Healthkit/RCTAppleHealthKit",
+					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 				);
 			};
 			name = Debug;
@@ -1084,6 +1094,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/rn-apple-Healthkit/RCTAppleHealthKit",
+					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 				);
 			};
 			name = Release;
@@ -1114,10 +1125,12 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/rn-apple-Healthkit/RCTAppleHealthKit",
+					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 				);
 			};
 			name = Debug;
@@ -1148,10 +1161,12 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/rn-apple-Healthkit/RCTAppleHealthKit",
+					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 				);
 			};
 			name = Release;
@@ -1177,6 +1192,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -1201,6 +1217,7 @@
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
