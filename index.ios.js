@@ -21,7 +21,6 @@ import {
 // MXInit('5df62a939c9625dfeb091400575b6c7f')
 // MXTrack('YO')
 
-
 const anatomy = StackNavigator({
   initialRouteName: {
     mode: "modal",
