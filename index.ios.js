@@ -44,7 +44,7 @@ const anatomy = StackNavigator({
     navigationOptions: {
       headerLeft: null,
       gesturesEnabled: false,
-      title: 'Terrillo'
+      title: 'Dash'
     }
   },
   LogWeight: {

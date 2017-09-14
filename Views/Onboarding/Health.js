@@ -3,7 +3,8 @@ import {
   View,
   Text,
   ScrollView,
-  TouchableHighlight
+  TouchableHighlight,
+  StatusBar
 } from 'react-native';
 
 
@@ -35,23 +36,24 @@ export class Health extends React.Component {
         });
       }
     });
-    
+
   }
 
   render() {
     return (
-      <ScrollView style={UL.ULStyles.window}>
+      <View style={[UL.ULStyles.window, UL.ULStyles.backgroundPrimary]}>
+        <StatusBar barStyle="light-content" />
         <View style={UL.ULStyles.screen}>
           <TouchableHighlight
              onPress={() => {
                this.syncAppleHealth();
              }}>
             <View>
-              <UL.ULButton style="primary" text="Dash : Dash" />
+              <UL.ULButton style="white" text="Dash : Dash" />
             </View>
           </TouchableHighlight>
         </View>
-      </ScrollView>
+      </View>
     )
   }
 }

@@ -3,7 +3,8 @@ import {
   View,
   Text,
   ScrollView,
-  TouchableHighlight
+  TouchableHighlight,
+  StatusBar
 } from 'react-native';
 
 import * as UL from 'ulna-ui'
@@ -12,7 +13,8 @@ export class Welcome extends React.Component {
 
   render() {
     return (
-      <ScrollView style={UL.ULStyles.window}>
+      <View style={[UL.ULStyles.window, UL.ULStyles.backgroundPrimary]}>
+        <StatusBar barStyle="light-content" />
         <View style={UL.ULStyles.screen}>
           <TouchableHighlight
              onPress={() => {
@@ -20,11 +22,11 @@ export class Welcome extends React.Component {
                navigate('Health')
              }}>
             <View>
-              <UL.ULButton style="primary" text="Onboarding : Health" />
+              <UL.ULButton style="white" text="Onboarding : Health" />
             </View>
           </TouchableHighlight>
         </View>
-      </ScrollView>
+      </View>
     )
   }
 }
