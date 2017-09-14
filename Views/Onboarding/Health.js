@@ -7,16 +7,10 @@ import {
   StatusBar
 } from 'react-native';
 
-
-import AppleHealthKit from 'rn-apple-healthkit';
+import AppleHealthkit from 'rn-apple-healthkit';
 import * as UL from 'ulna-ui'
 
 export class Health extends React.Component {
-
-
-  componentDidMount() {
-
-  }
 
   syncAppleHealth() {
 
@@ -27,9 +21,9 @@ export class Health extends React.Component {
       }
     };
 
-    AppleHealthKit.isAvailable((err: Object, available: boolean) => {
+    AppleHealthkit.isAvailable((err: Object, available: boolean) => {
       if (available) {
-        AppleHealthKit.initHealthKit(options: Object, (err: Object, results: Object) => {
+        AppleHealthkit.initHealthKit(options: Object, (err: Object, results: Object) => {
           if (err) return;
           const { navigate } = this.props.navigation;
           navigate('Dash')

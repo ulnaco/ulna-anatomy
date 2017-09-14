@@ -21,7 +21,7 @@ export class Weight extends React.Component {
                navigate('LogWeight')
              }}>
             <View>
-              <UL.ULButton style="primary" text="DataCollection : LogWeight" />
+              <UL.ULButton style="primary" text="Log Weight" />
             </View>
           </TouchableHighlight>
         </View>
