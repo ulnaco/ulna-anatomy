@@ -1,6 +1,6 @@
 import AppleHealthkit from 'rn-apple-healthkit';
 
-export function bmi(num, fn) {
+export function bmi(fn) {
 
   // Weight (Pounds)
   new Promise((resolve, reject) => {

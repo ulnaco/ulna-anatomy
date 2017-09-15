@@ -59,19 +59,23 @@ export class Dash extends React.Component {
             })
           }
         });
-        
+
         // BMI
-        T.bmi(1, (result) =>{
+        T.bmi((result) => {
           this.setState({
             bmi: result
           })
         })
 
+        // Health Rating
+        T.rating((result) => {
+          this.setState({
+            rating: result
+          })
+        });
+
       }
     });
-  }
-
-  componentDidMount() {
   }
 
   render() {
@@ -95,13 +99,13 @@ export class Dash extends React.Component {
                  navigate('MyRating')
                }}>
                <View>
-                <UL.ULListItem title="Health Rating" subTitle="A+" />
+               { this.state.rating && <UL.ULListItem title="Health Rating" subTitle={this.state.rating} /> }
                </View>
             </TouchableHighlight>
             { this.state.bmi && <UL.ULListItem title="BMI" subTitle={this.state.bmi} /> }
-            { this.state.steps && <UL.ULListItem title="Steps Today" subTitle={this.state.steps} /> }
             { this.state.age && <UL.ULListItem title="Age" subTitle={this.state.age} /> }
             { this.state.height && <UL.ULListItem title="Height" subTitle={this.state.height} /> }
+            { this.state.steps && <UL.ULListItem title="Steps Today" subTitle={this.state.steps} /> }
           </View>
           <TouchableHighlight
              onPress={() => {
