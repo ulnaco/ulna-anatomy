@@ -37,8 +37,8 @@ export class MyRating extends React.Component {
     return (
       <ScrollView style={UL.ULStyles.window}>
         <View>
-          { this.state.rating && <UL.ULListItem title="Health Rating" subTitle={this.state.rating} /> }
           { this.state.bmi && <UL.ULListItem title="BMI" subTitle={this.state.bmi} /> }
+          { this.state.rating && <UL.ULListItem title="Health Rating" subTitle={this.state.rating} /> }
         </View>
       </ScrollView>
     )

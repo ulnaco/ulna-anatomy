@@ -7,6 +7,8 @@ import {
   StatusBar
 } from 'react-native';
 
+import moment from 'moment'
+
 import AppleHealthkit from 'rn-apple-healthkit';
 import * as UL from 'ulna-ui'
 import * as T from '../../Tools'
@@ -50,12 +52,25 @@ export class Dash extends React.Component {
         });
 
         // Weight (Pounds)
-        AppleHealthkit.getLatestWeight({ unit: 'pound' }: Object, (err: string, results: Object) => {
+        let weightOpts = {
+          unit: 'pound',
+          startDate: moment().subtract(1, 'week').toISOString(),
+          endDate: moment().toISOString()
+        }
+        AppleHealthkit.getWeightSamples(weightOpts: Object, (err: string, results: Object) => {
           if (results) {
+            const weightDiff = (results[0].value - results[results.length-1].value);
+            if (weightDiff > 0) {
+              weightDiff = "+"+weightDiff+" "+weightOpts.unit+"s"
+            }
+            else {
+              weightDiff = "-"+weightDiff+" "+weightOpts.unit+"s"
+            }
             this.setState({
-              weight: {
-                pound: results.value
-              }
+              thisWeek: results[0].value,
+              lastWeek: results[results.length-1].value,
+              weightDiff: weightDiff,
+              chart: [results[results.length-1].value, results[0].value],
             })
           }
         });
@@ -112,9 +127,10 @@ export class Dash extends React.Component {
                const { navigate } = this.props.navigation;
                navigate('Weight')
              }}>
-            <View>
-              <UL.ULButton style="primary" text="DataVisuals : Weight" />
-            </View>
+               <View style={{marginBottom: UL.ULStyleguide.spacing}}>
+                { this.state.chart &&  <T.BarVertical values={this.state.chart} /> }
+                { this.state.thisWeek && <UL.ULListItem title="Weight" subTitle={this.state.weightDiff} /> }
+              </View>
           </TouchableHighlight>
           <TouchableHighlight
              onPress={() => {
