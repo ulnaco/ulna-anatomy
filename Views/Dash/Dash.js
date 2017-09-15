@@ -8,10 +8,11 @@ import {
 } from 'react-native';
 
 import moment from 'moment'
-
 import AppleHealthkit from 'rn-apple-healthkit';
 import * as UL from 'ulna-ui'
+
 import * as T from '../../Tools'
+import * as C from '../../Components'
 
 export class Dash extends React.Component {
   constructor(props) {
@@ -33,10 +34,11 @@ export class Dash extends React.Component {
         });
 
         // Height
-        AppleHealthkit.getLatestHeight(null, (err: string, results: Object) => {
+        AppleHealthkit.getLatestHeight({unit: 'foot'}, (err: string, results: Object) => {
           if (results) {
+            const height = results.value.toFixed(1).replace(".", "'")
             this.setState({
-              height: Math.floor(results.value / 12)+"'"
+              height: height
             })
           }
         });
@@ -47,30 +49,6 @@ export class Dash extends React.Component {
           if (results) {
             this.setState({
               steps: T.thousand(results.value)
-            })
-          }
-        });
-
-        // Weight (Pounds)
-        let weightOpts = {
-          unit: 'pound',
-          startDate: moment().subtract(1, 'week').toISOString(),
-          endDate: moment().toISOString()
-        }
-        AppleHealthkit.getWeightSamples(weightOpts: Object, (err: string, results: Object) => {
-          if (results) {
-            const weightDiff = (results[0].value - results[results.length-1].value);
-            if (weightDiff > 0) {
-              weightDiff = "+"+weightDiff+" "+weightOpts.unit+"s"
-            }
-            else {
-              weightDiff = "-"+weightDiff+" "+weightOpts.unit+"s"
-            }
-            this.setState({
-              thisWeek: results[0].value,
-              lastWeek: results[results.length-1].value,
-              weightDiff: weightDiff,
-              chart: [results[results.length-1].value, results[0].value],
             })
           }
         });
@@ -97,7 +75,7 @@ export class Dash extends React.Component {
     return (
       <ScrollView style={UL.ULStyles.window}>
         <StatusBar barStyle="dark-content" />
-        <View>
+        <View style={{paddingBottom: UL.ULStyleguide.spacing}}>
           <TouchableHighlight
              onPress={() => {
                const { navigate } = this.props.navigation;
@@ -120,17 +98,15 @@ export class Dash extends React.Component {
             { this.state.bmi && <UL.ULListItem title="BMI" subTitle={this.state.bmi} /> }
             { this.state.age && <UL.ULListItem title="Age" subTitle={this.state.age} /> }
             { this.state.height && <UL.ULListItem title="Height" subTitle={this.state.height} /> }
-            { this.state.steps && <UL.ULListItem title="Steps Today" subTitle={this.state.steps} /> }
           </View>
           <TouchableHighlight
              onPress={() => {
                const { navigate } = this.props.navigation;
                navigate('Weight')
              }}>
-               <View style={{marginBottom: UL.ULStyleguide.spacing}}>
-                { this.state.chart &&  <T.BarVertical values={this.state.chart} /> }
-                { this.state.thisWeek && <UL.ULListItem title="Weight" subTitle={this.state.weightDiff} /> }
-              </View>
+             <View>
+              <C.VsLast />
+             </View>
           </TouchableHighlight>
           <TouchableHighlight
              onPress={() => {

@@ -8,13 +8,15 @@ import {
 
 import * as UL from 'ulna-ui'
 
+import * as C from '../../Components'
+
 export class Weight extends React.Component {
 
   render() {
     return (
       <ScrollView style={UL.ULStyles.window}>
-        <View style={UL.ULStyles.screen}>
-          <UL.ULTitle text="Weight"/>
+        <View>
+          <C.VsLast />
           <TouchableHighlight
              onPress={() => {
                const { navigate } = this.props.navigation;
