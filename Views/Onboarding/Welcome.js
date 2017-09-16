@@ -17,6 +17,7 @@ export class Welcome extends React.Component {
         <StatusBar barStyle="light-content" />
         <View style={UL.ULStyles.screen}>
           <TouchableHighlight
+             underlayColor='rgba(0,0,0,0,0.0)'
              onPress={() => {
                const { navigate } = this.props.navigation;
                navigate('Health')

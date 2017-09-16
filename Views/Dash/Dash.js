@@ -77,6 +77,7 @@ export class Dash extends React.Component {
         <StatusBar barStyle="dark-content" />
         <View style={{paddingBottom: UL.ULStyleguide.spacing}}>
           <TouchableHighlight
+             underlayColor='rgba(0,0,0,0,0.0)'
              onPress={() => {
                const { navigate } = this.props.navigation;
                navigate('LogWeight')
@@ -87,6 +88,7 @@ export class Dash extends React.Component {
           </TouchableHighlight>
           <View style={{marginBottom: UL.ULStyleguide.spacing}}>
             <TouchableHighlight
+               underlayColor='rgba(0,0,0,0,0.0)'
                onPress={() => {
                  const { navigate } = this.props.navigation;
                  navigate('MyRating')
@@ -100,6 +102,7 @@ export class Dash extends React.Component {
             { this.state.height && <UL.ULListItem title="Height" subTitle={this.state.height} /> }
           </View>
           <TouchableHighlight
+             underlayColor='rgba(0,0,0,0,0.0)'
              onPress={() => {
                const { navigate } = this.props.navigation;
                navigate('Weight')
@@ -109,6 +112,7 @@ export class Dash extends React.Component {
              </View>
           </TouchableHighlight>
           <TouchableHighlight
+             underlayColor='rgba(0,0,0,0,0.0)'
              onPress={() => {
                const { navigate } = this.props.navigation;
                navigate('MyRating')

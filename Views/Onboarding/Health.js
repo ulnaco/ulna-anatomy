@@ -39,6 +39,7 @@ export class Health extends React.Component {
         <StatusBar barStyle="light-content" />
         <View style={UL.ULStyles.screen}>
           <TouchableHighlight
+             underlayColor='rgba(0,0,0,0,0.0)'
              onPress={() => {
                this.syncAppleHealth();
              }}>

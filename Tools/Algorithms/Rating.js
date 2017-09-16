@@ -18,7 +18,7 @@ export function rating(fn) {
         score = 5
       }
       if (result > 25 && result < 26.9) {
-        score = 3
+        score = 4
       }
       if (result > 27 && result < 29.9) {
         score = 2

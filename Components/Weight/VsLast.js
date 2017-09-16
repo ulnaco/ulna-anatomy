@@ -27,7 +27,7 @@ export class VsLast extends React.Component {
           endDate: moment().toISOString()
         }
         AppleHealthkit.getWeightSamples(weightOpts: Object, (err: string, results: Object) => {
-          if (results) {
+          if (results && results[0] && results[1]) {
             const weightDiff = (results[0].value - results[1].value);
             if (weightDiff > 0) {
               weightDiff = "Gain "+Math.round(weightDiff)+" "+weightOpts.unit+"s"
@@ -40,9 +40,9 @@ export class VsLast extends React.Component {
             }
             this.setState({
               thisWeek: results[0].value,
-              lastWeek: results[2].value,
+              lastWeek: results[1].value,
               weightDiff: weightDiff.replace('-', ''),
-              chart: [results[results.length-1].value, results[0].value],
+              chart: [results[1].value, results[0].value],
             })
           }
         });
