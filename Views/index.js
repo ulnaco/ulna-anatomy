@@ -13,3 +13,4 @@ export * from './HealthRating/MyRating'
 // Onboarding
 export * from './Onboarding/Welcome'
 export * from './Onboarding/Health'
+export * from './Onboarding/HealthStudy'

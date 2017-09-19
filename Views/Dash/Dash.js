@@ -73,22 +73,16 @@ export class Dash extends React.Component {
 
   render() {
     return (
-      <ScrollView style={UL.ULStyles.window}>
+      <ScrollView style={[UL.ULStyles.window, {paddingTop: 0}]}>
         <StatusBar barStyle="dark-content" />
         <View style={{paddingBottom: UL.ULStyleguide.spacing}}>
-          <TouchableHighlight
-             underlayColor='rgba(0,0,0,0,0.0)'
-             onPress={() => {
-               const { navigate } = this.props.navigation;
-               navigate('LogWeight')
-             }}>
-            <View>
-              <UL.ULButton style="primary" text="Log Weight" />
-            </View>
-          </TouchableHighlight>
+          <View style={[UL.ULStyles.backgroundPrimary, {paddingVertical: UL.ULStyleguide.spacing*1.5, justifyContent: 'center'}]}>
+            <Text style={[UL.ULStyles.largeTitle, {textAlign: 'center', fontWeight: 'bold', color: '#ffffff', marginBottom: 0}]}>{this.state.rating}</Text>
+            <Text style={[UL.ULStyles.subTitle, {textAlign: 'center', color: '#ffffff'}]}>Health Rating</Text>
+          </View>
           <View style={{marginBottom: UL.ULStyleguide.spacing}}>
             <TouchableHighlight
-               underlayColor='rgba(0,0,0,0,0.0)'
+               underlayColor='transparent'
                onPress={() => {
                  const { navigate } = this.props.navigation;
                  navigate('MyRating')
@@ -102,7 +96,17 @@ export class Dash extends React.Component {
             { this.state.height && <UL.ULListItem title="Height" subTitle={this.state.height} /> }
           </View>
           <TouchableHighlight
-             underlayColor='rgba(0,0,0,0,0.0)'
+             underlayColor='transparent'
+             onPress={() => {
+               const { navigate } = this.props.navigation;
+               navigate('LogWeight')
+             }}>
+            <View>
+              <UL.ULButton style="primary" text="Log Weight" />
+            </View>
+          </TouchableHighlight>
+          <TouchableHighlight
+             underlayColor='transparent'
              onPress={() => {
                const { navigate } = this.props.navigation;
                navigate('Weight')
@@ -112,7 +116,7 @@ export class Dash extends React.Component {
              </View>
           </TouchableHighlight>
           <TouchableHighlight
-             underlayColor='rgba(0,0,0,0,0.0)'
+             underlayColor='transparent'
              onPress={() => {
                const { navigate } = this.props.navigation;
                navigate('MyRating')

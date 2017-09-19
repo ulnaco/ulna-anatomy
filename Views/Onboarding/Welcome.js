@@ -1,3 +1,6 @@
+/**
+ * - Button : Onboarding/Health
+ */
 import React, { Component } from 'react';
 import {
   View,
@@ -16,14 +19,17 @@ export class Welcome extends React.Component {
       <View style={[UL.ULStyles.window, UL.ULStyles.backgroundPrimary]}>
         <StatusBar barStyle="light-content" />
         <View style={UL.ULStyles.screen}>
+          <UL.ULTitle text="Ulna Anatomy" lite={true}/>
+          <UL.ULSubTitle text="Short description of the app any welcome details!" lite={true}/>
+          <UL.ULSpace />
           <TouchableHighlight
-             underlayColor='rgba(0,0,0,0,0.0)'
+             underlayColor='transparent'
              onPress={() => {
                const { navigate } = this.props.navigation;
                navigate('Health')
              }}>
             <View>
-              <UL.ULButton style="white" text="Onboarding : Health" />
+              <UL.ULButton style="white" text="Get Started" />
             </View>
           </TouchableHighlight>
         </View>

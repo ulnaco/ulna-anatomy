@@ -1,3 +1,7 @@
+/**
+ * - Button : Content with Apple Health
+ * - Action : Onboarding/HealthStudy
+ */
 import React, { Component } from 'react';
 import {
   View,
@@ -26,7 +30,7 @@ export class Health extends React.Component {
         AppleHealthkit.initHealthKit(options: Object, (err: Object, results: Object) => {
           if (err) return;
           const { navigate } = this.props.navigation;
-          navigate('Dash')
+          navigate('HealthStudy')
         });
       }
     });
@@ -38,13 +42,16 @@ export class Health extends React.Component {
       <View style={[UL.ULStyles.window, UL.ULStyles.backgroundPrimary]}>
         <StatusBar barStyle="light-content" />
         <View style={UL.ULStyles.screen}>
+          <UL.ULTitle text="Apple Health" lite={true}/>
+          <UL.ULSubTitle text="Short description of the app any welcome details!" lite={true}/>
+          <UL.ULSpace />
           <TouchableHighlight
-             underlayColor='rgba(0,0,0,0,0.0)'
+             underlayColor='transparent'
              onPress={() => {
                this.syncAppleHealth();
              }}>
             <View>
-              <UL.ULButton style="white" text="Dash : Dash" />
+              <UL.ULButton style="white" text="Connect" />
             </View>
           </TouchableHighlight>
         </View>

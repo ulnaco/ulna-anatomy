@@ -66,7 +66,7 @@ export class Weight extends React.Component {
       <ScrollView style={UL.ULStyles.window}>
         <View>
           <TouchableHighlight
-             underlayColor='rgba(0,0,0,0,0.0)'
+             underlayColor='transparent'
              onPress={() => {
                const { navigate } = this.props.navigation;
                navigate('LogWeight')
