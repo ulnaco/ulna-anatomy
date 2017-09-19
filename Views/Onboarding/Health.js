@@ -41,10 +41,16 @@ export class Health extends React.Component {
     return (
       <View style={[UL.ULStyles.window, UL.ULStyles.backgroundPrimary]}>
         <StatusBar barStyle="light-content" />
-        <View style={UL.ULStyles.screen}>
+        <View style={{
+            flex: 1,
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            paddingHorizontal: UL.ULStyleguide.spacing*1.5,
+          }}>
           <UL.ULTitle text="Apple Health" lite={true}/>
-          <UL.ULSubTitle text="Short description of the app any welcome details!" lite={true}/>
-          <UL.ULSpace />
+          <UL.ULSubTitle text="Sync your Apple Health data with Ulna Anatomy. Steps, Height, Weight, BMI, and Date of Birth" lite={true}/>
+          <UL.ULSpace small={true} />
           <TouchableHighlight
              underlayColor='transparent'
              onPress={() => {

@@ -11,6 +11,18 @@ import {
 import * as UL from 'ulna-ui'
 
 export class HealthStudy extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { };
+  }
+
+  componentDidMount() {
+    this.setState({
+      pg: {
+        marginBottom: UL.ULStyleguide.spacing,
+      }
+    })
+  }
 
   JoinStudy() {
     const { navigate } = this.props.navigation;
@@ -19,15 +31,22 @@ export class HealthStudy extends React.Component {
 
   render() {
     return (
-      <View style={[UL.ULStyles.window, UL.ULStyles.backgroundPrimary]}>
+      <ScrollView style={[UL.ULStyles.window, UL.ULStyles.backgroundAccent]}>
         <StatusBar barStyle="light-content" />
-        <View style={UL.ULStyles.screen}>
+        <View style={{
+            paddingHorizontal: UL.ULStyleguide.spacing*1.5,
+          }}>
+          <UL.ULSpace small={true} />
           <UL.ULTitle text="Health Study" lite={true} />
-          <UL.ULSubTitle text="Short description of the app any welcome details!" lite={true} />
+          <Text style={this.state.pg}>Data can be harnessed to create a better world. It will bring us closer together. It will change how we perceive ourselves. It will save lives.</Text>
+          <Text style={this.state.pg}>The Ulna Health Study collects Anonymous health infomation and compares with other people from around the world. The The correlations and knowledge learned will be shared with the medical community.</Text>
+          <Text style={this.state.pg}>For medical researchers, the first step to battling disease is understanding it. Ulna Health Study is helping researchers achieve that goal.</Text>
+          <Text style={this.state.pg}>More participants mean more data. And more meaningful results. The biggest challenge medical researchers face is recruiting participants. Often just a handful of people are used in a study.</Text>
+          <UL.ULSpace small={true} />
           <TouchableHighlight
              underlayColor='transparent'
              onPress={() => {
-               Alert.alert('Your Amazing!', '', [{text: 'OK', onPress: () => this.JoinStudy()}], { cancelable: false })
+               Alert.alert('Thanks, your amazing!', '', [{text: 'OK', onPress: () => this.JoinStudy()}], { cancelable: false })
              }}>
              <View>
               <UL.ULButton style="white" text="Join Anonymous Study" />
@@ -54,11 +73,12 @@ export class HealthStudy extends React.Component {
                ])
              }}>
             <View>
-              <UL.ULButton style="primary" text="Maybe Later" />
+              <UL.ULButton style="accent" text="Maybe Later" />
             </View>
           </TouchableHighlight>
+          <UL.ULSpace />
         </View>
-      </View>
+      </ScrollView>
     )
   }
 }
