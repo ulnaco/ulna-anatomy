@@ -40,6 +40,7 @@ export class Steps extends React.Component {
         AppleHealthkit.getDailyStepCountSamples(weightOpts: Object, (err: string, results: Object) => {
           var timeline = [];
           var most = { value: 0, startDate: 0 };
+          var most30 = { value: 0, startDate: 0 };
           for (var i = 0; i < results.length; i++) {
             if (most.value < results[i].value) most = results[i]
             if (i == 0) {
@@ -48,16 +49,19 @@ export class Steps extends React.Component {
               })
             }
             else {
-              if (i > 30) continue;
+              if (i > 25) continue;
               var stepsFormat = T.thousand(results[i].value)
               timeline.push(<UL.ULListItem reverse={true} title={moment(results[i].startDate).fromNow()} subTitle={stepsFormat} />);
             }
+            if (most30.value < results[i].value) most30 = results[i]
 
           }
 
           this.setState({
             mostSteps: T.thousand(most.value),
             mostStepsDate: moment(most.startDate).fromNow(),
+            mostSteps30: T.thousand(most30.value),
+            mostStepsDate30: moment(most30.startDate).fromNow(),
           })
 
           if (timeline.length > 0) {
@@ -80,7 +84,8 @@ export class Steps extends React.Component {
             <View style={{marginBottom: UL.ULStyleguide.spacing}}>
               <UL.ULListItem title="Steps Today" subTitle={this.state.steps} />
               <UL.ULListItem reverse={true} title="Distance Today" subTitle={this.state.distance} />
-              <UL.ULListItem small={true} title="Most Steps in a Day" subTitle={this.state.mostSteps} subSubTitle={this.state.mostStepsDate}/>
+              <UL.ULListItem small={true} title="Most Steps in a Day" subTitle={this.state.mostSteps} subSubTitle={this.state.mostStepsDate} />
+              <UL.ULListItem small={true} title="30 Day High" subTitle={this.state.mostSteps30} subSubTitle={this.state.mostStepsDate30} />
             </View>
           }
           {this.state.stepsTimeline &&
