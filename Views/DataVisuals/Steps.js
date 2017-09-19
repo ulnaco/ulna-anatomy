@@ -41,21 +41,22 @@ export class Steps extends React.Component {
           var timeline = [];
           var most = { value: 0, startDate: 0 };
           for (var i = 0; i < results.length; i++) {
-            if (i > 30) break;
+            if (most.value < results[i].value) most = results[i]
             if (i == 0) {
               this.setState({
-                steps: results[i].value,
+                steps: T.thousand(results[i].value),
               })
             }
             else {
-              timeline.push(<UL.ULListItem reverse={true} title={moment(results[i].startDate).fromNow()} subTitle={results[i].value} />);
+              if (i > 30) continue;
+              var stepsFormat = T.thousand(results[i].value)
+              timeline.push(<UL.ULListItem reverse={true} title={moment(results[i].startDate).fromNow()} subTitle={stepsFormat} />);
             }
-            if (most.value < results[i].value) most = results[i]
 
           }
 
           this.setState({
-            mostSteps: most.value,
+            mostSteps: T.thousand(most.value),
             mostStepsDate: moment(most.startDate).fromNow(),
           })
 
@@ -84,7 +85,7 @@ export class Steps extends React.Component {
           }
           {this.state.stepsTimeline &&
             <View>
-              <UL.ULSubTitle text="History" />
+              <UL.ULSubTitle text="Last 30 Days" />
               <View style={{marginBottom: UL.ULStyleguide.spacing*2}}>
                 {this.state.stepsTimeline}
               </View>
