@@ -20,7 +20,7 @@ export class Welcome extends React.Component {
         <StatusBar barStyle="light-content" />
         <View style={UL.ULStyles.screen}>
           <UL.ULTitle text="Ulna Anatomy" lite={true}/>
-          <UL.ULSubTitle text="Short description of the app any welcome details!" lite={true}/>
+          <UL.ULSubTitle text="Helping people live healthier & happier lives" lite={true}/>
           <UL.ULSpace />
           <TouchableHighlight
              underlayColor='transparent'
