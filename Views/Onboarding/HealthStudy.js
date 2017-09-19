@@ -26,7 +26,7 @@ export class HealthStudy extends React.Component {
 
   JoinStudy() {
     const { navigate } = this.props.navigation;
-    navigate('Dash')
+    navigate('Inital')
   }
 
   render() {
@@ -61,7 +61,7 @@ export class HealthStudy extends React.Component {
                    text: 'No',
                    onPress: () => {
                      const { navigate } = this.props.navigation;
-                     navigate('Dash')
+                     navigate('Inital')
                    }
                  },
                  {

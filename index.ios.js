@@ -46,6 +46,14 @@ const anatomy = StackNavigator({
       header: null,
     }
   },
+  Inital: {
+    mode: "modal",
+    screen: Screens.InitalRating,
+    navigationOptions: {
+      gesturesEnabled: false,
+      header: null,
+    }
+  },
   Dash: {
     mode: "modal",
     screen: Screens.Dash,

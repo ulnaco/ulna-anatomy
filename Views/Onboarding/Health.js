@@ -21,7 +21,7 @@ export class Health extends React.Component {
     let options = {
       permissions: {
         read: ["Height", "Weight", "DateOfBirth", "Steps", "BodyMassIndex"],
-        write: ["Weight", "BodyMassIndex"]
+        write: ["Weight", "Height", "BodyMassIndex"]
       }
     };
 
