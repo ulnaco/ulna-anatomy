@@ -20,7 +20,20 @@ export class Dash extends React.Component {
     this.state = { };
   }
 
-  componentWillMount() {
+  showRating() {
+    console.log()
+
+            // Health Rating
+            T.rating((result) => {
+              console.log(result)
+              this.setState({
+                rating: result
+              })
+            });
+  }
+
+  componentDidMount() {
+  this.showRating();
     AppleHealthkit.isAvailable((err: Object, available: boolean) => {
       if (available) {
 
@@ -59,13 +72,6 @@ export class Dash extends React.Component {
             bmi: result
           })
         })
-
-        // Health Rating
-        T.rating((result) => {
-          this.setState({
-            rating: result
-          })
-        });
 
       }
     });
