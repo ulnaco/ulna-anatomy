@@ -40,7 +40,7 @@ export class Weight extends React.Component {
               })
             }
             else {
-              timeline.push(<UL.ULListItem title={moment(results[i].startDate).fromNow()} subTitle={results[i].value} />);
+              timeline.push(<UL.ULListItem reverse={true} title={moment(results[i].startDate).fromNow()} subTitle={results[i].value} />);
             }
 
             if (lowest.value > results[i].value) lowest = results[i]
@@ -72,14 +72,14 @@ export class Weight extends React.Component {
                navigate('LogWeight')
              }}>
             <View>
-              <UL.ULButton style="primary" text="Log Weight" />
+              <UL.ULButton style="accent" text="Log Weight" />
             </View>
           </TouchableHighlight>
           { this.state.currentWeight &&
             <View style={{marginBottom: UL.ULStyleguide.spacing}}>
-              <UL.ULListItem title="Weight" subTitle={this.state.currentWeight} subSubTitle={this.state.currentWeightUpdated} />
-              <UL.ULListItem title="Lowest Weight" subTitle={this.state.lowestWeight} subSubTitle={this.state.lowestWeightDate}/>
-              <UL.ULListItem title="Heaviest Weight" subTitle={this.state.heaviestWeight} subSubTitle={this.state.heaviestWeightDate}/>
+              <UL.ULListItem title="Current Weight" subTitle={this.state.currentWeight} subSubTitle={this.state.currentWeightUpdated} />
+              <UL.ULListItem small={true} title="Lowest Weight" subTitle={this.state.lowestWeight} subSubTitle={this.state.lowestWeightDate}/>
+              <UL.ULListItem small={true} title="Heaviest Weight" subTitle={this.state.heaviestWeight} subSubTitle={this.state.heaviestWeightDate}/>
             </View>
           }
           <View style={{marginBottom: UL.ULStyleguide.spacing}}>
