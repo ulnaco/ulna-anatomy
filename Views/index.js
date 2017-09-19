@@ -6,6 +6,7 @@ export * from './DataCollection/LogWeight'
 
 // Data Visuals
 export * from './DataVisuals/Weight'
+export * from './DataVisuals/Steps'
 
 // Health Rating
 export * from './HealthRating/MyRating'

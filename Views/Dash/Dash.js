@@ -105,7 +105,7 @@ export class Dash extends React.Component {
                      underlayColor='transparent'
                      onPress={() => {
                        const { navigate } = this.props.navigation;
-                       navigate('Weight')
+                       navigate('Steps')
                      }}>
                     <View style={{marginRight: 10}}>
                       <UL.ULButton style="accent" text="Steps" />

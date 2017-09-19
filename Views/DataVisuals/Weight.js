@@ -33,6 +33,7 @@ export class Weight extends React.Component {
           var lowest = { value: 1000, startDate: 0 };
           var heaviest = { value: 0, startDate: 0 };
           for (var i = 0; i < results.length; i++) {
+            if (i > 30) break;
             if (i == 0) {
               this.setState({
                 currentWeight: results[i].value,
@@ -49,12 +50,17 @@ export class Weight extends React.Component {
           }
 
           this.setState({
-            weightTimeline: timeline,
             lowestWeight: lowest.value,
             lowestWeightDate: moment(lowest.startDate).fromNow(),
             heaviestWeight: heaviest.value,
             heaviestWeightDate: moment(heaviest.startDate).fromNow(),
           })
+
+          if (timeline.length > 0) {
+            this.setState({
+              weightTimeline: timeline,
+            })
+          }
         });
 
       }
@@ -85,10 +91,14 @@ export class Weight extends React.Component {
           <View style={{marginBottom: UL.ULStyleguide.spacing}}>
             <C.VsLast />
           </View>
-          <UL.ULSubTitle text="History" />
-          <View style={{marginBottom: UL.ULStyleguide.spacing*2}}>
-            {this.state.weightTimeline}
-          </View>
+          {this.state.weightTimeline &&
+            <View>
+              <UL.ULSubTitle text="History" />
+              <View style={{marginBottom: UL.ULStyleguide.spacing*2}}>
+                {this.state.weightTimeline}
+              </View>
+            </View>
+          }
         </View>
       </ScrollView>
     )

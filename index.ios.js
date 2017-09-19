@@ -77,10 +77,16 @@ const views = {
       title: 'Log Weight'
     }
   },
+  Steps: {
+    screen: Screens.Steps,
+    navigationOptions: {
+      title: 'Steps Insights'
+    }
+  },
   Weight: {
     screen: Screens.Weight,
     navigationOptions: {
-      title: 'Weight'
+      title: 'Weight Insights'
     }
   },
   MyRating: {
