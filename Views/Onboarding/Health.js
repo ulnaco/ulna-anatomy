@@ -52,7 +52,7 @@ export class Health extends React.Component {
             paddingHorizontal: UL.ULStyleguide.spacing*1.5,
           }}>
           <UL.ULTitle text="Apple Health" lite={true}/>
-          <UL.ULSubTitle text="Sync your Apple Health data with Ulna Anatomy. Steps, Height, Weight, BMI, and Date of Birth" lite={true}/>
+          <UL.ULSubTitle text="Sync your Apple Health data with Ulna Anatomy. Steps, Height, Weight, BMI, Distance Walking + Running, and Date of Birth" lite={true}/>
           <UL.ULSpace small={true} />
           <TouchableHighlight
              underlayColor='transparent'

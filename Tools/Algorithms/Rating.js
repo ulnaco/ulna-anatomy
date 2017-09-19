@@ -29,7 +29,7 @@ export function rating(fn) {
       resolve(score)
     })
   }).then((score) => {
-    ratings = ['F', 'E', 'D', 'C', 'B', 'A']
+    ratings = ['F', 'E', 'D', 'C', 'B', 'A+']
     fn(ratings[score])
   })
 }
