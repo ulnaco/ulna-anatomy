@@ -4,7 +4,8 @@ import {
   Text,
   ScrollView,
   TouchableHighlight,
-  StatusBar
+  StatusBar,
+  Dimensions
 } from 'react-native';
 
 import moment from 'moment'
@@ -18,10 +19,19 @@ import * as C from '../../Components'
 export class Dash extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { };
+    this.state = {
+      width: Dimensions.get('window').width
+    };
   }
 
   componentDidMount() {
+    console.log(this.state.width)
+    if (this.state.width > 374) {
+      this.state.weightBtn = 'Weight Insights'
+    }
+    else {
+      this.state.weightBtn = 'Weight'
+    }
     AppleHealthkit.isAvailable((err: Object, available: boolean) => {
       if (available) {
 
@@ -87,16 +97,36 @@ export class Dash extends React.Component {
               <C.VsLast />
              </View>
           </TouchableHighlight>
-          <TouchableHighlight
-             underlayColor='transparent'
-             onPress={() => {
-               const { navigate } = this.props.navigation;
-               navigate('Weight')
-             }}>
-            <View>
-              <UL.ULButton style="accent" text="Weight Insights" />
+          <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+            <View style={UL.ULStyles.ListItemInner}>
+              <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
+                <View>
+                  <TouchableHighlight
+                     underlayColor='transparent'
+                     onPress={() => {
+                       const { navigate } = this.props.navigation;
+                       navigate('Weight')
+                     }}>
+                    <View style={{marginRight: 10}}>
+                      <UL.ULButton style="accent" text="Steps" />
+                    </View>
+                  </TouchableHighlight>
+                </View>
+                <View>
+                  <TouchableHighlight
+                     underlayColor='transparent'
+                     onPress={() => {
+                       const { navigate } = this.props.navigation;
+                       navigate('Weight')
+                     }}>
+                    <View>
+                      <UL.ULButton style="accent" text={this.state.weightBtn} />
+                    </View>
+                  </TouchableHighlight>
+                </View>
+              </View>
             </View>
-          </TouchableHighlight>
+          </View>
         </View>
       </ScrollView>
     )

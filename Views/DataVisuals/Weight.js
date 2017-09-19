@@ -3,7 +3,7 @@ import {
   View,
   Text,
   ScrollView,
-  TouchableHighlight
+  TouchableHighlight,
 } from 'react-native';
 
 import moment from 'moment'
@@ -15,7 +15,7 @@ import * as C from '../../Components'
 export class Weight extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { };
+    this.state = {};
   }
 
   componentWillMount() {
