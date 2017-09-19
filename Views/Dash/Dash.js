@@ -125,6 +125,19 @@ export class Dash extends React.Component {
               <UL.ULButton style="primary" text="My Rating" />
             </View>
           </TouchableHighlight>
+
+          <TouchableHighlight
+             underlayColor='transparent'
+             onPress={() => {
+               T.removeStorage('Onboarding');
+               T.removeStorage('Connected');
+               const { navigate } = this.props.navigation;
+               navigate('Welcome')
+             }}>
+            <View>
+              <UL.ULButton style="primary" text="Reset App" />
+            </View>
+          </TouchableHighlight>
         </View>
       </ScrollView>
     )

@@ -12,7 +12,6 @@ import {
 
 import AnimatedLinearGradient, {presetColors} from 'react-native-animated-linear-gradient'
 
-
 import * as UL from 'ulna-ui'
 
 export class Welcome extends React.Component {

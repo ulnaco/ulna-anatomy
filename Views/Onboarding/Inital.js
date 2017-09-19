@@ -129,6 +129,17 @@ export class InitalRating extends React.Component {
               <View>
                 <Text>Rating {this.state.rating}</Text>
                 <Text>BMI {this.state.bmi}</Text>
+                <TouchableHighlight
+                   underlayColor='transparent'
+                   onPress={() => {
+                     const { navigate } = this.props.navigation;
+                     navigate('Dash')
+                     T.setStorage('Onboarding', 'complete');
+                   }}>
+                  <View>
+                    <UL.ULButton style="accent" text="Open Dash" />
+                  </View>
+                </TouchableHighlight>
               </View>
             }
             {this.state.needHealth &&

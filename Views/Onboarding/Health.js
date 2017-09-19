@@ -14,23 +14,26 @@ import {
 import AppleHealthkit from 'rn-apple-healthkit';
 import * as UL from 'ulna-ui'
 
+import * as T from '../../Tools'
+
 export class Health extends React.Component {
 
   syncAppleHealth() {
 
-    let options = {
-      permissions: {
-        read: ["Height", "Weight", "DateOfBirth", "Steps", "BodyMassIndex"],
-        write: ["Weight", "Height", "BodyMassIndex"]
-      }
-    };
-
+    let options = T.Permissions()
     AppleHealthkit.isAvailable((err: Object, available: boolean) => {
       if (available) {
         AppleHealthkit.initHealthKit(options: Object, (err: Object, results: Object) => {
           if (err) return;
           const { navigate } = this.props.navigation;
-          navigate('HealthStudy')
+          T.getStorage('Onboarding', (results) => {
+            if (results) {
+              navigate('Dash')
+            } else {
+              navigate('HealthStudy')
+            }
+          });
+          T.setStorage('Connected', JSON.stringify(options));
         });
       }
     });
