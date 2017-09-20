@@ -16,6 +16,9 @@ import AnimatedLinearGradient, {presetColors} from 'react-native-animated-linear
 import * as T from '../../Tools'
 import * as C from '../../Components'
 
+import PushNotification from 'react-native-push-notification';
+import BackgroundTimer from 'react-native-background-timer';
+
 
 export class Dash extends React.Component {
   constructor(props) {
@@ -26,6 +29,61 @@ export class Dash extends React.Component {
   }
 
   componentDidMount() {
+
+    // Start a timer that runs continuous after X milliseconds
+const intervalId = BackgroundTimer.setInterval(() => {
+	// this will be executed every 200 ms
+	// even when app is the the background
+	// console.log('tic');
+}, 200);
+
+BackgroundTimer.start(1000);
+
+// Cancel the timer when you are done with it
+// BackgroundTimer.clearInterval(intervalId);
+
+    PushNotification.configure({
+
+        // (optional) Called when Token is generated (iOS and Android)
+        onRegister: function(token) {
+            console.log( 'TOKEN:', token );
+        },
+
+        // (required) Called when a remote or local notification is opened or received
+        onNotification: function(notification) {
+            console.log( 'NOTIFICATION:', notification );
+        },
+
+        // ANDROID ONLY: GCM Sender ID (optional - not required for local notifications, but is need to receive remote push notifications)
+        senderID: "YOUR GCM SENDER ID",
+
+        // IOS ONLY (optional): default: all - Permissions to register.
+        permissions: {
+            alert: true,
+            badge: true,
+            sound: true
+        },
+
+        // Should the initial notification be popped automatically
+        // default: true
+        popInitialNotification: true,
+
+        /**
+          * (optional) default: true
+          * - Specified if permissions (ios) and token (android and ios) will requested or not,
+          * - if not, you must call PushNotificationsHandler.requestPermissions() later
+          */
+        requestPermissions: true,
+    });
+
+
+    PushNotification.localNotificationSchedule({
+        message: "My Schedule Notification Message", // (required)
+        number: 3,
+        date: new Date(Date.now()) // in 3 secs
+      });
+
+
 
     console.log(this.state.width)
     if (this.state.width > 374) {
