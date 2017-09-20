@@ -89,6 +89,18 @@ const views = {
       title: 'Weight Insights'
     }
   },
+  Profile: {
+    screen: Screens.Profile,
+    navigationOptions: {
+      title: 'Profile'
+    }
+  },
+  Notifications: {
+    screen: Screens.Notifications,
+    navigationOptions: {
+      header: null,
+    }
+  },
   MyRating: {
     screen: Screens.MyRating,
     navigationOptions: {

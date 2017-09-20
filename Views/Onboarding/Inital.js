@@ -133,11 +133,10 @@ export class InitalRating extends React.Component {
                    underlayColor='transparent'
                    onPress={() => {
                      const { navigate } = this.props.navigation;
-                     navigate('Dash')
-                     T.setStorage('Onboarding', 'complete');
+                     navigate('Notifications')
                    }}>
                   <View>
-                    <UL.ULButton style="accent" text="Open Dash" />
+                    <UL.ULButton style="accent" text="Next" />
                   </View>
                 </TouchableHighlight>
               </View>

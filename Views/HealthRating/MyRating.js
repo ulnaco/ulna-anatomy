@@ -65,7 +65,7 @@ export class MyRating extends React.Component {
              underlayColor='transparent'
              onPress={() => {
                const { navigate } = this.props.navigation;
-               navigate('LogWeight')
+               navigate('Profile')
              }}>
             <View>
               <UL.ULButton style="accent" text="Health Profile" />
