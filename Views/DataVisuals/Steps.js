@@ -32,6 +32,15 @@ export class Steps extends React.Component {
           }
         });
 
+        // Steps
+        AppleHealthkit.getStepCount(null, (err: string, results: Object) => {
+          if (results) {
+            this.setState({
+              steps: T.thousand(results.value)
+            })
+          }
+        });
+
         // Weight (Pounds)
         let weightOpts = {
           startDate: moment().subtract(1, 'years').toISOString(),
@@ -43,12 +52,7 @@ export class Steps extends React.Component {
           var most30 = { value: 0, startDate: 0 };
           for (var i = 0; i < results.length; i++) {
             if (most.value < results[i].value) most = results[i]
-            if (i == 0) {
-              this.setState({
-                steps: T.thousand(results[i].value),
-              })
-            }
-            else {
+            if (i > 0) {
               if (i > 25) continue;
               var stepsFormat = T.thousand(results[i].value)
               timeline.push(<UL.ULListItem reverse={true} title={moment(results[i].startDate).fromNow()} subTitle={stepsFormat} />);
@@ -80,14 +84,16 @@ export class Steps extends React.Component {
     return (
       <ScrollView style={UL.ULStyles.window}>
         <View>
-          { this.state.steps &&
             <View style={{marginBottom: UL.ULStyleguide.spacing}}>
-              <UL.ULListItem title="Steps Today" subTitle={this.state.steps} />
-              <UL.ULListItem reverse={true} title="Distance Today" subTitle={this.state.distance} />
+              { this.state.steps &&
+                <View>
+                  <UL.ULListItem title="Steps Today" subTitle={this.state.steps} />
+                  <UL.ULListItem reverse={true} title="Distance Today" subTitle={this.state.distance} />
+                </View>
+              }
               <UL.ULListItem small={true} title="Most Steps in a Day" subTitle={this.state.mostSteps} subSubTitle={this.state.mostStepsDate} />
               <UL.ULListItem small={true} title="30 Day High" subTitle={this.state.mostSteps30} subSubTitle={this.state.mostStepsDate30} />
             </View>
-          }
           {this.state.stepsTimeline &&
             <View>
               <UL.ULSubTitle text="Last 30 Days" />

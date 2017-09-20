@@ -93,7 +93,7 @@ export class Weight extends React.Component {
           </View>
           {this.state.weightTimeline &&
             <View>
-              <UL.ULSubTitle text="Last 30 Days" />
+              <UL.ULSubTitle text="Last 30 Records" />
               <View style={{marginBottom: UL.ULStyleguide.spacing*2}}>
                 {this.state.weightTimeline}
               </View>

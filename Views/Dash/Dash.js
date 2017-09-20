@@ -16,6 +16,7 @@ import AnimatedLinearGradient, {presetColors} from 'react-native-animated-linear
 import * as T from '../../Tools'
 import * as C from '../../Components'
 
+
 export class Dash extends React.Component {
   constructor(props) {
     super(props);
@@ -25,6 +26,7 @@ export class Dash extends React.Component {
   }
 
   componentDidMount() {
+
     console.log(this.state.width)
     if (this.state.width > 374) {
       this.state.weightBtn = 'Weight Insights'

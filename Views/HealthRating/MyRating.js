@@ -61,6 +61,16 @@ export class MyRating extends React.Component {
             { this.state.bmi && <UL.ULListItem title="BMI" subTitle={this.state.bmi} /> }
             { this.state.steps && <UL.ULListItem title="Steps Today" subTitle={this.state.steps} /> }
           </View>
+          <TouchableHighlight
+             underlayColor='transparent'
+             onPress={() => {
+               const { navigate } = this.props.navigation;
+               navigate('LogWeight')
+             }}>
+            <View>
+              <UL.ULButton style="accent" text="Health Profile" />
+            </View>
+          </TouchableHighlight>
         </View>
       </ScrollView>
     )
