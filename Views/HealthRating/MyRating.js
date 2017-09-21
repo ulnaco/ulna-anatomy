@@ -16,7 +16,11 @@ export class MyRating extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { };
+    this.state = {
+      goodExplanation: [],
+      okExplanation: [],
+      badExplanation: [],
+    };
   }
 
   componentWillMount() {
@@ -47,9 +51,27 @@ export class MyRating extends React.Component {
         })
 
         // Health Rating
-        T.rating((result) => {
+        T.rating((result, explanation) => {
+          console.log(explanation)
+          var goodExplanations = []
+          var okExplanations = []
+          var badExplanations = []
+          for(var i = 0; i < explanation.length; i++) {
+            if (explanation[i].type == 'good') {
+              goodExplanations.push(<UL.ULListItem key={i} justtext={true} text={explanation[i].text} />)
+            }
+            if (explanation[i].type == 'ok') {
+              okExplanations.push(<UL.ULListItem key={i} justtext={true} text={explanation[i].text} />)
+            }
+            if (explanation[i].type == 'bad') {
+              badExplanations.push(<UL.ULListItem key={i} justtext={true} text={explanation[i].text} />)
+            }
+          }
           this.setState({
-            rating: result
+            rating: result,
+            goodExplanation: goodExplanations,
+            okExplanation: okExplanations,
+            badExplanation: badExplanations,
           })
         });
 
@@ -68,6 +90,25 @@ export class MyRating extends React.Component {
             { this.state.bmi && <UL.ULListItem title="BMI" subTitle={this.state.bmi} /> }
             { this.state.steps && <UL.ULListItem title="5 Day Step Average" subTitle={this.state.steps} /> }
           </View>
+          {this.state.goodExplanation.length > 0 &&
+            <View style={{marginBottom: UL.ULStyleguide.spacing}}>
+              <UL.ULSubTitle text="The Good" />
+              { this.state.goodExplanation }
+            </View>
+          }
+          {this.state.okExplanation.length > 0 &&
+            <View style={{marginBottom: UL.ULStyleguide.spacing}}>
+              <UL.ULSubTitle text="The Ok" />
+              { this.state.okExplanation }
+            </View>
+          }
+          {this.state.badExplanation.length > 0 &&
+            <View style={{marginBottom: UL.ULStyleguide.spacing}}>
+              <UL.ULSubTitle text="The Bad" />
+              { this.state.badExplanation }
+            </View>
+          }
+          <UL.ULSpace small={true} />
           <TouchableHighlight
              underlayColor='transparent'
              onPress={() => {

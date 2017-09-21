@@ -41,7 +41,7 @@ export class Weight extends React.Component {
               })
             }
             else {
-              timeline.push(<UL.ULListItem reverse={true} title={moment(results[i].startDate).fromNow()} subTitle={results[i].value} />);
+              timeline.push(<UL.ULListItem key={i} reverse={true} title={moment(results[i].startDate).fromNow()} subTitle={results[i].value} />);
             }
 
             if (lowest.value > results[i].value) lowest = results[i]

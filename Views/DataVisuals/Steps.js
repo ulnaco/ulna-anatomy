@@ -55,7 +55,7 @@ export class Steps extends React.Component {
             if (i > 0) {
               if (i > 25) continue;
               var stepsFormat = T.thousand(results[i].value)
-              timeline.push(<UL.ULListItem reverse={true} title={moment(results[i].startDate).fromNow()} subTitle={stepsFormat} />);
+              timeline.push(<UL.ULListItem key={i} reverse={true} title={moment(results[i].startDate).fromNow()} subTitle={stepsFormat} />);
             }
             if (most30.value < results[i].value) most30 = results[i]
 
