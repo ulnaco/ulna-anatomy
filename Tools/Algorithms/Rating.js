@@ -15,7 +15,8 @@ export function rating(fn) {
         score = 1
         explanation.push({
           type: 'bad',
-          text: 'Considered Underweight'
+          text: 'Considered Underweight',
+          score: 'F'
         })
       }
       else if (result > 18.5 && result < 20) {
@@ -24,7 +25,8 @@ export function rating(fn) {
       else if (result > 20 && result < 24.9) {
         explanation.push({
           type: 'good',
-          text: 'Ideal height to weight ratio'
+          text: 'Ideal height to weight ratio',
+          score: 'A+'
         })
         score = 5
       }
@@ -57,35 +59,40 @@ export function rating(fn) {
         fitnessScore = 2
         explanation.push({
           type: 'bad',
-          text: 'Recommended you walk +2000 more steps a day'
+          text: 'Recommended you walk +2000 more steps a day',
+          score: 'D'
         })
       }
       else if ((total/5) > 5000) {
         fitnessScore = 3
         explanation.push({
           type: 'ok',
-          text: 'Recommended you walk +1000 more steps a day'
+          text: 'Recommended you walk +1000 more steps a day',
+          score: 'C'
         })
       }
       else if ((total/5) > 8000) {
         fitnessScore = 4
         explanation.push({
           type: 'good',
-          text: 'Recommended daily steps on point'
+          text: 'Recommended daily steps on point',
+          score: 'B'
         })
       }
       else if ((total/5) > 10000) {
         fitnessScore = 5
         explanation.push({
           type: 'good',
-          text: 'Overachiever when it comes to steps'
+          text: 'Overachiever when it comes to steps',
+          score: 'A+'
         })
       }
 
       if (fitnessScore < 1) {
         explanation.push({
           type: 'bad',
-          text: 'Your walking in 10x less than the average'
+          text: 'Your walking in 10x less than the average',
+          score: 'F'
         })
       }
 

@@ -58,13 +58,13 @@ export class MyRating extends React.Component {
           var badExplanations = []
           for(var i = 0; i < explanation.length; i++) {
             if (explanation[i].type == 'good') {
-              goodExplanations.push(<UL.ULListItem key={i} justtext={true} text={explanation[i].text} />)
+              goodExplanations.push(<UL.ULListItem key={i} justtext={true} text={explanation[i].text} subText={explanation[i].score} />)
             }
             if (explanation[i].type == 'ok') {
-              okExplanations.push(<UL.ULListItem key={i} justtext={true} text={explanation[i].text} />)
+              okExplanations.push(<UL.ULListItem key={i} justtext={true} text={explanation[i].text} subText={explanation[i].score} />)
             }
             if (explanation[i].type == 'bad') {
-              badExplanations.push(<UL.ULListItem key={i} justtext={true} text={explanation[i].text} />)
+              badExplanations.push(<UL.ULListItem key={i} justtext={true} text={explanation[i].text} subText={explanation[i].score} />)
             }
           }
           this.setState({
