@@ -1,3 +1,4 @@
+import moment from 'moment'
 import AppleHealthkit from 'rn-apple-healthkit';
 
 import { bmi } from './BMI'
@@ -29,7 +30,35 @@ export function rating(fn) {
       resolve(score)
     })
   }).then((score) => {
-    ratings = ['F', 'E', 'D', 'C', 'B', 'A+']
-    fn(ratings[score])
+
+    let weightOpts = {
+      startDate: moment().subtract(5, 'days').toISOString(),
+      endDate: moment().toISOString()
+    }
+    AppleHealthkit.getDailyStepCountSamples(weightOpts: Object, (err: string, results: Object) => {
+      var total = 0
+      for (var i = 0; i < results.length; i++) {
+        total = Number(results[i].value) + total
+      }
+
+      var fitnessScore = 0
+      var stepAverage = (total/5)
+      if ((total/5) > 4000) {
+        fitnessScore = 3
+      }
+      if ((total/5) > 5000) {
+        fitnessScore = 4
+      }
+      if ((total/5) > 8000) {
+        fitnessScore = 5
+      }
+      if ((total/5) > 10000) {
+        fitnessScore = 5
+      }
+
+      ratings = ['F', 'E', 'D', 'C', 'B', 'A+']
+      fn(ratings[ Math.round((score+fitnessScore)/2) ])
+
+    });
   })
 }

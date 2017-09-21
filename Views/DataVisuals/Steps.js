@@ -41,7 +41,7 @@ export class Steps extends React.Component {
           }
         });
 
-        // Weight (Pounds)
+        // Steps
         let weightOpts = {
           startDate: moment().subtract(1, 'years').toISOString(),
           endDate: moment().toISOString()

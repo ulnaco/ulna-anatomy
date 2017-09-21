@@ -6,6 +6,7 @@ import {
   TouchableHighlight
 } from 'react-native';
 
+import moment from 'moment'
 import AppleHealthkit from 'rn-apple-healthkit';
 import * as UL from 'ulna-ui'
 
@@ -22,14 +23,20 @@ export class MyRating extends React.Component {
     AppleHealthkit.isAvailable((err: Object, available: boolean) => {
       if (available) {
 
-        // Steps
-        let options = { }
-        AppleHealthkit.getStepCount(options: Object, (err: string, results: Object) => {
-          if (results) {
-            this.setState({
-              steps: T.thousand(results.value)
-            })
+        let weightOpts = {
+          startDate: moment().subtract(5, 'days').toISOString(),
+          endDate: moment().toISOString()
+        }
+        AppleHealthkit.getDailyStepCountSamples(weightOpts: Object, (err: string, results: Object) => {
+          var total = 0
+          for (var i = 0; i < results.length; i++) {
+            total = Number(results[i].value) + total
           }
+
+          this.setState({
+            steps: T.thousand((total/5))
+          })
+
         });
 
         // BMI
@@ -59,7 +66,7 @@ export class MyRating extends React.Component {
           </View>
           <View style={{marginBottom: UL.ULStyleguide.spacing}}>
             { this.state.bmi && <UL.ULListItem title="BMI" subTitle={this.state.bmi} /> }
-            { this.state.steps && <UL.ULListItem title="Steps Today" subTitle={this.state.steps} /> }
+            { this.state.steps && <UL.ULListItem title="5 Day Step Average" subTitle={this.state.steps} /> }
           </View>
           <TouchableHighlight
              underlayColor='transparent'
