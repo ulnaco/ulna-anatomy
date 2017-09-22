@@ -41,12 +41,27 @@ export class Steps extends React.Component {
           }
         });
 
-        // Steps
-        let weightOpts = {
+        // Steps Yesterday
+        var yesterdayOpts = {
+          date: moment().subtract(1, 'day').endOf('day').toISOString()
+        }
+        AppleHealthkit.getStepCount(yesterdayOpts, (err: string, results: Object) => {
+          if (results) {
+            T.StepScore(yesterdayOpts.date, (score) => {
+                this.setState({
+                  yesterday: T.thousand(results.value),
+                  yesterdayScore: score
+                })
+            })
+          }
+        });
+
+        // Steps Over Time
+        let stepsOverTimeOpts = {
           startDate: moment().subtract(1, 'years').toISOString(),
           endDate: moment().toISOString()
         }
-        AppleHealthkit.getDailyStepCountSamples(weightOpts: Object, (err: string, results: Object) => {
+        AppleHealthkit.getDailyStepCountSamples(stepsOverTimeOpts: Object, (err: string, results: Object) => {
           var timeline = [];
           var most = { value: 0, startDate: 0 };
           var most30 = { value: 0, startDate: 0 };
@@ -89,6 +104,11 @@ export class Steps extends React.Component {
                 <View>
                   <UL.ULListItem title="Steps Today" subTitle={this.state.steps} />
                   <UL.ULListItem reverse={true} title="Distance Today" subTitle={this.state.distance} />
+                </View>
+              }
+              { this.state.yesterday &&
+                <View>
+                  <UL.ULListItem small={true} title="Steps Yesterday" subTitle={this.state.yesterday} subSubTitle={this.state.yesterdayScore} />
                 </View>
               }
               <UL.ULListItem small={true} title="Most Steps in a Day" subTitle={this.state.mostSteps} subSubTitle={this.state.mostStepsDate} />
