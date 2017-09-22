@@ -36,10 +36,8 @@ export class Dash extends React.Component {
       if (nextAppState == 'active') {
         this.Healthkit();
       }
-      console.log(nextAppState)
     })
 
-    console.log(this.state.width)
     if (this.state.width > 374) {
       this.state.weightBtn = 'Weight Insights'
     }
@@ -72,7 +70,6 @@ export class Dash extends React.Component {
 
         // Health Rating
         T.rating((result) => {
-          console.log(result)
           this.setState({
             rating: result
           })

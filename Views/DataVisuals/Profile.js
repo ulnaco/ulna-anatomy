@@ -17,7 +17,7 @@ export class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      hidden: 0
+      hidden: 0,
     };
   }
 
@@ -50,6 +50,12 @@ export class Profile extends React.Component {
           })
         })
 
+        T.getStorage('Token', (token) => {
+          this.setState({
+            token: token
+          })
+        })
+
       }
     });
 
@@ -78,6 +84,7 @@ export class Profile extends React.Component {
             </TouchableHighlight>
           {this.state.height && <UL.ULListItem reverse={true} title="Height" subTitle={this.state.height} /> }
           {this.state.bmi && <UL.ULListItem reverse={true} title="BMI" subTitle={this.state.bmi} /> }
+          {this.state.token && <UL.ULListItem reverse={true} title="UUID" subTitle={this.state.token} /> }
         </View>
       </ScrollView>
     )

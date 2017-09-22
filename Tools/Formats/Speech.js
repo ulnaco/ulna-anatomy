@@ -44,25 +44,27 @@ export const Speech = {
   },
   single: {
     steps: (count) => {
+
+      // Create Number
       if (isNaN(count)) {
         count = count.replace(/[^0-9]/g,'');
       }
 
+      if (count > 10000) { // Overachiever
+        return 'Truly amazing!'
+      }
+      if (count > 8000) { // Recommended
+        return 'On point with recommended!'
+      }
+      if (count > 5000) { // Average
+        return 'Your Average!!'
+      }
       if (count > 4000) { // Trying
         return 'Your below Average!!'
       }
-      else if (count > 5000) { // Average
-        return 'Your Average!!'
-      }
-      else if (count > 8000) { // Recommended
-        return 'On point with recommended!'
-      }
-      else if (count > 10000) { // Overachiever
-        return 'Truly amazing!'
-      }
       if (count < 4000) { // No Steps
         var dif = T.thousand(8000 - count)
-        return `${dif} steps from recommended`
+        return `${dif} below recommended`
       }
     }
   }

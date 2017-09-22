@@ -66,27 +66,27 @@ export function rating(fn) {
       trendingScore = (trendingScore/(results.length/2))
       var stepAverage = (total/results.length)
       if ((total/5) > 4000) {
-        fitnessScore = 2
-        explanation.push({
-          type: 'bad',
-          text: message,
-          score: 'D'
-        })
-      }
-      else if ((total/5) > 5000) {
         fitnessScore = 3
         explanation.push({
-          type: 'ok',
+          type: 'bad',
           text: message,
           score: 'C'
         })
       }
-      else if ((total/5) > 8000) {
+      else if ((total/5) > 7000) {
         fitnessScore = 4
+        explanation.push({
+          type: 'ok',
+          text: message,
+          score: 'B'
+        })
+      }
+      else if ((total/5) > 8000) {
+        fitnessScore = 5
         explanation.push({
           type: 'good',
           text: message,
-          score: 'B'
+          score: 'A'
         })
       }
       else if ((total/5) > 10000) {
@@ -105,8 +105,6 @@ export function rating(fn) {
           score: 'F'
         })
       }
-
-      console.log(explanation)
 
       ratings = ['F', 'E', 'D', 'C', 'B', 'A+']
       fn(ratings[ Math.floor((score+fitnessScore)/2) ], explanation, {

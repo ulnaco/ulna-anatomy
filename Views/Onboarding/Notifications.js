@@ -21,21 +21,21 @@ export class Notifications extends React.Component {
 
   enable() {
     PushNotification.configure({
-        onRegister: function(token) {
-          T.setStorage('Token', 'token');
-        },
+      onRegister: function(token) {
+        T.setStorage('Token', token);
+      },
 
-        onNotification: function(notification) {
-            console.log( 'NOTIFICATION:', notification );
-        },
+      onNotification: function(notification) {
+        console.log('NOTIFICATION:', notification);
+      },
 
-        permissions: {
-            alert: true,
-            badge: true,
-            sound: true
-        },
-        popInitialNotification: true,
-        requestPermissions: true,
+      permissions: {
+        alert: true,
+        badge: true,
+        sound: true
+      },
+      popInitialNotification: true,
+      requestPermissions: true,
     });
     PushNotification.setApplicationIconBadgeNumber(0)
   }

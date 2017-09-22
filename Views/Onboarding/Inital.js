@@ -167,7 +167,6 @@ export class InitalRating extends React.Component {
                      newHeight = (Number(feet[0])*12)+Number(feet[1])
                      var options = { value: newHeight }
                      AppleHealthkit.saveHeight(options: Object, (err: Object, results: Object) => {
-                       console.log(err)
                        this.Height();
                      });
                    }}>
@@ -203,7 +202,6 @@ export class InitalRating extends React.Component {
                      }
                      var options = { value: weight }
                      AppleHealthkit.saveWeight(options: Object, (err: Object, results: Object) => {
-                       console.log(err)
                        this.Weight();
                      });
                    }}>

@@ -52,7 +52,6 @@ export class MyRating extends React.Component {
 
         // Health Rating
         T.rating((result, explanation) => {
-          console.log(explanation)
           var goodExplanations = []
           var okExplanations = []
           var badExplanations = []
@@ -108,7 +107,6 @@ export class MyRating extends React.Component {
               { this.state.badExplanation }
             </View>
           }
-          <UL.ULSpace small={true} />
           <TouchableHighlight
              underlayColor='transparent'
              onPress={() => {
@@ -119,6 +117,7 @@ export class MyRating extends React.Component {
               <UL.ULButton style="accent" text="Health Profile" />
             </View>
           </TouchableHighlight>
+          <UL.ULSpace small={true} />
         </View>
       </ScrollView>
     )
