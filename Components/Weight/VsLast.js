@@ -30,10 +30,10 @@ export class VsLast extends React.Component {
           if (results && results[0] && results[1]) {
             const weightDiff = (results[0].value - results[1].value);
             if (weightDiff > 0) {
-              weightDiff = "Gain "+Math.round(weightDiff)+" "+weightOpts.unit+"s"
+              weightDiff = T.Speech.ui['weight_gain'].replace('{var}', Math.round(weightDiff));
             }
             else {
-              weightDiff = "Loss "+Math.round(weightDiff)+" "+weightOpts.unit+"s"
+              weightDiff = T.Speech.ui['weight_loss'].replace('{var}', Math.round(weightDiff));
             }
             if (weightDiff == 0) {
               return false
