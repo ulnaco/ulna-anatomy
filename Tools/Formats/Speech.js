@@ -1,3 +1,6 @@
+
+import * as T from '../../Tools'
+
 export const Speech = {
   ui: {
     weight_gain: 'Gain {var} pounds',
@@ -41,8 +44,12 @@ export const Speech = {
   },
   single: {
     steps: (count) => {
+      if (isNaN(count)) {
+        count = count.replace(/[^0-9]/g,'');
+      }
+
       if (count > 4000) { // Trying
-        return 'Atleast you tried'
+        return 'Your below Average!!'
       }
       else if (count > 5000) { // Average
         return 'Your Average!!'
@@ -54,7 +61,8 @@ export const Speech = {
         return 'Truly amazing!'
       }
       if (count < 4000) { // No Steps
-        return 'Are you sick? Forgot your watch?'
+        var dif = T.thousand(8000 - count)
+        return `${dif} steps from recommended`
       }
     }
   }
