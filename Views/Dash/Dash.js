@@ -56,6 +56,7 @@ export class Dash extends React.Component {
         AppleHealthkit.getStepCount(null, (err: string, results: Object) => {
           if (results) {
             this.setState({
+              stepsraw: results.value,
               steps: T.thousand(results.value)
             })
           }
@@ -102,7 +103,12 @@ export class Dash extends React.Component {
                 </View>
               </TouchableHighlight>
           </View>
-          { this.state.steps && <UL.ULListItem title="Steps Today" subTitle={this.state.steps} /> }
+          { this.state.steps &&
+            <View>
+              <UL.ULListItem title="Steps Today" subTitle={this.state.steps} />
+              <UL.ULListItem justtext={true} text={T.Speech.single.steps(this.state.stepsraw)} />
+            </View>
+          }
           { this.state.distance && <UL.ULListItem title="Distance Today" subTitle={this.state.distance} /> }
           <TouchableHighlight
              underlayColor='transparent'

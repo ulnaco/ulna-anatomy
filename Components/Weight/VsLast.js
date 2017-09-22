@@ -55,7 +55,7 @@ export class VsLast extends React.Component {
     return (
       <View style={{marginBottom: UL.ULStyleguide.spacing}}>
        { this.state.weightDiff &&  <T.BarVertical values={this.state.chart} /> }
-       { this.state.weightDiff && <UL.ULListItem title="Weight change" subTitle={this.state.weightDiff} /> }
+       { this.state.weightDiff && <UL.ULListItem title="Changes in Weight" subTitle={this.state.weightDiff} /> }
      </View>
     )
   }

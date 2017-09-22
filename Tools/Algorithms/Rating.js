@@ -3,6 +3,8 @@ import AppleHealthkit from 'rn-apple-healthkit';
 
 import { bmi } from './BMI'
 
+import * as T from '../../Tools'
+
 export function rating(fn) {
 
   var explanation = []
@@ -11,11 +13,12 @@ export function rating(fn) {
   new Promise((resolve, reject) => {
     bmi((result) => {
       let score = 0;
+      var message = T.Speech.range.bmi(result)
       if (result < 18.5) {
         score = 1
         explanation.push({
           type: 'bad',
-          text: 'Considered Underweight',
+          text: message,
           score: 'F'
         })
       }
@@ -25,7 +28,7 @@ export function rating(fn) {
       else if (result > 20 && result < 24.9) {
         explanation.push({
           type: 'good',
-          text: 'Ideal height to weight ratio',
+          text: message,
           score: 'A+'
         })
         score = 5
@@ -58,13 +61,15 @@ export function rating(fn) {
         }
       }
 
+      var message = T.Speech.range.steps((total/5))
+
       trendingScore = (trendingScore/(results.length/2))
       var stepAverage = (total/results.length)
       if ((total/5) > 4000) {
         fitnessScore = 2
         explanation.push({
           type: 'bad',
-          text: 'Recommended you walk +2000 more steps a day',
+          text: message,
           score: 'D'
         })
       }
@@ -72,7 +77,7 @@ export function rating(fn) {
         fitnessScore = 3
         explanation.push({
           type: 'ok',
-          text: 'Recommended you walk +1000 more steps a day',
+          text: message,
           score: 'C'
         })
       }
@@ -80,7 +85,7 @@ export function rating(fn) {
         fitnessScore = 4
         explanation.push({
           type: 'good',
-          text: 'Recommended daily steps on point',
+          text: message,
           score: 'B'
         })
       }
@@ -88,7 +93,7 @@ export function rating(fn) {
         fitnessScore = 5
         explanation.push({
           type: 'good',
-          text: 'Overachiever when it comes to steps',
+          text: message,
           score: 'A+'
         })
       }
@@ -96,7 +101,7 @@ export function rating(fn) {
       if (fitnessScore < 1) {
         explanation.push({
           type: 'bad',
-          text: 'Your walking in 10x less than the average',
+          text: message,
           score: 'F'
         })
       }
