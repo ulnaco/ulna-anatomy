@@ -44,17 +44,22 @@ export function rating(fn) {
   }).then((score) => {
 
     let weightOpts = {
-      startDate: moment().subtract(5, 'days').toISOString(),
+      startDate: moment().subtract(30, 'days').toISOString(),
       endDate: moment().toISOString()
     }
     AppleHealthkit.getDailyStepCountSamples(weightOpts: Object, (err: string, results: Object) => {
       var total = 0
+      var fitnessScore = 0
+      var trendingScore = 0
       for (var i = 0; i < results.length; i++) {
         total = Number(results[i].value) + total
+        if (i > (results.length/2)) {
+          trendingScore = Number(results[i].value) + trendingScore
+        }
       }
 
-      var fitnessScore = 0
-      var stepAverage = (total/5)
+      trendingScore = (trendingScore/(results.length/2))
+      var stepAverage = (total/results.length)
       if ((total/5) > 4000) {
         fitnessScore = 2
         explanation.push({
@@ -99,7 +104,10 @@ export function rating(fn) {
       console.log(explanation)
 
       ratings = ['F', 'E', 'D', 'C', 'B', 'A+']
-      fn(ratings[ Math.floor((score+fitnessScore)/2) ], explanation)
+      fn(ratings[ Math.floor((score+fitnessScore)/2) ], explanation, {
+        average_steps: stepAverage,
+        trending_steps: trendingScore,
+      })
 
     });
   })

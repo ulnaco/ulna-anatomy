@@ -5,7 +5,8 @@ import {
   ScrollView,
   TouchableHighlight,
   StatusBar,
-  Dimensions
+  Dimensions,
+  AppState
 } from 'react-native';
 
 import moment from 'moment'
@@ -19,7 +20,6 @@ import * as C from '../../Components'
 import PushNotification from 'react-native-push-notification';
 import BackgroundTimer from 'react-native-background-timer';
 
-
 export class Dash extends React.Component {
   constructor(props) {
     super(props);
@@ -29,27 +29,15 @@ export class Dash extends React.Component {
   }
 
   componentDidMount() {
+    T.Watchdog();
+    this.Healthkit();
 
-    // Start a timer that runs continuous after X milliseconds
-// const intervalId = BackgroundTimer.setInterval(() => {
-// 	// this will be executed every 200 ms
-// 	// even when app is the the background
-// 	// console.log('tic');
-// }, 200);
-//
-// BackgroundTimer.start(1000);
-
-// Cancel the timer when you are done with it
-// BackgroundTimer.clearInterval(intervalId);
-
-
-    // PushNotification.localNotificationSchedule({
-    //     message: "My Schedule Notification Message", // (required)
-    //     number: 3,
-    //     date: new Date(Date.now()) // in 3 secs
-    //   });
-
-
+    AppState.addEventListener('change', (nextAppState) => {
+      if (nextAppState == 'active') {
+        this.Healthkit();
+      }
+      console.log(nextAppState)
+    })
 
     console.log(this.state.width)
     if (this.state.width > 374) {
@@ -58,6 +46,9 @@ export class Dash extends React.Component {
     else {
       this.state.weightBtn = 'Weight'
     }
+  }
+
+  Healthkit() {
     AppleHealthkit.isAvailable((err: Object, available: boolean) => {
       if (available) {
 
