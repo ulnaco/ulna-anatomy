@@ -133,7 +133,7 @@ export class InitalRating extends React.Component {
                    underlayColor='transparent'
                    onPress={() => {
                      const { navigate } = this.props.navigation;
-                     navigate('Notifications')
+                     navigate('Dash')
                    }}>
                   <View>
                     <UL.ULButton style="accent" text="Next" />

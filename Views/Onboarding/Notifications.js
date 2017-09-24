@@ -10,7 +10,6 @@ import {
   StatusBar
 } from 'react-native';
 
-
 import PushNotification from 'react-native-push-notification';
 import AnimatedLinearGradient, {presetColors} from 'react-native-animated-linear-gradient'
 import * as UL from 'ulna-ui'
@@ -23,6 +22,7 @@ export class Notifications extends React.Component {
     PushNotification.configure({
       onRegister: function(token) {
         T.setStorage('Token', token);
+        console.log('Token', token);
       },
 
       onNotification: function(notification) {
@@ -37,7 +37,7 @@ export class Notifications extends React.Component {
       popInitialNotification: true,
       requestPermissions: true,
     });
-    PushNotification.setApplicationIconBadgeNumber(0)
+    PushNotification.setApplicationIconBadgeNumber(4)
   }
 
   render() {
