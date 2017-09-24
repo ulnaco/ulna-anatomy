@@ -2,7 +2,6 @@ import moment from 'moment'
 import AppleHealthkit from 'rn-apple-healthkit';
 
 import { bmi } from './BMI'
-
 import * as T from '../../Tools'
 
 export function rating(fn) {
@@ -46,6 +45,7 @@ export function rating(fn) {
     })
   }).then((score) => {
 
+    // Weight
     let weightOpts = {
       startDate: moment().subtract(30, 'days').toISOString(),
       endDate: moment().toISOString()

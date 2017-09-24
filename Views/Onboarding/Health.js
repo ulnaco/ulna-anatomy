@@ -1,7 +1,3 @@
-/**
- * - Button : Content with Apple Health
- * - Action : Onboarding/HealthStudy
- */
 import React, { Component } from 'react';
 import {
   View,
@@ -12,8 +8,8 @@ import {
 } from 'react-native';
 
 import AppleHealthkit from 'rn-apple-healthkit';
-import * as UL from 'ulna-ui'
 
+import * as UL from 'ulna-ui'
 import * as T from '../../Tools'
 
 export class Health extends React.Component {

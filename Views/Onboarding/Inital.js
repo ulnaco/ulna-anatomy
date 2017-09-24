@@ -9,8 +9,8 @@ import {
 
 import Prompt from 'react-native-prompt';
 import AppleHealthkit from 'rn-apple-healthkit';
-import * as UL from 'ulna-ui'
 
+import * as UL from 'ulna-ui'
 import * as T from '../../Tools'
 
 export class InitalRating extends React.Component {

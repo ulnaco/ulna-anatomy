@@ -1,6 +1,3 @@
-/**
- * - Button : Onboarding/Health
- */
 import React, { Component } from 'react';
 import {
   View,
@@ -10,7 +7,7 @@ import {
   StatusBar
 } from 'react-native';
 
-import AnimatedLinearGradient, {presetColors} from 'react-native-animated-linear-gradient'
+import AnimatedLinearGradient, { presetColors } from 'react-native-animated-linear-gradient'
 
 import * as UL from 'ulna-ui'
 

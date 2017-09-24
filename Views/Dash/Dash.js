@@ -11,14 +11,13 @@ import {
 
 import moment from 'moment'
 import AppleHealthkit from 'rn-apple-healthkit';
-import * as UL from 'ulna-ui'
-import AnimatedLinearGradient, {presetColors} from 'react-native-animated-linear-gradient'
+import AnimatedLinearGradient, { presetColors } from 'react-native-animated-linear-gradient'
+import PushNotification from 'react-native-push-notification';
+import BackgroundTimer from 'react-native-background-timer';
 
 import * as T from '../../Tools'
 import * as C from '../../Components'
-
-import PushNotification from 'react-native-push-notification';
-import BackgroundTimer from 'react-native-background-timer';
+import * as UL from 'ulna-ui'
 
 export class Dash extends React.Component {
   constructor(props) {

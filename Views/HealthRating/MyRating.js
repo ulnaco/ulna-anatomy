@@ -8,8 +8,8 @@ import {
 
 import moment from 'moment'
 import AppleHealthkit from 'rn-apple-healthkit';
-import * as UL from 'ulna-ui'
 
+import * as UL from 'ulna-ui'
 import * as T from '../../Tools'
 
 export class MyRating extends React.Component {

@@ -1,6 +1,3 @@
-/**
- * - Button : Onboarding/Health
- */
 import React, { Component } from 'react';
 import {
   View,
@@ -12,8 +9,8 @@ import {
 
 import PushNotification from 'react-native-push-notification';
 import AnimatedLinearGradient, {presetColors} from 'react-native-animated-linear-gradient'
-import * as UL from 'ulna-ui'
 
+import * as UL from 'ulna-ui'
 import * as T from '../../Tools'
 
 export class Notifications extends React.Component {
