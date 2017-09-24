@@ -13,6 +13,7 @@ import * as T from '../../Tools'
 export class Splash extends React.Component {
 
   componentDidMount() {
+    T.Watchdog(this);
     setTimeout(() => {
 
       // Start Inital Healthkit
@@ -59,5 +60,5 @@ export class Splash extends React.Component {
       </View>
     )
   }
-  
+
 }

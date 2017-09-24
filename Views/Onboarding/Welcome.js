@@ -13,6 +13,10 @@ import * as UL from 'ulna-ui'
 
 export class Welcome extends React.Component {
 
+  componentDidMount() {
+    T.Watchdog(this);
+  }
+
   render() {
     return (
       <View style={[UL.ULStyles.window]}>

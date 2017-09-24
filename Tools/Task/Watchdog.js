@@ -1,7 +1,14 @@
 import React, {Component} from 'react'
-import {AppState, Text} from 'react-native'
+import { AppState, Text } from 'react-native'
 
-export function Watchdog() {
+import * as T from '../../Tools'
+
+export function Watchdog(view) {
+  var Track = {
+    Name: view.props.navigation.state.routeName
+  }
+  T.Track('View', Track)
+  console.log(view.props)
 
 
       // Start a timer that runs continuous after X milliseconds

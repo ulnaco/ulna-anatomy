@@ -23,6 +23,7 @@ export class InitalRating extends React.Component {
   }
 
   componentWillMount() {
+    T.Watchdog(this);
     AppleHealthkit.isAvailable((err: Object, available: boolean) => {
       if (available) {
 

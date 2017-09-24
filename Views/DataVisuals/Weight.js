@@ -11,6 +11,7 @@ import AppleHealthkit from 'rn-apple-healthkit';
 
 import * as UL from 'ulna-ui'
 import * as C from '../../Components'
+import * as T from '../../Tools'
 
 export class Weight extends React.Component {
   constructor(props) {
@@ -19,6 +20,7 @@ export class Weight extends React.Component {
   }
 
   componentWillMount() {
+    T.Watchdog(this);
     AppleHealthkit.isAvailable((err: Object, available: boolean) => {
       if (available) {
 

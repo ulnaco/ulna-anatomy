@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 
 import * as UL from 'ulna-ui'
+import * as T from '../../Tools'
 
 export class HealthStudy extends React.Component {
   constructor(props) {
@@ -17,6 +18,7 @@ export class HealthStudy extends React.Component {
   }
 
   componentDidMount() {
+    T.Watchdog(this);
     this.setState({
       pg: {
         marginBottom: UL.ULStyleguide.spacing,

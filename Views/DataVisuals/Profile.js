@@ -22,6 +22,7 @@ export class Profile extends React.Component {
   }
 
   componentWillMount() {
+    T.Watchdog(this);
     AppleHealthkit.isAvailable((err: Object, available: boolean) => {
       if (available) {
         // Age

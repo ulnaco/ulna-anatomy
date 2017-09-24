@@ -20,6 +20,7 @@ export class Steps extends React.Component {
   }
 
   componentWillMount() {
+    T.Watchdog(this);
     AppleHealthkit.isAvailable((err: Object, available: boolean) => {
       if (available) {
 

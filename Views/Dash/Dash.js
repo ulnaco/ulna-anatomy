@@ -28,7 +28,7 @@ export class Dash extends React.Component {
   }
 
   componentDidMount() {
-    T.Watchdog();
+    T.Watchdog(this);
     this.Healthkit();
 
     AppState.addEventListener('change', (nextAppState) => {
