@@ -3,6 +3,10 @@ package com.anatomy;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.ocetnik.timer.BackgroundTimerPackage;
+import com.jamesisaac.rnbackgroundtask.BackgroundTaskPackage;
+import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
+import com.BV.LinearGradient.LinearGradientPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -24,6 +28,10 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new BackgroundTimerPackage(),
+            new BackgroundTaskPackage(),
+            new ReactNativePushNotificationPackage(),
+            new LinearGradientPackage(),
             new RNDeviceInfo()
       );
     }

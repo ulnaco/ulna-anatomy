@@ -22,6 +22,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		26C70DC3AB44482CA8DEF4B5 /* libRNBackgroundTimer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A91C7CBCD640DBA1E956A8 /* libRNBackgroundTimer.a */; };
 		2AF784FEE6384024B3EDAC35 /* libRCTAppleHealthKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83661CA2F2AF407FAF05F3C3 /* libRCTAppleHealthKit.a */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -35,10 +36,12 @@
 		2D02E4C81E0B4AEC006451C7 /* libRCTWebSocket-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3E991DF850E9000B6D8A /* libRCTWebSocket-tvOS.a */; };
 		2D02E4C91E0B4AEC006451C7 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		2DCD954D1E0B4F2C00145EB5 /* anatomyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* anatomyTests.m */; };
+		3A66C7FC95674A2B8E78677F /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B62909C96D544E7D944465D2 /* libBVLinearGradient.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		E540FFEC1F6AB08C0093F534 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E540FFEB1F6AB08C0093F534 /* HealthKit.framework */; };
+		E58749B81F72DDE900BEBED9 /* libRCTPushNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E58749A21F72DDDA00BEBED9 /* libRCTPushNotification.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -238,6 +241,48 @@
 			remoteGlobalIDString = 358F4ED71D1E81A9004DF814;
 			remoteInfo = RCTBlob;
 		};
+		E58748D31F715D9000BEBED9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 75FEF664C83542CEB495C855 /* BVLinearGradient.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = BVLinearGradient;
+		};
+		E58748D51F715D9000BEBED9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 75FEF664C83542CEB495C855 /* BVLinearGradient.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 64AA15081EF7F30100718508;
+			remoteInfo = "BVLinearGradient-tvOS";
+		};
+		E58749A11F72DDDA00BEBED9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E587498D1F72DDDA00BEBED9 /* RCTPushNotification.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RCTPushNotification;
+		};
+		E58749A31F72DDDA00BEBED9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E587498D1F72DDDA00BEBED9 /* RCTPushNotification.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3D05745F1DE6004600184BB4;
+			remoteInfo = "RCTPushNotification-tvOS";
+		};
+		E58749F01F72E44300BEBED9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3565655870FD48A782FFE1EE /* RNBackgroundTimer.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNBackgroundTimer;
+		};
+		E58749F21F72E44300BEBED9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3565655870FD48A782FFE1EE /* RNBackgroundTimer.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 641926921ECB4257009CF731;
+			remoteInfo = "RNBackgroundTimer-tvOS";
+		};
 		E5E49B441F6A00660015C1D9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */;
@@ -305,14 +350,19 @@
 		260057D1B7334DD1816F4DC1 /* RCTAppleHealthKit.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTAppleHealthKit.xcodeproj; path = "../node_modules/rn-apple-Healthkit/RCTAppleHealthKit.xcodeproj"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* anatomy-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "anatomy-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* anatomy-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "anatomy-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3565655870FD48A782FFE1EE /* RNBackgroundTimer.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNBackgroundTimer.xcodeproj; path = "../node_modules/react-native-background-timer/ios/RNBackgroundTimer.xcodeproj"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
+		75FEF664C83542CEB495C855 /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = BVLinearGradient.xcodeproj; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		83661CA2F2AF407FAF05F3C3 /* libRCTAppleHealthKit.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTAppleHealthKit.a; sourceTree = "<group>"; };
 		9B97A55D6EAA464CB4B2065F /* libRNDeviceInfo.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNDeviceInfo.a; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
+		B62909C96D544E7D944465D2 /* libBVLinearGradient.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libBVLinearGradient.a; sourceTree = "<group>"; };
+		B9A91C7CBCD640DBA1E956A8 /* libRNBackgroundTimer.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNBackgroundTimer.a; sourceTree = "<group>"; };
 		E540FFE91F6AB08C0093F534 /* anatomy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = anatomy.entitlements; path = anatomy/anatomy.entitlements; sourceTree = "<group>"; };
 		E540FFEB1F6AB08C0093F534 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		E587498D1F72DDDA00BEBED9 /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "../node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -328,6 +378,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E58749B81F72DDE900BEBED9 /* libRCTPushNotification.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
@@ -343,6 +394,8 @@
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				2AF784FEE6384024B3EDAC35 /* libRCTAppleHealthKit.a in Frameworks */,
+				3A66C7FC95674A2B8E78677F /* libBVLinearGradient.a in Frameworks */,
+				26C70DC3AB44482CA8DEF4B5 /* libRNBackgroundTimer.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,6 +569,8 @@
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				260057D1B7334DD1816F4DC1 /* RCTAppleHealthKit.xcodeproj */,
+				75FEF664C83542CEB495C855 /* BVLinearGradient.xcodeproj */,
+				3565655870FD48A782FFE1EE /* RNBackgroundTimer.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -567,9 +622,37 @@
 		E540FFEA1F6AB08C0093F534 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E587498D1F72DDDA00BEBED9 /* RCTPushNotification.xcodeproj */,
 				E540FFEB1F6AB08C0093F534 /* HealthKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E58748CF1F715D9000BEBED9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E58748D41F715D9000BEBED9 /* libBVLinearGradient.a */,
+				E58748D61F715D9000BEBED9 /* libBVLinearGradient.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E587498E1F72DDDA00BEBED9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E58749A21F72DDDA00BEBED9 /* libRCTPushNotification.a */,
+				E58749A41F72DDDA00BEBED9 /* libRCTPushNotification-tvOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E58749EC1F72E44200BEBED9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E58749F11F72E44300BEBED9 /* libRNBackgroundTimer.a */,
+				E58749F31F72E44300BEBED9 /* libRNBackgroundTimer.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		E5E49B3E1F6A00620015C1D9 /* Recovered References */ = {
@@ -577,6 +660,8 @@
 			children = (
 				83661CA2F2AF407FAF05F3C3 /* libRCTAppleHealthKit.a */,
 				9B97A55D6EAA464CB4B2065F /* libRNDeviceInfo.a */,
+				B62909C96D544E7D944465D2 /* libBVLinearGradient.a */,
+				B9A91C7CBCD640DBA1E956A8 /* libRNBackgroundTimer.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -681,6 +766,9 @@
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 3EQ4576ET5;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.HealthKit = {
 								enabled = 1;
 							};
@@ -709,6 +797,10 @@
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = E58748CF1F715D9000BEBED9 /* Products */;
+					ProjectRef = 75FEF664C83542CEB495C855 /* BVLinearGradient.xcodeproj */;
+				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
@@ -742,6 +834,10 @@
 					ProjectRef = 00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */;
 				},
 				{
+					ProductGroup = E587498E1F72DDDA00BEBED9 /* Products */;
+					ProjectRef = E587498D1F72DDDA00BEBED9 /* RCTPushNotification.xcodeproj */;
+				},
+				{
 					ProductGroup = 139105B71AF99BAD00B5F7CC /* Products */;
 					ProjectRef = 139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */;
 				},
@@ -760,6 +856,10 @@
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+				},
+				{
+					ProductGroup = E58749EC1F72E44200BEBED9 /* Products */;
+					ProjectRef = 3565655870FD48A782FFE1EE /* RNBackgroundTimer.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -955,6 +1055,48 @@
 			remoteRef = ADBDB9261DFEBF0700ED6528 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		E58748D41F715D9000BEBED9 /* libBVLinearGradient.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBVLinearGradient.a;
+			remoteRef = E58748D31F715D9000BEBED9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E58748D61F715D9000BEBED9 /* libBVLinearGradient.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBVLinearGradient.a;
+			remoteRef = E58748D51F715D9000BEBED9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E58749A21F72DDDA00BEBED9 /* libRCTPushNotification.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTPushNotification.a;
+			remoteRef = E58749A11F72DDDA00BEBED9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E58749A41F72DDDA00BEBED9 /* libRCTPushNotification-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libRCTPushNotification-tvOS.a";
+			remoteRef = E58749A31F72DDDA00BEBED9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E58749F11F72E44300BEBED9 /* libRNBackgroundTimer.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNBackgroundTimer.a;
+			remoteRef = E58749F01F72E44300BEBED9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E58749F31F72E44300BEBED9 /* libRNBackgroundTimer.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNBackgroundTimer.a;
+			remoteRef = E58749F21F72E44300BEBED9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		E5E49B451F6A00660015C1D9 /* libRCTBlob-tvOS.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1140,12 +1282,16 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/rn-apple-Healthkit/RCTAppleHealthKit",
 					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+					"$(SRCROOT)/../node_modules/react-native-background-timer/ios",
 				);
 				INFOPLIST_FILE = anatomyTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
@@ -1168,12 +1314,16 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/rn-apple-Healthkit/RCTAppleHealthKit",
 					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+					"$(SRCROOT)/../node_modules/react-native-background-timer/ios",
 				);
 				INFOPLIST_FILE = anatomyTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
@@ -1189,7 +1339,7 @@
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon2v;
 				CODE_SIGN_ENTITLEMENTS = anatomy/anatomy.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
@@ -1198,6 +1348,8 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/rn-apple-Healthkit/RCTAppleHealthKit",
 					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+					"$(SRCROOT)/../node_modules/react-native-background-timer/ios",
 				);
 				INFOPLIST_FILE = anatomy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1216,7 +1368,7 @@
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon2v;
 				CODE_SIGN_ENTITLEMENTS = anatomy/anatomy.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3EQ4576ET5;
@@ -1224,6 +1376,8 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/rn-apple-Healthkit/RCTAppleHealthKit",
 					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+					"$(SRCROOT)/../node_modules/react-native-background-timer/ios",
 				);
 				INFOPLIST_FILE = anatomy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1255,11 +1409,15 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/rn-apple-Healthkit/RCTAppleHealthKit",
 					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+					"$(SRCROOT)/../node_modules/react-native-background-timer/ios",
 				);
 				INFOPLIST_FILE = "anatomy-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
@@ -1291,11 +1449,15 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/rn-apple-Healthkit/RCTAppleHealthKit",
 					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+					"$(SRCROOT)/../node_modules/react-native-background-timer/ios",
 				);
 				INFOPLIST_FILE = "anatomy-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
@@ -1328,6 +1490,8 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.anatomy-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1352,6 +1516,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);

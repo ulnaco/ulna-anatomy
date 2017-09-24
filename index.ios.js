@@ -21,8 +21,16 @@ import {
 // MXInit('5df62a939c9625dfeb091400575b6c7f')
 // MXTrack('YO')
 
-const anatomy = StackNavigator({
+const views = {
   initialRouteName: {
+    mode: "modal",
+    screen: Screens.Splash,
+    navigationOptions: {
+      gesturesEnabled: false,
+      header: null,
+    }
+  },
+  Welcome: {
     mode: "modal",
     screen: Screens.Welcome,
     navigationOptions: {
@@ -33,6 +41,22 @@ const anatomy = StackNavigator({
   Health: {
     mode: "modal",
     screen: Screens.Health,
+    navigationOptions: {
+      gesturesEnabled: false,
+      header: null,
+    }
+  },
+  HealthStudy: {
+    mode: "modal",
+    screen: Screens.HealthStudy,
+    navigationOptions: {
+      gesturesEnabled: false,
+      header: null,
+    }
+  },
+  Inital: {
+    mode: "modal",
+    screen: Screens.InitalRating,
     navigationOptions: {
       gesturesEnabled: false,
       header: null,
@@ -53,10 +77,28 @@ const anatomy = StackNavigator({
       title: 'Log Weight'
     }
   },
+  Steps: {
+    screen: Screens.Steps,
+    navigationOptions: {
+      title: 'Steps Insights'
+    }
+  },
   Weight: {
     screen: Screens.Weight,
     navigationOptions: {
-      title: 'Weight'
+      title: 'Weight Insights'
+    }
+  },
+  Profile: {
+    screen: Screens.Profile,
+    navigationOptions: {
+      title: 'Profile'
+    }
+  },
+  Notifications: {
+    screen: Screens.Notifications,
+    navigationOptions: {
+      header: null,
     }
   },
   MyRating: {
@@ -65,6 +107,7 @@ const anatomy = StackNavigator({
       title: 'My Rating'
     }
   }
-});
+}
 
+const anatomy = StackNavigator(views);
 AppRegistry.registerComponent('anatomy', () => anatomy);

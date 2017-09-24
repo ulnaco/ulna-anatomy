@@ -10,11 +10,35 @@ import {
   StatusBar
 } from 'react-native';
 
+import PushNotification from 'react-native-push-notification';
 import AnimatedLinearGradient, {presetColors} from 'react-native-animated-linear-gradient'
-
 import * as UL from 'ulna-ui'
 
-export class Welcome extends React.Component {
+import * as T from '../../Tools'
+
+export class Notifications extends React.Component {
+
+  enable() {
+    PushNotification.configure({
+      onRegister: function(token) {
+        T.setStorage('Token', token);
+        console.log('Token', token);
+      },
+
+      onNotification: function(notification) {
+        console.log('NOTIFICATION:', notification);
+      },
+
+      permissions: {
+        alert: true,
+        badge: true,
+        sound: true
+      },
+      popInitialNotification: true,
+      requestPermissions: true,
+    });
+    PushNotification.setApplicationIconBadgeNumber(4)
+  }
 
   render() {
     return (
@@ -28,17 +52,19 @@ export class Welcome extends React.Component {
             alignItems: 'center',
             paddingHorizontal: UL.ULStyleguide.spacing*1.5,
           }}>
-          <UL.ULTitle lite={true} text="Welcome"/>
+          <UL.ULTitle lite={true} text="Notifications"/>
           <UL.ULSubTitle lite={true} text="Ulna Anatomy is designed to help people live healthier & happier lives!"/>
           <UL.ULSpace small={true} />
           <TouchableHighlight
              underlayColor='transparent'
              onPress={() => {
+               this.enable()
+               T.setStorage('Onboarding', 'complete');
                const { navigate } = this.props.navigation;
-               navigate('Health')
+               navigate('Dash')
              }}>
             <View>
-              <UL.ULButton style="white" text="Get Started" />
+              <UL.ULButton style="white" text="Enable" />
             </View>
           </TouchableHighlight>
         </View>
