@@ -4,11 +4,17 @@ import { AppState, Text } from 'react-native'
 import * as T from '../../Tools'
 
 export function Watchdog(view) {
-  var Track = {
-    Name: view.props.navigation.state.routeName
+  if (view.props.navigation) {
+    var Track = {
+      Name: view.props.navigation.state.routeName
+    }
+    T.Track('View', Track)
+    console.log(view.props)
   }
-  T.Track('View', Track)
-  console.log(view.props)
+
+  AppState.addEventListener('change', (nextAppState) => {
+    T.Track('AppState', { state: nextAppState })
+  });
 
 
       // Start a timer that runs continuous after X milliseconds

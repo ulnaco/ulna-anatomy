@@ -6,8 +6,8 @@ import {
 
 import AppleHealthkit from 'rn-apple-healthkit';
 import AnimatedLinearGradient, { presetColors } from 'react-native-animated-linear-gradient'
-import * as UL from 'ulna-ui'
 
+import * as UL from 'ulna-ui'
 import * as T from '../../Tools'
 
 export class Splash extends React.Component {
