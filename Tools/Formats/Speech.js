@@ -11,13 +11,13 @@ export const Speech = {
         return 'Considered Underweight'
       }
       if (bmi > 20 && bmi < 24.9) {
-        return 'Ideal BMI range'
+        return 'Ideal weight range'
       }
       if (bmi > 25 && bmi < 26.9) {
-        return 'Perfect BMI'
+        return 'Perfect weight range'
       }
       if (bmi > 27 && bmi < 29.9) {
-        return 'Ideal BMI range'
+        return 'Ideal weight range'
       }
       if (bmi > 29.9) { // Overweight
         return 'Considered Overweight'

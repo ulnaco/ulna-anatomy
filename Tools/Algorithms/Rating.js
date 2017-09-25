@@ -59,12 +59,12 @@ export function rating(fn) {
     })
   }).then((score) => {
 
-    // Weight
-    let weightOpts = {
-      startDate: moment().subtract(30, 'days').toISOString(),
+    // Steps
+    let stepsOpts = {
+      startDate: moment().subtract(7, 'days').toISOString(),
       endDate: moment().toISOString()
     }
-    AppleHealthkit.getDailyStepCountSamples(weightOpts: Object, (err: string, results: Object) => {
+    AppleHealthkit.getDailyStepCountSamples(stepsOpts: Object, (err: string, results: Object) => {
       var total = 0
       var fitnessScore = 0
       var trendingScore = 0
@@ -79,36 +79,35 @@ export function rating(fn) {
 
       trendingScore = (trendingScore/(results.length/2))
       var stepAverage = (total/results.length)
-      if (stepAverage > 4000) {
-        fitnessScore = 3
+      if (stepAverage > 10000) {
+        fitnessScore = 5
         explanation.push({
-          type: 'bad',
+          type: 'good',
           text: message,
         })
       }
-      else if (stepAverage > 7000) {
+      else if (stepAverage > 8000 && stepAverage < 10000) {
+        fitnessScore = 5
+        explanation.push({
+          type: 'good',
+          text: message,
+        })
+      }
+      else if (stepAverage > 7000 && stepAverage < 8000) {
         fitnessScore = 4
         explanation.push({
           type: 'ok',
           text: message,
         })
       }
-      else if (stepAverage > 8000) {
-        fitnessScore = 5
+      else if (stepAverage > 4000 && stepAverage < 7000) {
+        fitnessScore = 3
         explanation.push({
-          type: 'good',
+          type: 'bad',
           text: message,
         })
-      }
-      else if (stepAverage > 10000) {
-        fitnessScore = 5
-        explanation.push({
-          type: 'good',
-          text: message,
-        })
-      }
-
-      if (fitnessScore < 1) {
+      } else {
+        fitnessScore = 1
         explanation.push({
           type: 'bad',
           text: message,

@@ -28,20 +28,29 @@ export class MyRating extends React.Component {
     AppleHealthkit.isAvailable((err: Object, available: boolean) => {
       if (available) {
 
-        let weightOpts = {
-          startDate: moment().subtract(5, 'days').toISOString(),
+        let stepsOpts = {
+          startDate: moment().subtract(7, 'days').toISOString(),
           endDate: moment().toISOString()
         }
-        AppleHealthkit.getDailyStepCountSamples(weightOpts: Object, (err: string, results: Object) => {
+        AppleHealthkit.getDailyStepCountSamples(stepsOpts: Object, (err: string, results: Object) => {
           var total = 0
           for (var i = 0; i < results.length; i++) {
             total = Number(results[i].value) + total
           }
 
           this.setState({
-            steps: T.thousand((total/5))
+            steps: T.thousand((total/results.length))
           })
 
+        });
+
+        // Weight (Pounds)
+        AppleHealthkit.getLatestWeight({ unit: 'pound' }: Object, (err: string, results: Object) => {
+          if (results) {
+            this.setState({
+              lastWeight: results.value
+            })
+          }
         });
 
         // BMI
@@ -90,10 +99,11 @@ export class MyRating extends React.Component {
           </View>
           <View style={{marginBottom: UL.ULStyleguide.spacing}}>
             { this.state.fitness && <UL.ULListItem title="Fitness Rating" subTitle={this.state.fitness} /> }
-            { this.state.steps && <UL.ULListItem title="5 Day Step Average" subTitle={this.state.steps} /> }
+            { this.state.steps && <UL.ULListItem title="7 Day Step Average" subTitle={this.state.steps} /> }
           </View>
           <View style={{marginBottom: UL.ULStyleguide.spacing}}>
             { this.state.fitness && <UL.ULListItem title="Weight Rating" subTitle={this.state.weight} /> }
+            { this.state.lastWeight && <UL.ULListItem title="Weight" subTitle={this.state.lastWeight} /> }
             { this.state.bmi && <UL.ULListItem title="BMI" subTitle={this.state.bmi} /> }
           </View>
           {this.state.goodExplanation.length > 0 &&
