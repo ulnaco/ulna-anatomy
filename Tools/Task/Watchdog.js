@@ -5,15 +5,11 @@ import * as T from '../../Tools'
 
 export function Watchdog(view) {
   if (view.props.navigation) {
-    var Track = {
-      Name: view.props.navigation.state.routeName
-    }
-    T.Track('View', Track)
-    console.log(view.props)
+    T.Track('view', view.props.navigation.state.routeName)
   }
 
   AppState.addEventListener('change', (nextAppState) => {
-    T.Track('AppState', { state: nextAppState })
+    T.Track('state', nextAppState)
   });
 
 

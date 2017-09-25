@@ -11,6 +11,7 @@ import {
 import AppleHealthkit from 'rn-apple-healthkit';
 
 import * as UL from 'ulna-ui'
+import * as T from '../../Tools'
 
 export class LogWeight extends React.Component {
 
@@ -62,6 +63,7 @@ export class LogWeight extends React.Component {
                    {text: 'OK', onPress: () => {
                      AppleHealthkit.saveWeight(options: Object, (err: Object, results: Object) => {
                        if (!err) {
+                         T.Track('event', 'Logged Weight')
                          const { navigate } = this.props.navigation;
                          navigate('Weight')
                        }

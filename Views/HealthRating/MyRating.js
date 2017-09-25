@@ -111,6 +111,7 @@ export class MyRating extends React.Component {
           <TouchableHighlight
              underlayColor='transparent'
              onPress={() => {
+               T.Track('event', 'Button/Health Profile', { view: this.props.navigation.state.routeName })
                const { navigate } = this.props.navigation;
                navigate('Profile')
              }}>

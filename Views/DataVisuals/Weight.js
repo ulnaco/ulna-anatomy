@@ -76,6 +76,7 @@ export class Weight extends React.Component {
           <TouchableHighlight
              underlayColor='transparent'
              onPress={() => {
+               T.Track('event', 'Button/Log Weight', { view: this.props.navigation.state.routeName })
                const { navigate } = this.props.navigation;
                navigate('LogWeight')
              }}>

@@ -90,6 +90,7 @@ export class Dash extends React.Component {
               <TouchableHighlight
                  underlayColor='transparent'
                  onPress={() => {
+                   T.Track('event', 'Button/Learn More', { view: this.props.navigation.state.routeName })
                    const { navigate } = this.props.navigation;
                    navigate('MyRating')
                  }}>
@@ -108,6 +109,7 @@ export class Dash extends React.Component {
           <TouchableHighlight
              underlayColor='transparent'
              onPress={() => {
+               T.Track('event', 'Weight Chart')
                const { navigate } = this.props.navigation;
                navigate('Weight')
              }}>
@@ -122,6 +124,7 @@ export class Dash extends React.Component {
                   <TouchableHighlight
                      underlayColor='transparent'
                      onPress={() => {
+                       T.Track('event', 'Button/View Steps', { view: this.props.navigation.state.routeName })
                        const { navigate } = this.props.navigation;
                        navigate('Steps')
                      }}>
@@ -134,6 +137,7 @@ export class Dash extends React.Component {
                   <TouchableHighlight
                      underlayColor='transparent'
                      onPress={() => {
+                       T.Track('event', 'Button/View Weight', { view: this.props.navigation.state.routeName })
                        const { navigate } = this.props.navigation;
                        navigate('Weight')
                      }}>

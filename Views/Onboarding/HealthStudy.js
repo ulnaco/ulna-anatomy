@@ -27,6 +27,8 @@ export class HealthStudy extends React.Component {
   }
 
   JoinStudy() {
+    T.Track('event', 'Join Study')
+    T.setStorage('HealthStudy', 'ok');
     const { navigate } = this.props.navigation;
     navigate('Inital')
   }
