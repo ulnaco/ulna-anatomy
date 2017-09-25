@@ -52,7 +52,7 @@ export class MyRating extends React.Component {
         })
 
         // Health Rating
-        T.rating((result, explanation) => {
+        T.rating((result, explanation, more) => {
           var goodExplanations = []
           var okExplanations = []
           var badExplanations = []
@@ -72,6 +72,8 @@ export class MyRating extends React.Component {
             goodExplanation: goodExplanations,
             okExplanation: okExplanations,
             badExplanation: badExplanations,
+            fitness: more.scores.fitness,
+            weight: more.scores.weight
           })
         });
 
@@ -84,11 +86,15 @@ export class MyRating extends React.Component {
       <ScrollView style={UL.ULStyles.window}>
         <View>
           <View style={{marginBottom: UL.ULStyleguide.spacing}}>
-            { this.state.rating && <UL.ULListItem title="Health Rating" subTitle={this.state.rating} /> }
+            { this.state.rating && <Text style={[UL.ULStyles.largeTitle, {textAlign: 'center', fontWeight: 'bold', marginBottom: 0, fontSize: 80} ]}>{this.state.rating}</Text> }
           </View>
           <View style={{marginBottom: UL.ULStyleguide.spacing}}>
-            { this.state.bmi && <UL.ULListItem title="BMI" subTitle={this.state.bmi} /> }
+            { this.state.fitness && <UL.ULListItem title="Fitness Rating" subTitle={this.state.fitness} /> }
             { this.state.steps && <UL.ULListItem title="5 Day Step Average" subTitle={this.state.steps} /> }
+          </View>
+          <View style={{marginBottom: UL.ULStyleguide.spacing}}>
+            { this.state.fitness && <UL.ULListItem title="Weight Rating" subTitle={this.state.weight} /> }
+            { this.state.bmi && <UL.ULListItem title="BMI" subTitle={this.state.bmi} /> }
           </View>
           {this.state.goodExplanation.length > 0 &&
             <View style={{marginBottom: UL.ULStyleguide.spacing}}>

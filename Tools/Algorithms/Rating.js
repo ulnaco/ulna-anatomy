@@ -18,28 +18,42 @@ export function rating(fn) {
         explanation.push({
           type: 'bad',
           text: message,
-          score: 'F'
         })
       }
       else if (result > 18.5 && result < 20) {
         score = 3
+        explanation.push({
+          type: 'ok',
+          text: message,
+        })
       }
       else if (result > 20 && result < 24.9) {
+        score = 5
         explanation.push({
           type: 'good',
           text: message,
-          score: 'A+'
         })
-        score = 5
       }
       else if (result > 25 && result < 26.9) {
         score = 4
+        explanation.push({
+          type: 'good',
+          text: message,
+        })
       }
       else if (result > 27 && result < 29.9) {
         score = 2
+        explanation.push({
+          type: 'bad',
+          text: message,
+        })
       }
       else {
         score = 0
+        explanation.push({
+          type: 'bad',
+          text: message,
+        })
       }
       resolve(score)
     })
@@ -65,36 +79,32 @@ export function rating(fn) {
 
       trendingScore = (trendingScore/(results.length/2))
       var stepAverage = (total/results.length)
-      if ((total/5) > 4000) {
+      if (stepAverage > 4000) {
         fitnessScore = 3
         explanation.push({
           type: 'bad',
           text: message,
-          score: 'C'
         })
       }
-      else if ((total/5) > 7000) {
+      else if (stepAverage > 7000) {
         fitnessScore = 4
         explanation.push({
           type: 'ok',
           text: message,
-          score: 'B'
         })
       }
-      else if ((total/5) > 8000) {
+      else if (stepAverage > 8000) {
         fitnessScore = 5
         explanation.push({
           type: 'good',
           text: message,
-          score: 'A'
         })
       }
-      else if ((total/5) > 10000) {
+      else if (stepAverage > 10000) {
         fitnessScore = 5
         explanation.push({
           type: 'good',
           text: message,
-          score: 'A+'
         })
       }
 
@@ -102,14 +112,15 @@ export function rating(fn) {
         explanation.push({
           type: 'bad',
           text: message,
-          score: 'F'
         })
       }
 
       ratings = ['F', 'E', 'D', 'C', 'B', 'A+']
       fn(ratings[ Math.floor((score+fitnessScore)/2) ], explanation, {
-        average_steps: stepAverage,
-        trending_steps: trendingScore,
+        scores: {
+          fitness: ratings[fitnessScore],
+          weight: ratings[score],
+        }
       })
 
     });
