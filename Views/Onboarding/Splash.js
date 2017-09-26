@@ -7,7 +7,7 @@ import {
 import AppleHealthkit from 'rn-apple-healthkit';
 import AnimatedLinearGradient, { presetColors } from 'react-native-animated-linear-gradient'
 
-import * as UL from 'ulna-ui'
+import * as UI from '../../UI'
 import * as T from '../../Tools'
 
 export class Splash extends React.Component {
@@ -54,9 +54,9 @@ export class Splash extends React.Component {
 
   render() {
     return (
-      <View style={[UL.ULStyles.window]}>
+      <View style={[UI.UIStyles.window]}>
         <StatusBar barStyle="light-content" />
-        <AnimatedLinearGradient customColors={UL.ULStyleguide.gradient} speed={4000}/>
+        <AnimatedLinearGradient customColors={UI.UIStyleguide.gradient} speed={4000}/>
       </View>
     )
   }

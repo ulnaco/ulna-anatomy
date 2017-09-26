@@ -9,7 +9,7 @@ import {
 import moment from 'moment'
 import AppleHealthkit from 'rn-apple-healthkit';
 
-import * as UL from 'ulna-ui'
+import * as UI from '../../UI'
 import * as T from '../../Tools'
 
 export class MyRating extends React.Component {
@@ -67,13 +67,13 @@ export class MyRating extends React.Component {
           var badExplanations = []
           for(var i = 0; i < explanation.length; i++) {
             if (explanation[i].type == 'good') {
-              goodExplanations.push(<UL.ULListItem key={i} justtext={true} text={explanation[i].text} subText={explanation[i].score} />)
+              goodExplanations.push(<UI.UIListItem key={i} justtext={true} text={explanation[i].text} subText={explanation[i].score} />)
             }
             if (explanation[i].type == 'ok') {
-              okExplanations.push(<UL.ULListItem key={i} justtext={true} text={explanation[i].text} subText={explanation[i].score} />)
+              okExplanations.push(<UI.UIListItem key={i} justtext={true} text={explanation[i].text} subText={explanation[i].score} />)
             }
             if (explanation[i].type == 'bad') {
-              badExplanations.push(<UL.ULListItem key={i} justtext={true} text={explanation[i].text} subText={explanation[i].score} />)
+              badExplanations.push(<UI.UIListItem key={i} justtext={true} text={explanation[i].text} subText={explanation[i].score} />)
             }
           }
           this.setState({
@@ -92,35 +92,35 @@ export class MyRating extends React.Component {
 
   render() {
     return (
-      <ScrollView style={UL.ULStyles.window}>
+      <ScrollView style={UI.UIStyles.window}>
         <View>
-          <View style={{marginBottom: UL.ULStyleguide.spacing}}>
-            { this.state.rating && <Text style={[UL.ULStyles.largeTitle, {textAlign: 'center', fontWeight: 'bold', marginBottom: 0, fontSize: 80} ]}>{this.state.rating}</Text> }
+          <View style={{marginBottom: UI.UIStyleguide.spacing}}>
+            { this.state.rating && <Text style={[UI.UIStyles.largeTitle, {textAlign: 'center', fontWeight: 'bold', marginBottom: 0, fontSize: 80} ]}>{this.state.rating}</Text> }
           </View>
-          <View style={{marginBottom: UL.ULStyleguide.spacing}}>
-            { this.state.fitness && <UL.ULListItem title="Fitness Rating" subTitle={this.state.fitness} /> }
-            { this.state.steps && <UL.ULListItem title="7 Day Step Average" subTitle={this.state.steps} /> }
+          <View style={{marginBottom: UI.UIStyleguide.spacing}}>
+            { this.state.fitness && <UI.UIListItem title="Fitness Rating" subTitle={this.state.fitness} /> }
+            { this.state.steps && <UI.UIListItem title="7 Day Step Average" subTitle={this.state.steps} /> }
           </View>
-          <View style={{marginBottom: UL.ULStyleguide.spacing}}>
-            { this.state.fitness && <UL.ULListItem title="Weight Rating" subTitle={this.state.weight} /> }
-            { this.state.lastWeight && <UL.ULListItem title="Weight" subTitle={this.state.lastWeight} /> }
-            { this.state.bmi && <UL.ULListItem title="BMI" subTitle={this.state.bmi} /> }
+          <View style={{marginBottom: UI.UIStyleguide.spacing}}>
+            { this.state.fitness && <UI.UIListItem title="Weight Rating" subTitle={this.state.weight} /> }
+            { this.state.lastWeight && <UI.UIListItem title="Weight" subTitle={this.state.lastWeight} /> }
+            { this.state.bmi && <UI.UIListItem title="BMI" subTitle={this.state.bmi} /> }
           </View>
           {this.state.goodExplanation.length > 0 &&
-            <View style={{marginBottom: UL.ULStyleguide.spacing}}>
-              <UL.ULSubTitle text="The Good" />
+            <View style={{marginBottom: UI.UIStyleguide.spacing}}>
+              <UI.UISubTitle text="The Good" />
               { this.state.goodExplanation }
             </View>
           }
           {this.state.okExplanation.length > 0 &&
-            <View style={{marginBottom: UL.ULStyleguide.spacing}}>
-              <UL.ULSubTitle text="The Ok" />
+            <View style={{marginBottom: UI.UIStyleguide.spacing}}>
+              <UI.UISubTitle text="The Ok" />
               { this.state.okExplanation }
             </View>
           }
           {this.state.badExplanation.length > 0 &&
-            <View style={{marginBottom: UL.ULStyleguide.spacing}}>
-              <UL.ULSubTitle text="The Bad" />
+            <View style={{marginBottom: UI.UIStyleguide.spacing}}>
+              <UI.UISubTitle text="The Bad" />
               { this.state.badExplanation }
             </View>
           }
@@ -132,10 +132,10 @@ export class MyRating extends React.Component {
                navigate('Profile')
              }}>
             <View>
-              <UL.ULButton style="accent" text="Health Profile" />
+              <UI.UIButton style="accent" text="Health Profile" />
             </View>
           </TouchableHighlight>
-          <UL.ULSpace small={true} />
+          <UI.UISpace small={true} />
         </View>
       </ScrollView>
     )

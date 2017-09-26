@@ -9,7 +9,7 @@ import {
 
 import AnimatedLinearGradient, { presetColors } from 'react-native-animated-linear-gradient'
 
-import * as UL from 'ulna-ui'
+import * as UI from '../../UI'
 import * as T from '../../Tools'
 
 export class Welcome extends React.Component {
@@ -20,19 +20,19 @@ export class Welcome extends React.Component {
 
   render() {
     return (
-      <View style={[UL.ULStyles.window]}>
+      <View style={[UI.UIStyles.window]}>
         <StatusBar barStyle="light-content" />
-        <AnimatedLinearGradient customColors={UL.ULStyleguide.gradient} speed={4000}/>
+        <AnimatedLinearGradient customColors={UI.UIStyleguide.gradient} speed={4000}/>
         <View style={{
             flex: 1,
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
-            paddingHorizontal: UL.ULStyleguide.spacing*1.5,
+            paddingHorizontal: UI.UIStyleguide.spacing*1.5,
           }}>
-          <UL.ULTitle lite={true} text="Welcome"/>
-          <UL.ULSubTitle lite={true} text="Ulna Anatomy is designed to help people live healthier & happier lives!"/>
-          <UL.ULSpace small={true} />
+          <UI.UITitle lite={true} text="Welcome"/>
+          <UI.UISubTitle lite={true} text="Ulna Anatomy is designed to help people live healthier & happier lives!"/>
+          <UI.UISpace small={true} />
           <TouchableHighlight
              underlayColor='transparent'
              onPress={() => {
@@ -40,7 +40,7 @@ export class Welcome extends React.Component {
                navigate('Health')
              }}>
             <View>
-              <UL.ULButton style="white" text="Get Started" />
+              <UI.UIButton style="white" text="Get Started" />
             </View>
           </TouchableHighlight>
         </View>

@@ -9,7 +9,7 @@ import {
 
 import AppleHealthkit from 'rn-apple-healthkit';
 
-import * as UL from 'ulna-ui'
+import * as UI from '../../UI'
 import * as T from '../../Tools'
 
 export class Health extends React.Component {
@@ -37,25 +37,25 @@ export class Health extends React.Component {
 
   render() {
     return (
-      <View style={[UL.ULStyles.window, UL.ULStyles.backgroundPrimary]}>
+      <View style={[UI.UIStyles.window, UI.UIStyles.backgroundPrimary]}>
         <StatusBar barStyle="light-content" />
         <View style={{
             flex: 1,
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
-            paddingHorizontal: UL.ULStyleguide.spacing*1.5,
+            paddingHorizontal: UI.UIStyleguide.spacing*1.5,
           }}>
-          <UL.ULTitle text="Apple Health" lite={true}/>
-          <UL.ULSubTitle text="Sync your Apple Health data with Ulna Anatomy. Steps, Height, Weight, BMI, Distance Walking + Running, and Date of Birth" lite={true}/>
-          <UL.ULSpace small={true} />
+          <UI.UITitle text="Apple Health" lite={true}/>
+          <UI.UISubTitle text="Sync your Apple Health data with Ulna Anatomy. Steps, Height, Weight, BMI, Distance Walking + Running, and Date of Birth" lite={true}/>
+          <UI.UISpace small={true} />
           <TouchableHighlight
              underlayColor='transparent'
              onPress={() => {
                this.syncAppleHealth();
              }}>
             <View>
-              <UL.ULButton style="white" text="Connect" />
+              <UI.UIButton style="white" text="Connect" />
             </View>
           </TouchableHighlight>
         </View>

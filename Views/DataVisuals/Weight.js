@@ -9,7 +9,7 @@ import {
 import moment from 'moment'
 import AppleHealthkit from 'rn-apple-healthkit';
 
-import * as UL from 'ulna-ui'
+import * as UI from '../../UI'
 import * as C from '../../Components'
 import * as T from '../../Tools'
 
@@ -43,7 +43,7 @@ export class Weight extends React.Component {
               })
             }
             else {
-              timeline.push(<UL.ULListItem key={i} reverse={true} title={moment(results[i].startDate).fromNow()} subTitle={results[i].value} />);
+              timeline.push(<UI.UIListItem key={i} reverse={true} title={moment(results[i].startDate).fromNow()} subTitle={results[i].value} />);
             }
 
             if (lowest.value > results[i].value) lowest = results[i]
@@ -71,7 +71,7 @@ export class Weight extends React.Component {
 
   render() {
     return (
-      <ScrollView style={UL.ULStyles.window}>
+      <ScrollView style={UI.UIStyles.window}>
         <View>
           <TouchableHighlight
              underlayColor='transparent'
@@ -81,23 +81,23 @@ export class Weight extends React.Component {
                navigate('LogWeight')
              }}>
             <View>
-              <UL.ULButton style="accent" text="Log Weight" />
+              <UI.UIButton style="accent" text="Log Weight" />
             </View>
           </TouchableHighlight>
           { this.state.currentWeight &&
-            <View style={{marginBottom: UL.ULStyleguide.spacing}}>
-              <UL.ULListItem title="Current Weight" subTitle={this.state.currentWeight} subSubTitle={this.state.currentWeightUpdated} />
-              <UL.ULListItem small={true} title="Lowest Weight" subTitle={this.state.lowestWeight} subSubTitle={this.state.lowestWeightDate}/>
-              <UL.ULListItem small={true} title="Heaviest Weight" subTitle={this.state.heaviestWeight} subSubTitle={this.state.heaviestWeightDate}/>
+            <View style={{marginBottom: UI.UIStyleguide.spacing}}>
+              <UI.UIListItem title="Current Weight" subTitle={this.state.currentWeight} subSubTitle={this.state.currentWeightUpdated} />
+              <UI.UIListItem small={true} title="Lowest Weight" subTitle={this.state.lowestWeight} subSubTitle={this.state.lowestWeightDate}/>
+              <UI.UIListItem small={true} title="Heaviest Weight" subTitle={this.state.heaviestWeight} subSubTitle={this.state.heaviestWeightDate}/>
             </View>
           }
-          <View style={{marginBottom: UL.ULStyleguide.spacing}}>
+          <View style={{marginBottom: UI.UIStyleguide.spacing}}>
             <C.VsLast />
           </View>
           {this.state.weightTimeline &&
             <View>
-              <UL.ULSubTitle text="Last 30 Records" />
-              <View style={{marginBottom: UL.ULStyleguide.spacing*2}}>
+              <UI.UISubTitle text="Last 30 Records" />
+              <View style={{marginBottom: UI.UIStyleguide.spacing*2}}>
                 {this.state.weightTimeline}
               </View>
             </View>

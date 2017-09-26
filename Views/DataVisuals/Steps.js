@@ -9,7 +9,7 @@ import {
 import moment from 'moment'
 import AppleHealthkit from 'rn-apple-healthkit';
 
-import * as UL from 'ulna-ui'
+import * as UI from '../../UI'
 import * as C from '../../Components'
 import * as T from '../../Tools'
 
@@ -71,7 +71,7 @@ export class Steps extends React.Component {
             if (i > 0) {
               if (i > 25) continue;
               var stepsFormat = T.thousand(results[i].value)
-              timeline.push(<UL.ULListItem key={i} reverse={true} title={moment(results[i].startDate).fromNow()} subTitle={stepsFormat} />);
+              timeline.push(<UI.UIListItem key={i} reverse={true} title={moment(results[i].startDate).fromNow()} subTitle={stepsFormat} />);
             }
             if (most30.value < results[i].value) most30 = results[i]
 
@@ -98,27 +98,27 @@ export class Steps extends React.Component {
 
   render() {
     return (
-      <ScrollView style={UL.ULStyles.window}>
+      <ScrollView style={UI.UIStyles.window}>
         <View>
-            <View style={{marginBottom: UL.ULStyleguide.spacing}}>
+            <View style={{marginBottom: UI.UIStyleguide.spacing}}>
               { this.state.steps &&
                 <View>
-                  <UL.ULListItem title="Steps Today" subTitle={this.state.steps} />
-                  <UL.ULListItem reverse={true} title="Distance Today" subTitle={this.state.distance} />
+                  <UI.UIListItem title="Steps Today" subTitle={this.state.steps} />
+                  <UI.UIListItem reverse={true} title="Distance Today" subTitle={this.state.distance} />
                 </View>
               }
               { this.state.yesterday &&
                 <View>
-                  <UL.ULListItem small={true} title="Steps Yesterday" subTitle={this.state.yesterday} subSubTitle={this.state.yesterdayScore} />
+                  <UI.UIListItem small={true} title="Steps Yesterday" subTitle={this.state.yesterday} subSubTitle={this.state.yesterdayScore} />
                 </View>
               }
-              <UL.ULListItem small={true} title="Most Steps in a Day" subTitle={this.state.mostSteps} subSubTitle={this.state.mostStepsDate} />
-              <UL.ULListItem small={true} title="30 Day High" subTitle={this.state.mostSteps30} subSubTitle={this.state.mostStepsDate30} />
+              <UI.UIListItem small={true} title="Most Steps in a Day" subTitle={this.state.mostSteps} subSubTitle={this.state.mostStepsDate} />
+              <UI.UIListItem small={true} title="30 Day High" subTitle={this.state.mostSteps30} subSubTitle={this.state.mostStepsDate30} />
             </View>
           {this.state.stepsTimeline &&
             <View>
-              <UL.ULSubTitle text="Last 30 Days" />
-              <View style={{marginBottom: UL.ULStyleguide.spacing*2}}>
+              <UI.UISubTitle text="Last 30 Days" />
+              <View style={{marginBottom: UI.UIStyleguide.spacing*2}}>
                 {this.state.stepsTimeline}
               </View>
             </View>

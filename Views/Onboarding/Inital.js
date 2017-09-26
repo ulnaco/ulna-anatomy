@@ -10,7 +10,7 @@ import {
 import Prompt from 'react-native-prompt';
 import AppleHealthkit from 'rn-apple-healthkit';
 
-import * as UL from 'ulna-ui'
+import * as UI from '../../UI'
 import * as T from '../../Tools'
 
 export class InitalRating extends React.Component {
@@ -113,15 +113,15 @@ export class InitalRating extends React.Component {
 
   render() {
     return (
-      <ScrollView style={[UL.ULStyles.window, {flex: 1}]}>
+      <ScrollView style={[UI.UIStyles.window, {flex: 1}]}>
         <View style={{
             flex: 1,
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
-            paddingHorizontal: UL.ULStyleguide.spacing*1.5,
+            paddingHorizontal: UI.UIStyleguide.spacing*1.5,
           }}>
-            <UL.ULSpace />
+            <UI.UISpace />
             {this.state.Analysing &&
               <Text>Analysing..</Text>
             }
@@ -139,7 +139,7 @@ export class InitalRating extends React.Component {
                      navigate('Dash')
                    }}>
                   <View>
-                    <UL.ULButton style="accent" text="Next" />
+                    <UI.UIButton style="accent" text="Next" />
                   </View>
                 </TouchableHighlight>
               </View>
@@ -174,7 +174,7 @@ export class InitalRating extends React.Component {
                      });
                    }}>
                     <View>
-                      <UL.ULButton style="primary" text="Save" />
+                      <UI.UIButton style="primary" text="Save" />
                     </View>
                 </TouchableHighlight>
               </View>
@@ -209,7 +209,7 @@ export class InitalRating extends React.Component {
                      });
                    }}>
                     <View>
-                      <UL.ULButton style="primary" text="Save" />
+                      <UI.UIButton style="primary" text="Save" />
                     </View>
                 </TouchableHighlight>
               </View>
