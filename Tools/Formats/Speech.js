@@ -1,4 +1,3 @@
-
 import * as T from '../../Tools'
 
 export const Speech = {
@@ -12,16 +11,16 @@ export const Speech = {
         return 'Considered Underweight'
       }
       if (bmi > 20 && bmi < 24.9) {
-        return 'Considered Underweight'
+        return 'Ideal weight range'
       }
       if (bmi > 25 && bmi < 26.9) {
-        return 'Considered Underweight'
+        return 'Perfect weight range'
       }
       if (bmi > 27 && bmi < 29.9) {
-        return 'Considered Underweight'
+        return 'Ideal weight range'
       }
       if (bmi > 29.9) { // Overweight
-        return 'Considered Underweight'
+        return 'Considered Overweight'
       }
     },
     steps: (count) => {
@@ -65,6 +64,32 @@ export const Speech = {
       if (count < 4000) { // No Steps
         var dif = T.thousand(8000 - count)
         return `${dif} below recommended`
+      }
+    }
+  },
+  today: {
+    steps: (count) => {
+
+      // Create Number
+      if (isNaN(count)) {
+        count = count.replace(/[^0-9]/g,'');
+      }
+
+      if (count > 10000) { // Overachiever
+        return 'Truly amazing!'
+      }
+      if (count > 8000) { // Recommended
+        return 'On point with recommended!'
+      }
+      if (count > 5000) { // Average
+        return 'Your Average!!'
+      }
+      if (count > 4000) { // Trying
+        return 'Your below Average!!'
+      }
+      if (count < 4000) { // No Steps
+        var dif = T.thousand(8000 - count)
+        return `${dif} setps until recommended`
       }
     }
   }

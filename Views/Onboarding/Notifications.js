@@ -1,6 +1,3 @@
-/**
- * - Button : Onboarding/Health
- */
 import React, { Component } from 'react';
 import {
   View,
@@ -12,8 +9,8 @@ import {
 
 import PushNotification from 'react-native-push-notification';
 import AnimatedLinearGradient, {presetColors} from 'react-native-animated-linear-gradient'
-import * as UL from 'ulna-ui'
 
+import * as UI from '../../UI'
 import * as T from '../../Tools'
 
 export class Notifications extends React.Component {
@@ -42,19 +39,19 @@ export class Notifications extends React.Component {
 
   render() {
     return (
-      <View style={[UL.ULStyles.window]}>
+      <View style={[UI.UIStyles.window]}>
         <StatusBar barStyle="light-content" />
-        <AnimatedLinearGradient customColors={UL.ULStyleguide.gradient} speed={4000}/>
+        <AnimatedLinearGradient customColors={UI.UIStyleguide.gradient} speed={4000}/>
         <View style={{
             flex: 1,
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
-            paddingHorizontal: UL.ULStyleguide.spacing*1.5,
+            paddingHorizontal: UI.UIStyleguide.spacing*1.5,
           }}>
-          <UL.ULTitle lite={true} text="Notifications"/>
-          <UL.ULSubTitle lite={true} text="Ulna Anatomy is designed to help people live healthier & happier lives!"/>
-          <UL.ULSpace small={true} />
+          <UI.UITitle lite={true} text="Notifications"/>
+          <UI.UISubTitle lite={true} text="Ulna Anatomy is designed to help people live healthier & happier lives!"/>
+          <UI.UISpace small={true} />
           <TouchableHighlight
              underlayColor='transparent'
              onPress={() => {
@@ -64,7 +61,7 @@ export class Notifications extends React.Component {
                navigate('Dash')
              }}>
             <View>
-              <UL.ULButton style="white" text="Enable" />
+              <UI.UIButton style="white" text="Enable" />
             </View>
           </TouchableHighlight>
         </View>

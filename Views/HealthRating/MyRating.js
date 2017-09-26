@@ -8,8 +8,8 @@ import {
 
 import moment from 'moment'
 import AppleHealthkit from 'rn-apple-healthkit';
-import * as UL from 'ulna-ui'
 
+import * as UI from '../../UI'
 import * as T from '../../Tools'
 
 export class MyRating extends React.Component {
@@ -24,23 +24,33 @@ export class MyRating extends React.Component {
   }
 
   componentWillMount() {
+    T.Watchdog(this);
     AppleHealthkit.isAvailable((err: Object, available: boolean) => {
       if (available) {
 
-        let weightOpts = {
-          startDate: moment().subtract(5, 'days').toISOString(),
+        let stepsOpts = {
+          startDate: moment().subtract(7, 'days').toISOString(),
           endDate: moment().toISOString()
         }
-        AppleHealthkit.getDailyStepCountSamples(weightOpts: Object, (err: string, results: Object) => {
+        AppleHealthkit.getDailyStepCountSamples(stepsOpts: Object, (err: string, results: Object) => {
           var total = 0
           for (var i = 0; i < results.length; i++) {
             total = Number(results[i].value) + total
           }
 
           this.setState({
-            steps: T.thousand((total/5))
+            steps: T.thousand((total/results.length))
           })
 
+        });
+
+        // Weight (Pounds)
+        AppleHealthkit.getLatestWeight({ unit: 'pound' }: Object, (err: string, results: Object) => {
+          if (results) {
+            this.setState({
+              lastWeight: results.value
+            })
+          }
         });
 
         // BMI
@@ -51,19 +61,19 @@ export class MyRating extends React.Component {
         })
 
         // Health Rating
-        T.rating((result, explanation) => {
+        T.rating((result, explanation, more) => {
           var goodExplanations = []
           var okExplanations = []
           var badExplanations = []
           for(var i = 0; i < explanation.length; i++) {
             if (explanation[i].type == 'good') {
-              goodExplanations.push(<UL.ULListItem key={i} justtext={true} text={explanation[i].text} subText={explanation[i].score} />)
+              goodExplanations.push(<UI.UIListItem key={i} justtext={true} text={explanation[i].text} subText={explanation[i].score} />)
             }
             if (explanation[i].type == 'ok') {
-              okExplanations.push(<UL.ULListItem key={i} justtext={true} text={explanation[i].text} subText={explanation[i].score} />)
+              okExplanations.push(<UI.UIListItem key={i} justtext={true} text={explanation[i].text} subText={explanation[i].score} />)
             }
             if (explanation[i].type == 'bad') {
-              badExplanations.push(<UL.ULListItem key={i} justtext={true} text={explanation[i].text} subText={explanation[i].score} />)
+              badExplanations.push(<UI.UIListItem key={i} justtext={true} text={explanation[i].text} subText={explanation[i].score} />)
             }
           }
           this.setState({
@@ -71,6 +81,8 @@ export class MyRating extends React.Component {
             goodExplanation: goodExplanations,
             okExplanation: okExplanations,
             badExplanation: badExplanations,
+            fitness: more.scores.fitness,
+            weight: more.scores.weight
           })
         });
 
@@ -80,44 +92,50 @@ export class MyRating extends React.Component {
 
   render() {
     return (
-      <ScrollView style={UL.ULStyles.window}>
+      <ScrollView style={UI.UIStyles.window}>
         <View>
-          <View style={{marginBottom: UL.ULStyleguide.spacing}}>
-            { this.state.rating && <UL.ULListItem title="Health Rating" subTitle={this.state.rating} /> }
+          <View style={{marginBottom: UI.UIStyleguide.spacing}}>
+            { this.state.rating && <Text style={[UI.UIStyles.largeTitle, {textAlign: 'center', fontWeight: 'bold', marginBottom: 0, fontSize: 80} ]}>{this.state.rating}</Text> }
           </View>
-          <View style={{marginBottom: UL.ULStyleguide.spacing}}>
-            { this.state.bmi && <UL.ULListItem title="BMI" subTitle={this.state.bmi} /> }
-            { this.state.steps && <UL.ULListItem title="5 Day Step Average" subTitle={this.state.steps} /> }
+          <View style={{marginBottom: UI.UIStyleguide.spacing}}>
+            { this.state.fitness && <UI.UIListItem title="Fitness Rating" subTitle={this.state.fitness} /> }
+            { this.state.steps && <UI.UIListItem title="7 Day Step Average" subTitle={this.state.steps} /> }
+          </View>
+          <View style={{marginBottom: UI.UIStyleguide.spacing}}>
+            { this.state.fitness && <UI.UIListItem title="Weight Rating" subTitle={this.state.weight} /> }
+            { this.state.lastWeight && <UI.UIListItem title="Weight" subTitle={this.state.lastWeight} /> }
+            { this.state.bmi && <UI.UIListItem title="BMI" subTitle={this.state.bmi} /> }
           </View>
           {this.state.goodExplanation.length > 0 &&
-            <View style={{marginBottom: UL.ULStyleguide.spacing}}>
-              <UL.ULSubTitle text="The Good" />
+            <View style={{marginBottom: UI.UIStyleguide.spacing}}>
+              <UI.UISubTitle text="The Good" />
               { this.state.goodExplanation }
             </View>
           }
           {this.state.okExplanation.length > 0 &&
-            <View style={{marginBottom: UL.ULStyleguide.spacing}}>
-              <UL.ULSubTitle text="The Ok" />
+            <View style={{marginBottom: UI.UIStyleguide.spacing}}>
+              <UI.UISubTitle text="The Ok" />
               { this.state.okExplanation }
             </View>
           }
           {this.state.badExplanation.length > 0 &&
-            <View style={{marginBottom: UL.ULStyleguide.spacing}}>
-              <UL.ULSubTitle text="The Bad" />
+            <View style={{marginBottom: UI.UIStyleguide.spacing}}>
+              <UI.UISubTitle text="The Bad" />
               { this.state.badExplanation }
             </View>
           }
           <TouchableHighlight
              underlayColor='transparent'
              onPress={() => {
+               T.Track('event', 'Button/Health Profile', { view: this.props.navigation.state.routeName })
                const { navigate } = this.props.navigation;
                navigate('Profile')
              }}>
             <View>
-              <UL.ULButton style="accent" text="Health Profile" />
+              <UI.UIButton style="accent" text="Health Profile" />
             </View>
           </TouchableHighlight>
-          <UL.ULSpace small={true} />
+          <UI.UISpace small={true} />
         </View>
       </ScrollView>
     )

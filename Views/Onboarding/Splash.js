@@ -1,62 +1,64 @@
-/**
- * - Button : Onboarding/Health
- */
 import React, { Component } from 'react';
 import {
   View,
-  Text,
-  ScrollView,
-  TouchableHighlight,
   StatusBar
 } from 'react-native';
 
 import AppleHealthkit from 'rn-apple-healthkit';
-import AnimatedLinearGradient, {presetColors} from 'react-native-animated-linear-gradient'
-import * as UL from 'ulna-ui'
+import AnimatedLinearGradient, { presetColors } from 'react-native-animated-linear-gradient'
 
+import * as UI from '../../UI'
 import * as T from '../../Tools'
 
 export class Splash extends React.Component {
 
   componentDidMount() {
+    T.Watchdog(this);
     setTimeout(() => {
+
       // Start Inital Healthkit
       AppleHealthkit.initHealthKit({}: Object, (err: Object, results: Object) => {});
 
-      // Onboarding Lookup
-      T.getStorage('Onboarding', (results) => {
-        if (results) {
-          T.getStorage('Connected', (results) => {
+      AppleHealthkit.isAvailable((err: Object, available: boolean) => {
+        if (available) {
 
-            // All Permissions match
-            if (results == JSON.stringify(T.Permissions())) {
-              const { navigate } = this.props.navigation;
-              navigate('Dash')
-            } else {
-              const { navigate } = this.props.navigation;
-              navigate('Health')
+          // Onboarding Lookup
+          T.getStorage('Onboarding', (results) => {
+            if (results) {
+              T.getStorage('Connected', (results) => {
+
+                // All Permissions match
+                if (results == JSON.stringify(T.Permissions())) {
+                  const { navigate } = this.props.navigation;
+                  navigate('Dash')
+                } else {
+                  const { navigate } = this.props.navigation;
+                  navigate('Health')
+                }
+
+              });
             }
+            else {
 
-          });
-        }
-        else {
+              // New User
+              const { navigate } = this.props.navigation;
+              navigate('Welcome')
 
-          // New User
-          const { navigate } = this.props.navigation;
-          navigate('Welcome')
-          
+            }
+          })
         }
-      })
+      });
+
     }, 1000);
   }
 
-
   render() {
     return (
-      <View style={[UL.ULStyles.window]}>
+      <View style={[UI.UIStyles.window]}>
         <StatusBar barStyle="light-content" />
-        <AnimatedLinearGradient customColors={UL.ULStyleguide.gradient} speed={4000}/>
+        <AnimatedLinearGradient customColors={UI.UIStyleguide.gradient} speed={4000}/>
       </View>
     )
   }
+
 }

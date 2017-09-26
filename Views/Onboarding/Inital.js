@@ -4,13 +4,14 @@ import {
   Text,
   ScrollView,
   TouchableHighlight,
-  TextInput
+  TextInput,
+  StatusBar
 } from 'react-native';
 
 import Prompt from 'react-native-prompt';
 import AppleHealthkit from 'rn-apple-healthkit';
-import * as UL from 'ulna-ui'
 
+import * as UI from '../../UI'
 import * as T from '../../Tools'
 
 export class InitalRating extends React.Component {
@@ -23,6 +24,8 @@ export class InitalRating extends React.Component {
   }
 
   componentWillMount() {
+    T.Watchdog(this);
+    AppleHealthkit.initHealthKit({}: Object, (err: Object, results: Object) => {});
     AppleHealthkit.isAvailable((err: Object, available: boolean) => {
       if (available) {
 
@@ -98,12 +101,14 @@ export class InitalRating extends React.Component {
       Analysing: false,
     })
     T.bmi((result) => {
+      T.Track('initial', 'BMI', { value: result })
       this.setState({
         bmi: result
       })
     })
     // Health Rating
     T.rating((result) => {
+      T.Track('initial', 'Health', { value: result })
       this.setState({
         rating: result
       })
@@ -112,31 +117,34 @@ export class InitalRating extends React.Component {
 
   render() {
     return (
-      <ScrollView style={[UL.ULStyles.window, {flex: 1}]}>
+      <ScrollView style={[UI.UIStyles.window, UI.UIStyles.backgroundAccent]}>
+        <StatusBar barStyle="light-content" />
         <View style={{
             flex: 1,
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
-            paddingHorizontal: UL.ULStyleguide.spacing*1.5,
+            paddingHorizontal: UI.UIStyleguide.spacing*1.5,
           }}>
-            <UL.ULSpace />
+            <UI.UISpace />
             {this.state.Analysing &&
-              <Text>Analysing..</Text>
+              <Text style={[UI.UIStyles.subTitle, {textAlign: 'center', color: '#ffffff', backgroundColor: 'transparent'}]}>Analysing..</Text>
             }
 
             {this.state.bmi &&
               <View>
-                <Text>Rating {this.state.rating}</Text>
-                <Text>BMI {this.state.bmi}</Text>
+                <Text style={[UI.UIStyles.largeTitle, {textAlign: 'center', fontSize: 100, fontWeight: 'bold', color: '#ffffff', marginBottom: 0, backgroundColor: 'transparent'}]}>{this.state.rating}</Text>
+                <Text style={[UI.UIStyles.subTitle, {textAlign: 'center', color: '#ffffff', backgroundColor: 'transparent'}]}>Initial Rating</Text>
                 <TouchableHighlight
                    underlayColor='transparent'
                    onPress={() => {
+                     T.Person();
+                     T.setStorage('Onboarding', 'complete');
                      const { navigate } = this.props.navigation;
                      navigate('Dash')
                    }}>
                   <View>
-                    <UL.ULButton style="accent" text="Next" />
+                    <UI.UIButton style="white" text="Next" />
                   </View>
                 </TouchableHighlight>
               </View>
@@ -171,7 +179,7 @@ export class InitalRating extends React.Component {
                      });
                    }}>
                     <View>
-                      <UL.ULButton style="primary" text="Save" />
+                      <UI.UIButton style="white" text="Save" />
                     </View>
                 </TouchableHighlight>
               </View>
@@ -206,7 +214,7 @@ export class InitalRating extends React.Component {
                      });
                    }}>
                     <View>
-                      <UL.ULButton style="primary" text="Save" />
+                      <UI.UIButton style="white" text="Save" />
                     </View>
                 </TouchableHighlight>
               </View>

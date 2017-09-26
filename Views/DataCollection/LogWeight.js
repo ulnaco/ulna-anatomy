@@ -10,7 +10,8 @@ import {
 
 import AppleHealthkit from 'rn-apple-healthkit';
 
-import * as UL from 'ulna-ui'
+import * as UI from '../../UI'
+import * as T from '../../Tools'
 
 export class LogWeight extends React.Component {
 
@@ -36,8 +37,8 @@ export class LogWeight extends React.Component {
 
   render() {
     return (
-      <ScrollView style={UL.ULStyles.window}>
-        <View style={UL.ULStyles.screen}>
+      <ScrollView style={UI.UIStyles.window}>
+        <View style={UI.UIStyles.screen}>
           <TextInput
             style={{height: 40, borderColor: 'gray', borderWidth: 1}}
             onChangeText={(text) => this.setState({newWeight: text})}
@@ -62,6 +63,7 @@ export class LogWeight extends React.Component {
                    {text: 'OK', onPress: () => {
                      AppleHealthkit.saveWeight(options: Object, (err: Object, results: Object) => {
                        if (!err) {
+                         T.Track('event', 'Logged Weight')
                          const { navigate } = this.props.navigation;
                          navigate('Weight')
                        }
@@ -71,7 +73,7 @@ export class LogWeight extends React.Component {
                );
              }}>
               <View>
-                <UL.ULButton style="primary" text="Save" />
+                <UI.UIButton style="primary" text="Save" />
               </View>
           </TouchableHighlight>
         </View>

@@ -8,8 +8,8 @@ import {
 
 import moment from 'moment'
 import AppleHealthkit from 'rn-apple-healthkit';
-import * as UL from 'ulna-ui'
 
+import * as UI from '../../UI'
 import * as C from '../../Components'
 import * as T from '../../Tools'
 
@@ -22,6 +22,7 @@ export class Profile extends React.Component {
   }
 
   componentWillMount() {
+    T.Watchdog(this);
     AppleHealthkit.isAvailable((err: Object, available: boolean) => {
       if (available) {
         // Age
@@ -50,9 +51,9 @@ export class Profile extends React.Component {
           })
         })
 
-        T.getStorage('Token', (token) => {
+        T.getStorage('Person', (uuid) => {
           this.setState({
-            token: token
+            uuid: uuid
           })
         })
 
@@ -63,8 +64,9 @@ export class Profile extends React.Component {
 
   render() {
     return (
-      <ScrollView style={UL.ULStyles.window}>
+      <ScrollView style={UI.UIStyles.window}>
         <View>
+         {this.state.age && <UI.UIListItem reverse={true} title="Age" subTitle={this.state.age} /> }
           <TouchableHighlight
              underlayColor='transparent'
              onPress={() => {
@@ -74,17 +76,17 @@ export class Profile extends React.Component {
               if (this.state.hidden > 2) {
                 T.removeStorage('Onboarding');
                 T.removeStorage('Connected');
+                T.removeStorage('Person');
                 const { navigate } = this.props.navigation;
                 navigate('Welcome')
               }
              }}>
              <View>
-              {this.state.age && <UL.ULListItem reverse={true} title="Age" subTitle={this.state.age} /> }
+                {this.state.bmi && <UI.UIListItem reverse={true} title="BMI" subTitle={this.state.bmi} /> }
              </View>
             </TouchableHighlight>
-          {this.state.height && <UL.ULListItem reverse={true} title="Height" subTitle={this.state.height} /> }
-          {this.state.bmi && <UL.ULListItem reverse={true} title="BMI" subTitle={this.state.bmi} /> }
-          {this.state.token && <UL.ULListItem reverse={true} title="UUID" subTitle={this.state.token} /> }
+          {this.state.height && <UI.UIListItem reverse={true} title="Height" subTitle={this.state.height} /> }
+          {this.state.uuid && <UI.UIListItem reverse={true} subTitle={this.state.uuid} /> }
         </View>
       </ScrollView>
     )

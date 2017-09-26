@@ -11,14 +11,13 @@ import {
 
 import moment from 'moment'
 import AppleHealthkit from 'rn-apple-healthkit';
-import * as UL from 'ulna-ui'
-import AnimatedLinearGradient, {presetColors} from 'react-native-animated-linear-gradient'
+import AnimatedLinearGradient, { presetColors } from 'react-native-animated-linear-gradient'
+import PushNotification from 'react-native-push-notification';
+import BackgroundTimer from 'react-native-background-timer';
 
 import * as T from '../../Tools'
 import * as C from '../../Components'
-
-import PushNotification from 'react-native-push-notification';
-import BackgroundTimer from 'react-native-background-timer';
+import * as UI from '../../UI'
 
 export class Dash extends React.Component {
   constructor(props) {
@@ -29,7 +28,7 @@ export class Dash extends React.Component {
   }
 
   componentDidMount() {
-    T.Watchdog();
+    T.Watchdog(this);
     this.Healthkit();
 
     AppState.addEventListener('change', (nextAppState) => {
@@ -81,34 +80,36 @@ export class Dash extends React.Component {
 
   render() {
     return (
-      <ScrollView style={[UL.ULStyles.window, {paddingTop: 0}]}>
+      <ScrollView style={[UI.UIStyles.window, {paddingTop: 0}]}>
         <StatusBar barStyle="dark-content" />
-        <View style={{paddingBottom: UL.ULStyleguide.spacing}}>
-          <View style={{paddingVertical: UL.ULStyleguide.spacing*1.5, justifyContent: 'center'}}>
-            <AnimatedLinearGradient customColors={UL.ULStyleguide.gradient} speed={4000}/>
-            <Text style={[UL.ULStyles.largeTitle, {textAlign: 'center', fontWeight: 'bold', color: '#ffffff', marginBottom: 0, backgroundColor: 'transparent'}]}>{this.state.rating}</Text>
-            <Text style={[UL.ULStyles.subTitle, {textAlign: 'center', color: '#ffffff', backgroundColor: 'transparent'}]}>Health Rating</Text>
+        <View style={{paddingBottom: UI.UIStyleguide.spacing}}>
+          <View style={{paddingVertical: UI.UIStyleguide.spacing*1.5, justifyContent: 'center'}}>
+            <AnimatedLinearGradient customColors={UI.UIStyleguide.gradient} speed={4000}/>
+            <Text style={[UI.UIStyles.largeTitle, {textAlign: 'center', fontWeight: 'bold', color: '#ffffff', marginBottom: 0, backgroundColor: 'transparent'}]}>{this.state.rating}</Text>
+            <Text style={[UI.UIStyles.subTitle, {textAlign: 'center', color: '#ffffff', backgroundColor: 'transparent'}]}>Health Rating</Text>
               <TouchableHighlight
                  underlayColor='transparent'
                  onPress={() => {
+                   T.Track('event', 'Button/Learn More', { view: this.props.navigation.state.routeName })
                    const { navigate } = this.props.navigation;
                    navigate('MyRating')
                  }}>
                 <View>
-                  <UL.ULButton style="white" text="Learn More" />
+                  <UI.UIButton style="white" text="Learn More" />
                 </View>
               </TouchableHighlight>
           </View>
           { this.state.steps &&
             <View>
-              <UL.ULListItem title="Steps Today" subTitle={this.state.steps} />
-              <UL.ULListItem justtext={true} text={T.Speech.single.steps(this.state.steps)} />
+              <UI.UIListItem title="Steps Today" subTitle={this.state.steps} />
+              <UI.UIListItem justtext={true} text={T.Speech.single.steps(this.state.steps)} />
             </View>
           }
-          { this.state.distance && <UL.ULListItem title="Distance Today" subTitle={this.state.distance} /> }
+          { this.state.distance && <UI.UIListItem title="Distance Today" subTitle={this.state.distance} /> }
           <TouchableHighlight
              underlayColor='transparent'
              onPress={() => {
+               T.Track('event', 'Weight Chart')
                const { navigate } = this.props.navigation;
                navigate('Weight')
              }}>
@@ -117,17 +118,18 @@ export class Dash extends React.Component {
              </View>
           </TouchableHighlight>
           <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-            <View style={UL.ULStyles.ListItemInner}>
+            <View style={UI.UIStyles.ListItemInner}>
               <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
                 <View>
                   <TouchableHighlight
                      underlayColor='transparent'
                      onPress={() => {
+                       T.Track('event', 'Button/View Steps', { view: this.props.navigation.state.routeName })
                        const { navigate } = this.props.navigation;
                        navigate('Steps')
                      }}>
                     <View style={{marginRight: 10}}>
-                      <UL.ULButton style="accent" text="Steps" />
+                      <UI.UIButton style="accent" text="Steps" />
                     </View>
                   </TouchableHighlight>
                 </View>
@@ -135,11 +137,12 @@ export class Dash extends React.Component {
                   <TouchableHighlight
                      underlayColor='transparent'
                      onPress={() => {
+                       T.Track('event', 'Button/View Weight', { view: this.props.navigation.state.routeName })
                        const { navigate } = this.props.navigation;
                        navigate('Weight')
                      }}>
                     <View>
-                      <UL.ULButton style="accent" text={this.state.weightBtn} />
+                      <UI.UIButton style="accent" text={this.state.weightBtn} />
                     </View>
                   </TouchableHighlight>
                 </View>

@@ -15,4 +15,5 @@ export * from './Storage/Get.js'
 export * from './Storage/Remove.js'
 export * from './Storage/Set.js'
 
+export * from './Task/Track.js'
 export * from './Task/Watchdog.js'

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BarChart } from 'react-native-charts'
+
 import * as UL from 'ulna-ui'
 
 export class BarHorizontal extends React.Component {
