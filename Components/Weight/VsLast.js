@@ -6,8 +6,8 @@ import {
 
 import moment from 'moment'
 import AppleHealthkit from 'rn-apple-healthkit';
-import * as UL from 'ulna-ui'
 
+import * as UI from '../../UI'
 import * as T from '../../Tools'
 
 export class VsLast extends React.Component {
@@ -53,9 +53,9 @@ export class VsLast extends React.Component {
 
   render() {
     return (
-      <View style={{marginBottom: UL.ULStyleguide.spacing}}>
+      <View style={{marginBottom: UI.UIStyleguide.spacing}}>
        { this.state.weightDiff &&  <T.BarVertical values={this.state.chart} /> }
-       { this.state.weightDiff && <UL.ULListItem title="Changes in Weight" subTitle={this.state.weightDiff} /> }
+       { this.state.weightDiff && <UI.UIListItem title="Changes in Weight" subTitle={this.state.weightDiff} /> }
      </View>
     )
   }
