@@ -11,6 +11,8 @@ export function Track(type, event, properties=false) {
   if (type == 'view') event = `V/${event}`;
   if (type == 'event') event = `E/${event}`;
   if (type == 'state') event = `S/${event}`;
+  if (type == 'initial') event = `I/${event}`;
+
 
   const request = {
     event: event,
