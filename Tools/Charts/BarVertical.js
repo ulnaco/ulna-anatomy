@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BarChart } from 'react-native-charts'
 
-import * as UL from 'ulna-ui'
+import * as UI from '../../UI'
 
 export class BarVertical extends React.Component {
   constructor(props) {
@@ -14,13 +14,13 @@ export class BarVertical extends React.Component {
       <BarChart
         dataSets={[
           {
-            fillColor: UL.ULStyleguide.color.primaryLite,
+            fillColor: UI.UIStyleguide.color.primaryLite,
             data: [
               { value: this.props.values[0] },
             ]
           },
           {
-            fillColor: UL.ULStyleguide.color.primary,
+            fillColor: UI.UIStyleguide.color.primary,
             data: [
               { value: this.props.values[1] },
             ]
@@ -31,8 +31,8 @@ export class BarVertical extends React.Component {
         showGrid={false}
         barSpacing={5}
         style={{
-          height: UL.ULStyleguide.spacing * 10,
-          margin: UL.ULStyleguide.spacing,
+          height: UI.UIStyleguide.spacing * 10,
+          margin: UI.UIStyleguide.spacing,
         }} />
     )
   }
