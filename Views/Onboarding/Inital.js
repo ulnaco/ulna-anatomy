@@ -8,6 +8,7 @@ import {
   StatusBar
 } from 'react-native';
 
+import moment from 'moment'
 import Prompt from 'react-native-prompt';
 import AppleHealthkit from 'rn-apple-healthkit';
 
@@ -50,6 +51,14 @@ export class InitalRating extends React.Component {
 
         // Health Rating
         T.rating((result) => {
+          
+          // Update Person
+          T.Person({
+            'BMI': this.state.bmi,
+            'Weight': this.state.weight,
+            'InitalRating': result,
+          });
+
           this.setState({
             rating: result
           })
@@ -106,8 +115,17 @@ export class InitalRating extends React.Component {
         bmi: result
       })
     })
+
     // Health Rating
     T.rating((result) => {
+
+      // Update Person
+      T.Person({
+        'BMI': this.state.bmi,
+        'Weight': this.state.weight,
+        'InitalRating': result,
+      });
+
       T.Track('initial', 'Health', { value: result })
       this.setState({
         rating: result
@@ -138,7 +156,6 @@ export class InitalRating extends React.Component {
                 <TouchableHighlight
                    underlayColor='transparent'
                    onPress={() => {
-                     T.Person();
                      T.setStorage('Onboarding', 'complete');
                      const { navigate } = this.props.navigation;
                      navigate('Dash')
@@ -151,8 +168,9 @@ export class InitalRating extends React.Component {
             }
             {this.state.needHealth &&
               <View>
+                <Text style={[UI.UIStyles.subTitle, {textAlign: 'center', color: '#ffffff', backgroundColor: 'transparent'}]}>How tall are you? (Feet)</Text>
                 <TextInput
-                  style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+                  style={UI.UIStyles.InputNumber}
                   onChangeText={(text) => this.setState({height: text})}
                   placeholder="6'0"
                   keyboardType="numbers-and-punctuation"
@@ -187,8 +205,9 @@ export class InitalRating extends React.Component {
 
             {this.state.needWeight &&
               <View>
+                <Text style={[UI.UIStyles.subTitle, {textAlign: 'center', color: '#ffffff', backgroundColor: 'transparent'}]}>How much do you weight? (Pounds)</Text>
                 <TextInput
-                  style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+                  style={UI.UIStyles.InputNumber}
                   onChangeText={(text) => this.setState({weight: text})}
                   placeholder="160"
                   keyboardType="numeric"

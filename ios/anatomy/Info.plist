@@ -21,7 +21,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>3</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -32,7 +32,7 @@
 	<key>NSHealthShareUsageDescription</key>
 	<string>Read and understand health data.</string>
 	<key>NSHealthUpdateUsageDescription</key>
-	<string>Share workout data with other apps.</string>
+	<string>Share health data with other apps.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>UIBackgroundModes</key>
