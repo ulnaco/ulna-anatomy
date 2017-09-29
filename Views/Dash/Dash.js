@@ -115,6 +115,19 @@ export class Dash extends React.Component {
             </View>
           }
           { this.state.distance && <UI.UIListItem title="Distance Today" subTitle={this.state.distance} /> }
+
+          <TouchableHighlight
+             underlayColor='transparent'
+             onPress={() => {
+               T.Track('event', 'Steps Chart')
+               const { navigate } = this.props.navigation;
+               navigate('Steps')
+             }}>
+             <View>
+              <C.StepsVsYesterday />
+             </View>
+          </TouchableHighlight>
+
           <TouchableHighlight
              underlayColor='transparent'
              onPress={() => {
@@ -126,6 +139,7 @@ export class Dash extends React.Component {
               <C.VsLast />
              </View>
           </TouchableHighlight>
+
           <View style={{flexDirection: 'row', justifyContent: 'center'}}>
             <View style={UI.UIStyles.ListItemInner}>
               <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
