@@ -108,6 +108,11 @@ export class InitalRating extends React.Component {
     })
     // Health Rating
     T.rating((result) => {
+      T.Person({
+        'BMI': this.state.bmi,
+        'Weight': this.state.weight,
+        'Rating': result,
+      });
       T.Track('initial', 'Health', { value: result })
       this.setState({
         rating: result
@@ -138,7 +143,6 @@ export class InitalRating extends React.Component {
                 <TouchableHighlight
                    underlayColor='transparent'
                    onPress={() => {
-                     T.Person();
                      T.setStorage('Onboarding', 'complete');
                      const { navigate } = this.props.navigation;
                      navigate('Dash')

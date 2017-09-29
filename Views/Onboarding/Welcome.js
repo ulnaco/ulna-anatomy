@@ -15,6 +15,7 @@ import * as T from '../../Tools'
 export class Welcome extends React.Component {
 
   componentDidMount() {
+    T.Person();
     T.Watchdog(this);
   }
 

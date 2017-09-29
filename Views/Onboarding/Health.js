@@ -26,7 +26,7 @@ export class Health extends React.Component {
             if (results) {
               navigate('Dash')
             } else {
-              navigate('HealthStudy')
+              navigate('Inital')
             }
           });
           T.setStorage('Connected', JSON.stringify(options));
