@@ -78,6 +78,7 @@ export class Profile extends React.Component {
                 T.removeStorage('Connected');
                 T.removeStorage('Person');
                 T.removeStorage('HealthStudy');
+                T.removeStorage('Ratings');
                 const { navigate } = this.props.navigation;
                 navigate('Welcome')
               }

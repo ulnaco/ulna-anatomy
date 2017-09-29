@@ -8,6 +8,7 @@ import {
   StatusBar
 } from 'react-native';
 
+import moment from 'moment'
 import Prompt from 'react-native-prompt';
 import AppleHealthkit from 'rn-apple-healthkit';
 
@@ -50,6 +51,14 @@ export class InitalRating extends React.Component {
 
         // Health Rating
         T.rating((result) => {
+          
+          // Update Person
+          T.Person({
+            'BMI': this.state.bmi,
+            'Weight': this.state.weight,
+            'InitalRating': result,
+          });
+
           this.setState({
             rating: result
           })
@@ -106,13 +115,17 @@ export class InitalRating extends React.Component {
         bmi: result
       })
     })
+
     // Health Rating
     T.rating((result) => {
+
+      // Update Person
       T.Person({
         'BMI': this.state.bmi,
         'Weight': this.state.weight,
-        'Rating': result,
+        'InitalRating': result,
       });
+
       T.Track('initial', 'Health', { value: result })
       this.setState({
         rating: result

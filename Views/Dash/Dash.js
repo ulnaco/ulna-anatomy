@@ -69,6 +69,15 @@ export class Dash extends React.Component {
 
         // Health Rating
         T.rating((result) => {
+
+          var RatingsArray = []
+          RatingsArray[moment().format('YYYY/WW')] = result;
+          T.setStorage('Ratings', JSON.stringify(RatingsArray))
+
+          T.Person({
+            'Rating': result,
+          });
+
           this.setState({
             rating: result
           })
