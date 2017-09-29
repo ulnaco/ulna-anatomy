@@ -115,4 +115,13 @@ export const UIStyles = StyleSheet.create({
   space: {
     marginBottom: UIStyleguide.spacing*4,
   },
+  InputNumber: {
+    textAlign: 'center',
+    color: '#fff',
+    borderWidth: 0,
+    fontSize: 35,
+    marginVertical: UIStyleguide.spacing*0.5,
+    marginBottom: UIStyleguide.spacing,
+    padding: UIStyleguide.spacing,
+  },
 });
