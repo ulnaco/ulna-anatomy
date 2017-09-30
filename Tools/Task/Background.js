@@ -36,6 +36,8 @@ export function Background(view) {
 
             AppleHealthkit.isAvailable((err: Object, available: boolean) => {
               if (available) {
+
+                // Today
                 AppleHealthkit.getStepCount(null, (err: string, results: Object) => {
                   if (results) {
 
