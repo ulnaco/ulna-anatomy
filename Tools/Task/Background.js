@@ -10,7 +10,10 @@ import * as T from '../../Tools'
 export function Background(view) {
 
 
-  function testSteps(type) {
+  /**
+   * Display Notification
+   */
+  function displayNotification(type) {
     console.log('testSteps()')
     PushNotification.localNotification({
       title: "U.Anatomy",
@@ -22,6 +25,7 @@ export function Background(view) {
     T.Track('notification', 'Halfway')
   }
 
+  // Background Started
   AppState.addEventListener('change', (nextAppState) => {
 
       T.getStorage('Notifications', (results) => {
@@ -40,10 +44,10 @@ export function Background(view) {
                       T.getStorage('Halfway', (results) => {
                         if (results) {
                           if (JSON.parse(results).date !== moment().format("MMM Do YY")) {
-                            testSteps('Halfway')
+                            displayNotification('Halfway')
                           }
                         } else {
-                          testSteps('Halfway')
+                          displayNotification('Halfway')
                         }
 
                       });
@@ -54,10 +58,10 @@ export function Background(view) {
                       T.getStorage('Goal', (results) => {
                         if (results) {
                           if (JSON.parse(results).date !== moment().format("MMM Do YY")) {
-                            testSteps('Goal')
+                            displayNotification('Goal')
                           }
                         } else {
-                          testSteps('Goal')
+                          displayNotification('Goal')
                         }
 
                       });
@@ -68,7 +72,7 @@ export function Background(view) {
               }
             });
 
-          }, 1000);
+          }, 3600);
         }
 
       });
