@@ -92,5 +92,9 @@ export const Speech = {
         return `${dif} setps until recommended`
       }
     }
+  },
+  notification: {
+    Halfway: "Halfway to your step goal!",
+    Goal: "You reached your step goal!",
   }
 }

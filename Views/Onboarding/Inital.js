@@ -51,7 +51,7 @@ export class InitalRating extends React.Component {
 
         // Health Rating
         T.rating((result) => {
-          
+
           // Update Person
           T.Person({
             'BMI': this.state.bmi,
@@ -156,9 +156,8 @@ export class InitalRating extends React.Component {
                 <TouchableHighlight
                    underlayColor='transparent'
                    onPress={() => {
-                     T.setStorage('Onboarding', 'complete');
                      const { navigate } = this.props.navigation;
-                     navigate('Dash')
+                     navigate('Notifications')
                    }}>
                   <View>
                     <UI.UIButton style="white" text="Next" />

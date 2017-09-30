@@ -34,7 +34,6 @@ export class Notifications extends React.Component {
       popInitialNotification: true,
       requestPermissions: true,
     });
-    PushNotification.setApplicationIconBadgeNumber(4)
   }
 
   render() {
@@ -56,7 +55,7 @@ export class Notifications extends React.Component {
              underlayColor='transparent'
              onPress={() => {
                this.enable()
-               T.setStorage('Onboarding', 'complete');
+               T.setStorage('Notifications', 'complete');
                const { navigate } = this.props.navigation;
                navigate('Dash')
              }}>
