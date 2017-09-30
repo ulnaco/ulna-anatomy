@@ -18,6 +18,12 @@ export class Notifications extends React.Component {
   enable() {
     PushNotification.configure({
       onRegister: function(token) {
+
+        // Update Profile
+        T.Person({
+          'Notification Token': token,
+        });
+
         T.setStorage('Token', token);
         console.log('Token', token);
         T.Track('event', 'Enable Notifications');
