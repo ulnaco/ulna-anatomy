@@ -15,17 +15,16 @@ import * as T from '../../Tools'
 
 export class Notifications extends React.Component {
 
-  enable() {
+  enable(fn) {
     PushNotification.configure({
       onRegister: function(token) {
 
         // Update Profile
         T.Person({
-          'Notification Token': token,
+          'Notification Token': token.token,
         });
 
-        T.setStorage('Token', token);
-        console.log('Token', token);
+        T.setStorage('Token', token.token);
         T.Track('event', 'Enable Notifications');
       },
       onNotification: function(notification) {
@@ -39,6 +38,8 @@ export class Notifications extends React.Component {
       popInitialNotification: true,
       requestPermissions: true,
     });
+
+    fn()
   }
 
   render() {
@@ -58,10 +59,11 @@ export class Notifications extends React.Component {
           <TouchableHighlight
              underlayColor='transparent'
              onPress={() => {
-               this.enable()
-               T.setStorage('EnableNotifications', 'yes');
-               const { navigate } = this.props.navigation;
-               navigate('Dash')
+               this.enable(() => {
+                 T.setStorage('EnableNotifications', 'yes');
+                 const { navigate } = this.props.navigation;
+                 navigate('Dash')
+               })
              }}>
             <View>
               <UI.UIButton style="white" text="Enable" />
