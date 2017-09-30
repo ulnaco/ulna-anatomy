@@ -20,12 +20,11 @@ export class Notifications extends React.Component {
       onRegister: function(token) {
         T.setStorage('Token', token);
         console.log('Token', token);
+        T.Track('event', 'Enable Notifications');
       },
-
       onNotification: function(notification) {
         console.log('NOTIFICATION:', notification);
       },
-
       permissions: {
         alert: true,
         badge: true,
@@ -38,9 +37,8 @@ export class Notifications extends React.Component {
 
   render() {
     return (
-      <View style={[UI.UIStyles.window]}>
+      <View style={[UI.UIStyles.window, UI.UIStyles.backgroundPrimary]}>
         <StatusBar barStyle="light-content" />
-        <AnimatedLinearGradient customColors={UI.UIStyleguide.gradient} speed={4000}/>
         <View style={{
             flex: 1,
             flexDirection: 'column',
@@ -48,14 +46,14 @@ export class Notifications extends React.Component {
             alignItems: 'center',
             paddingHorizontal: UI.UIStyleguide.spacing*1.5,
           }}>
-          <UI.UITitle lite={true} text="Notifications"/>
-          <UI.UISubTitle lite={true} text="Ulna Anatomy is designed to help people live healthier & happier lives!"/>
+          <UI.UITitle lite={true} text="Enable Notifications"/>
+          <UI.UISubTitle lite={true} text="Recieve friendly infrequent notifications about your health!"/>
           <UI.UISpace small={true} />
           <TouchableHighlight
              underlayColor='transparent'
              onPress={() => {
                this.enable()
-               T.setStorage('Notifications', 'complete');
+               T.setStorage('EnableNotifications', 'yes');
                const { navigate } = this.props.navigation;
                navigate('Dash')
              }}>
@@ -63,6 +61,18 @@ export class Notifications extends React.Component {
               <UI.UIButton style="white" text="Enable" />
             </View>
           </TouchableHighlight>
+          <TouchableHighlight
+             underlayColor='transparent'
+             onPress={() => {
+               T.Track('event', 'Disable Notifications');
+               T.setStorage('EnableNotifications', 'no');
+               const { navigate } = this.props.navigation;
+               navigate('Dash')
+             }}>
+             <View>
+               <UI.UIButton style="primary" text="Maybe Later" />
+             </View>
+           </TouchableHighlight>
         </View>
       </View>
     )

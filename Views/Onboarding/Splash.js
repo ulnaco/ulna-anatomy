@@ -31,7 +31,7 @@ export class Splash extends React.Component {
 
                 // All Permissions match
                 if (results == JSON.stringify(T.Permissions())) {
-                  T.getStorage('Notifications', (results) => {
+                  T.getStorage('EnableNotifications', (results) => {
                     if (results) {
                       navigate('Dash')
                     } else {
