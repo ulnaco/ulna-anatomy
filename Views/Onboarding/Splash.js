@@ -14,6 +14,7 @@ export class Splash extends React.Component {
 
   componentDidMount() {
     T.Watchdog(this);
+    T.Background(this);
     setTimeout(() => {
 
       // Start Inital Healthkit
@@ -21,6 +22,7 @@ export class Splash extends React.Component {
 
       AppleHealthkit.isAvailable((err: Object, available: boolean) => {
         if (available) {
+          const { navigate } = this.props.navigation;
 
           // Onboarding Lookup
           T.getStorage('Onboarding', (results) => {
@@ -29,10 +31,14 @@ export class Splash extends React.Component {
 
                 // All Permissions match
                 if (results == JSON.stringify(T.Permissions())) {
-                  const { navigate } = this.props.navigation;
-                  navigate('Dash')
+                  T.getStorage('EnableNotifications', (results) => {
+                    if (results) {
+                      navigate('Dash')
+                    } else {
+                      navigate('Notifications')
+                    }
+                  });
                 } else {
-                  const { navigate } = this.props.navigation;
                   navigate('Health')
                 }
 

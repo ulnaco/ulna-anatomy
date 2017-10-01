@@ -12,7 +12,7 @@ export function Track(type, event, properties=false) {
   if (type == 'event') event = `E/${event}`;
   if (type == 'state') event = `S/${event}`;
   if (type == 'initial') event = `I/${event}`;
-
+  if (type == 'notification') event = `N/${event}`;
 
   const request = {
     event: event,
