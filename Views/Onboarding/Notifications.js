@@ -61,6 +61,7 @@ export class Notifications extends React.Component {
              onPress={() => {
                this.enable(() => {
                  T.setStorage('EnableNotifications', 'yes');
+                 T.setStorage('Onboarding', 'yes');
                  const { navigate } = this.props.navigation;
                  navigate('Dash')
                })
@@ -74,6 +75,7 @@ export class Notifications extends React.Component {
              onPress={() => {
                T.Track('event', 'Disable Notifications');
                T.setStorage('EnableNotifications', 'no');
+               T.setStorage('Onboarding', 'yes');
                const { navigate } = this.props.navigation;
                navigate('Dash')
              }}>
