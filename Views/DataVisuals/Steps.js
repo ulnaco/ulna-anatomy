@@ -4,6 +4,7 @@ import {
   Text,
   ScrollView,
   TouchableHighlight,
+  AppState
 } from 'react-native';
 
 import moment from 'moment'
@@ -21,6 +22,18 @@ export class Steps extends React.Component {
 
   componentWillMount() {
     T.Watchdog(this);
+
+    this.Healthkit();
+    AppState.addEventListener('change', (nextAppState) => {
+      if (nextAppState == 'active') {
+        this.Healthkit();
+      }
+    })
+
+  }
+
+  Healthkit() {
+
     AppleHealthkit.isAvailable((err: Object, available: boolean) => {
       if (available) {
 
