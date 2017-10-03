@@ -22,13 +22,13 @@ export class Health extends React.Component {
         AppleHealthkit.initHealthKit(options: Object, (err: Object, results: Object) => {
           if (err) return;
           const { navigate } = this.props.navigation;
-          T.getStorage('Onboarding', (results) => {
-            if (results) {
-              navigate('Dash')
-            } else {
-              navigate('Inital')
-            }
-          });
+          // T.getStorage('Onboarding', (results) => {
+          //   if (results) {
+          //     navigate('Dash')
+          //   } else {
+              navigate('Localization')
+          //   }
+          // });
           T.setStorage('Connected', JSON.stringify(options));
         });
       }
@@ -46,8 +46,8 @@ export class Health extends React.Component {
             alignItems: 'center',
             paddingHorizontal: UI.UIStyleguide.spacing*1.5,
           }}>
-          <UI.UITitle text="Apple Health" lite={true}/>
-          <UI.UISubTitle text="Sync your Apple Health data with Ulna Anatomy. Steps, Height, Weight, BMI, Distance Walking + Running, and Date of Birth" lite={true}/>
+          <UI.UITitle text={T.Speech.onboarding.apple_title} lite={true}/>
+          <UI.UISubTitle text={T.Speech.onboarding.apple_sub_title}  lite={true}/>
           <UI.UISpace small={true} />
           <TouchableHighlight
              underlayColor='transparent'
@@ -55,7 +55,7 @@ export class Health extends React.Component {
                this.syncAppleHealth();
              }}>
             <View>
-              <UI.UIButton style="white" text="Connect" />
+              <UI.UIButton style="white" text={T.Speech.onboarding.apple_button} />
             </View>
           </TouchableHighlight>
         </View>
