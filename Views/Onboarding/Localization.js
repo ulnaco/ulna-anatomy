@@ -34,8 +34,17 @@ export class Localization extends React.Component {
              underlayColor='transparent'
              onPress={() => {
                T.setStorage('Localization', 'Metric');
+               T.Person({
+                 'Localization': 'Metric'
+               });
                const { navigate } = this.props.navigation;
-               navigate('Inital')
+               T.getStorage('Onboarding', (results) => {
+                 if (results) {
+                   navigate('Dash')
+                 } else {
+                   navigate('Inital')
+                 }
+               });
              }}>
             <View>
               <UI.UIButton style="white" text={T.Speech.onboarding.localization_metric} />
@@ -45,8 +54,17 @@ export class Localization extends React.Component {
              underlayColor='transparent'
              onPress={() => {
                T.setStorage('Localization', 'Imperial');
+               T.Person({
+                 'Localization': 'Imperial'
+               });
                const { navigate } = this.props.navigation;
-               navigate('Inital')
+               T.getStorage('Onboarding', (results) => {
+                 if (results) {
+                   navigate('Dash')
+                 } else {
+                   navigate('Inital')
+                 }
+               });
              }}>
              <View>
               <UI.UIButton style="white" text={T.Speech.onboarding.localization_imperial} />

@@ -22,13 +22,13 @@ export class Health extends React.Component {
         AppleHealthkit.initHealthKit(options: Object, (err: Object, results: Object) => {
           if (err) return;
           const { navigate } = this.props.navigation;
-          // T.getStorage('Onboarding', (results) => {
-          //   if (results) {
-          //     navigate('Dash')
-          //   } else {
+          T.getStorage('Onboarding', (results) => {
+            if (results) {
+              navigate('Dash')
+            } else {
               navigate('Localization')
-          //   }
-          // });
+            }
+          });
           T.setStorage('Connected', JSON.stringify(options));
         });
       }
