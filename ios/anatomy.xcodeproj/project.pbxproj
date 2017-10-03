@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -21,7 +22,6 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		16A093C497714D55AA9AE1C5 /* TSBackgroundFetch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F7DAC8EA96F4B70BA8D0D30 /* TSBackgroundFetch.framework */; };
 		19682341DC4146418964B814 /* libRNBackgroundFetch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06F2ADAB84214A61A24E2E34 /* libRNBackgroundFetch.a */; };
-		26C70DC3AB44482CA8DEF4B5 /* libRNBackgroundTimer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A91C7CBCD640DBA1E956A8 /* libRNBackgroundTimer.a */; };
 		2AF784FEE6384024B3EDAC35 /* libRCTAppleHealthKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83661CA2F2AF407FAF05F3C3 /* libRCTAppleHealthKit.a */; };
 		3A66C7FC95674A2B8E78677F /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B62909C96D544E7D944465D2 /* libBVLinearGradient.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
@@ -379,7 +379,6 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				2AF784FEE6384024B3EDAC35 /* libRCTAppleHealthKit.a in Frameworks */,
 				3A66C7FC95674A2B8E78677F /* libBVLinearGradient.a in Frameworks */,
-				26C70DC3AB44482CA8DEF4B5 /* libRNBackgroundTimer.a in Frameworks */,
 				19682341DC4146418964B814 /* libRNBackgroundFetch.a in Frameworks */,
 				16A093C497714D55AA9AE1C5 /* TSBackgroundFetch.framework in Frameworks */,
 			);
@@ -665,8 +664,8 @@
 			buildPhases = (
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
-				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				13B07F8E1A680F5B00A75B9A /* Resources */,
 			);
 			buildRules = (
 			);
@@ -1143,9 +1142,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = GN237ZBTWD;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/../node_modules/react-native-background-fetch/ios/**",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../node_modules/react-native-background-fetch/ios/**";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/rn-apple-Healthkit/RCTAppleHealthKit",
@@ -1183,9 +1180,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = GN237ZBTWD;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/../node_modules/react-native-background-fetch/ios/**",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../node_modules/react-native-background-fetch/ios/**";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/rn-apple-Healthkit/RCTAppleHealthKit",
