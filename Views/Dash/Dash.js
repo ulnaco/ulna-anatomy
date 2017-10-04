@@ -65,6 +65,20 @@ export class Dash extends React.Component {
           }
         });
 
+        /**
+         * Active Energy Burned
+         */
+         var yesterdayOpts = {
+           startDate: moment().subtract(1, 'day').endOf('day').toISOString()
+         }
+        AppleHealthkit.getActiveEnergyBurned(yesterdayOpts, (err: Object, results: Object) => {
+          if (results) {
+            this.setState({
+              activeEnergyBurned: results[0].value+' kcal'
+            })
+          }
+        })
+
         // Health Rating
         T.rating((result) => {
 
@@ -110,6 +124,11 @@ export class Dash extends React.Component {
             <View>
               <UI.UIListItem title="Steps Today" subTitle={this.state.steps} />
               <UI.UIListItem justtext={true} text={T.Speech.single.steps(this.state.steps)} />
+            </View>
+          }
+          { this.state.activeEnergyBurned &&
+            <View>
+              <UI.UIListItem small={true} title="Active Energy Burned Today" subTitle={this.state.activeEnergyBurned} subSubTitle="Active Energy includes walking slowly and household chores." />
             </View>
           }
           { this.state.distance && <UI.UIListItem title="Distance Today" subTitle={this.state.distance} /> }

@@ -46,6 +46,20 @@ export class Steps extends React.Component {
           }
         });
 
+        /**
+         * Active Energy Burned
+         */
+         var yesterdayOpts = {
+           startDate: moment().subtract(1, 'day').endOf('day').toISOString()
+         }
+        AppleHealthkit.getActiveEnergyBurned(yesterdayOpts, (err: Object, results: Object) => {
+          if (results) {
+            this.setState({
+              activeEnergyBurned: results[0].value+' kcal'
+            })
+          }
+        })
+
         // Steps
         AppleHealthkit.getStepCount(null, (err: string, results: Object) => {
           if (results) {
@@ -118,6 +132,11 @@ export class Steps extends React.Component {
                 <View>
                   <UI.UIListItem title="Steps Today" subTitle={this.state.steps} />
                   <UI.UIListItem reverse={true} title="Distance Today" subTitle={this.state.distance} />
+                </View>
+              }
+              { this.state.activeEnergyBurned &&
+                <View>
+                  <UI.UIListItem small={true} title="Active Energy Burned Today" subTitle={this.state.activeEnergyBurned} subSubTitle="Active Energy includes walking slowly and household chores." />
                 </View>
               }
               { this.state.yesterday &&
