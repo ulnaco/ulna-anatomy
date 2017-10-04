@@ -16,25 +16,7 @@ export function Background(view) {
   BackgroundFetch.configure({
      stopOnTerminate: false
    }, function() {
-
-     T.Track('notification', 'Started')
-
-     // Background Fetch Event
-     AppleHealthkit.isAvailable((err: Object, available: boolean) => {
-        if (available) {
-          AppleHealthkit.getStepCount(null, (err: string, results: Object) => {
-             if (results) {
-               PushNotification.localNotification({
-                 title: "U.Anatomy",
-                 message: results.value+' Steps Today',
-               });
-               T.Track('notification', 'Completed')
-             }
-           });
-         }
-      })
-      // END: Background Fetch Event
-
+     T.Track('notification', 'BackgroundFetch')
    })
 
 }
