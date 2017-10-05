@@ -20,7 +20,7 @@ export class UIListItem extends React.Component {
         {this.props.small &&
           <View style={UIStyles.ListItemInner}>
             <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
-              <View style={{width: '80%'}}>
+              <View style={{width: '75%'}}>
                 <Text style={UIStyles.ListItemTitle}>{this.props.title}</Text>
                 <Text style={[UIStyles.ListItemTitle, {fontSize: 11}]}>{this.props.subSubTitle}</Text>
               </View>

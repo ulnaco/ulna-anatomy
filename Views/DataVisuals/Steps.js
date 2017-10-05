@@ -49,13 +49,14 @@ export class Steps extends React.Component {
         /**
          * Active Energy Burned
          */
-         var yesterdayOpts = {
-           startDate: moment().subtract(1, 'day').endOf('day').toISOString()
+         var energyBurnedOpts = {
+           startDate: moment().startOf('hour').toISOString()
          }
-        AppleHealthkit.getActiveEnergyBurned(yesterdayOpts, (err: Object, results: Object) => {
-          if (results) {
+        AppleHealthkit.getActiveEnergyBurned(energyBurnedOpts, (err: Object, results: Object) => {
+          if (err) return;
+          if (results && results.length > 0) {
             this.setState({
-              activeEnergyBurned: results[0].value+' kcal'
+              activeEnergyBurned: (results[0].value.toFixed(2))+' kcal'
             })
           }
         })
