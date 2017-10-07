@@ -31,8 +31,8 @@ export class Welcome extends React.Component {
             alignItems: 'center',
             paddingHorizontal: UI.UIStyleguide.spacing*1.5,
           }}>
-          <UI.UITitle lite={true} text="Welcome"/>
-          <UI.UISubTitle lite={true} text="Ulna Anatomy is designed to help people live healthier & happier lives!"/>
+          <UI.UITitle lite={true} text={T.Speech.onboarding.welcome_title}/>
+          <UI.UISubTitle lite={true} text={T.Speech.onboarding.welcome_sub_title} />
           <UI.UISpace small={true} />
           <TouchableHighlight
              underlayColor='transparent'
@@ -41,7 +41,7 @@ export class Welcome extends React.Component {
                navigate('Health')
              }}>
             <View>
-              <UI.UIButton style="white" text="Get Started" />
+              <UI.UIButton style="white" text={T.Speech.onboarding.welcome_button} />
             </View>
           </TouchableHighlight>
         </View>

@@ -4,6 +4,7 @@ import {
   Text,
   ScrollView,
   TouchableHighlight,
+  AppState
 } from 'react-native';
 
 import moment from 'moment'
@@ -21,6 +22,18 @@ export class Steps extends React.Component {
 
   componentWillMount() {
     T.Watchdog(this);
+
+    this.Healthkit();
+    AppState.addEventListener('change', (nextAppState) => {
+      if (nextAppState == 'active') {
+        this.Healthkit();
+      }
+    })
+
+  }
+
+  Healthkit() {
+
     AppleHealthkit.isAvailable((err: Object, available: boolean) => {
       if (available) {
 
@@ -32,6 +45,21 @@ export class Steps extends React.Component {
             })
           }
         });
+
+        /**
+         * Active Energy Burned
+         */
+         var energyBurnedOpts = {
+           startDate: moment().startOf('hour').toISOString()
+         }
+        AppleHealthkit.getActiveEnergyBurned(energyBurnedOpts, (err: Object, results: Object) => {
+          if (err) return;
+          if (results && results.length > 0) {
+            this.setState({
+              activeEnergyBurned: (results[0].value.toFixed(2))+' kcal'
+            })
+          }
+        })
 
         // Steps
         AppleHealthkit.getStepCount(null, (err: string, results: Object) => {
@@ -105,6 +133,11 @@ export class Steps extends React.Component {
                 <View>
                   <UI.UIListItem title="Steps Today" subTitle={this.state.steps} />
                   <UI.UIListItem reverse={true} title="Distance Today" subTitle={this.state.distance} />
+                </View>
+              }
+              { this.state.activeEnergyBurned &&
+                <View>
+                  <UI.UIListItem small={true} title="Active Energy Burned Today" subTitle={this.state.activeEnergyBurned} subSubTitle="Active Energy includes walking slowly and household chores." />
                 </View>
               }
               { this.state.yesterday &&

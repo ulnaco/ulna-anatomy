@@ -38,6 +38,14 @@ const views = {
       header: null,
     }
   },
+  Localization: {
+    mode: "modal",
+    screen: Screens.Localization,
+    navigationOptions: {
+      gesturesEnabled: false,
+      header: null,
+    }
+  },
   HealthStudy: {
     mode: "modal",
     screen: Screens.HealthStudy,
