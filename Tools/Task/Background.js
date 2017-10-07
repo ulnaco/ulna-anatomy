@@ -16,7 +16,6 @@ export function Background(view) {
 
   // Start Fetch
   BackgroundFetch.configure({
-    minimumFetchInterval: 30,
     stopOnTerminate: false,
   }, function() {
 
@@ -37,6 +36,7 @@ export function Background(view) {
 
     BackgroundFetch.finish();
   })
+
 
   BackgroundFetch.status(function(status) {
     switch(status) {
