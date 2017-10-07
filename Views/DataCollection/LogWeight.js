@@ -64,7 +64,6 @@ export class LogWeight extends React.Component {
                    {text: 'OK', onPress: () => {
                      AppleHealthkit.saveWeight(options: Object, (err: Object, results: Object) => {
                        if (!err) {
-                         T.Track('event', 'Logged Weight')
                          const { navigate } = this.props.navigation;
                          navigate('Dash')
                        }

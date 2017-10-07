@@ -14,6 +14,23 @@ import * as T from '../../Tools'
 
 export class Health extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      new: true
+    };
+  }
+
+  componentDidMount() {
+    T.getStorage('Onboarding', (results) => {
+      if (results) {
+        this.setState({
+          new: false
+        })
+      }
+    });
+  }
+
   syncAppleHealth() {
     T.Watchdog(this);
     let options = T.Permissions()
@@ -55,7 +72,13 @@ export class Health extends React.Component {
                this.syncAppleHealth();
              }}>
             <View>
-              <UI.UIButton style="white" text={T.Speech.onboarding.apple_button} />
+              {this.state.new && <UI.UIButton style="white" text={T.Speech.onboarding.apple_button_first} /> }
+              {!this.state.new &&
+                <View>
+                  <UI.UISubTitle text={T.Speech.onboarding.apple_new_sync} lite={true}/>
+                  <UI.UIButton style="white" text={T.Speech.onboarding.apple_button} />
+                </View>
+              }
             </View>
           </TouchableHighlight>
         </View>

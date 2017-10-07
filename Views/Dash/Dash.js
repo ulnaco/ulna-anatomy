@@ -29,10 +29,9 @@ export class Dash extends React.Component {
     T.Watchdog(this);
     this.Healthkit();
 
+    // Update on AppState chnage
     AppState.addEventListener('change', (nextAppState) => {
-      if (nextAppState == 'active') {
-        this.Healthkit();
-      }
+      this.Healthkit();
     })
 
     if (this.state.width > 374) {
@@ -47,7 +46,9 @@ export class Dash extends React.Component {
     AppleHealthkit.isAvailable((err: Object, available: boolean) => {
       if (available) {
 
-        // Steps
+        /**
+         * Steps
+         */
         AppleHealthkit.getStepCount(null, (err: string, results: Object) => {
           if (results) {
             this.setState({
@@ -56,7 +57,9 @@ export class Dash extends React.Component {
           }
         });
 
-        // Distance
+        /**
+         * Distance Walked
+         */
         AppleHealthkit.getDistanceWalkingRunning({ unit: 'mile' }, (err: Object, results: Object) => {
           if (results) {
             this.setState({
@@ -80,7 +83,9 @@ export class Dash extends React.Component {
           }
         })
 
-        // Health Rating
+        /**
+         * Health Rating
+         */
         T.rating((result) => {
 
           var RatingsArray = []
@@ -105,22 +110,24 @@ export class Dash extends React.Component {
       <ScrollView style={[UI.UIStyles.window, {paddingTop: 0}]}>
         <StatusBar barStyle="dark-content" />
         <View style={{paddingBottom: UI.UIStyleguide.spacing}}>
+
+          {/* Rating Header */}
           <View style={{paddingVertical: UI.UIStyleguide.spacing*1.5, justifyContent: 'center'}}>
             <AnimatedLinearGradient customColors={UI.UIStyleguide.gradient} speed={4000}/>
             <Text style={[UI.UIStyles.largeTitle, {textAlign: 'center', fontWeight: 'bold', color: '#ffffff', marginBottom: 0, backgroundColor: 'transparent'}]}>{this.state.rating}</Text>
             <Text style={[UI.UIStyles.subTitle, {textAlign: 'center', color: '#ffffff', backgroundColor: 'transparent'}]}>Health Rating</Text>
-              <TouchableHighlight
-                 underlayColor='transparent'
-                 onPress={() => {
-                   T.Track('event', 'Button/Learn More', { view: this.props.navigation.state.routeName })
-                   const { navigate } = this.props.navigation;
-                   navigate('MyRating')
-                 }}>
-                <View>
-                  <UI.UIButton style="white" text="Learn More" />
-                </View>
-              </TouchableHighlight>
+            <TouchableHighlight
+               underlayColor='transparent'
+               onPress={() => {
+                 const { navigate } = this.props.navigation;
+                 navigate('MyRating')
+               }}>
+              <View>
+                <UI.UIButton style="white" text="Explanation" />
+              </View>
+            </TouchableHighlight>
           </View>
+
           { this.state.steps &&
             <View>
               <UI.UIListItem title="Steps Today" subTitle={this.state.steps} />
@@ -137,7 +144,6 @@ export class Dash extends React.Component {
           <TouchableHighlight
              underlayColor='transparent'
              onPress={() => {
-               T.Track('event', 'Steps Chart')
                const { navigate } = this.props.navigation;
                navigate('Steps')
              }}>
@@ -149,7 +155,6 @@ export class Dash extends React.Component {
           <TouchableHighlight
              underlayColor='transparent'
              onPress={() => {
-               T.Track('event', 'Weight Chart')
                const { navigate } = this.props.navigation;
                navigate('Weight')
              }}>
@@ -165,7 +170,6 @@ export class Dash extends React.Component {
                   <TouchableHighlight
                      underlayColor='transparent'
                      onPress={() => {
-                       T.Track('event', 'Button/View Steps', { view: this.props.navigation.state.routeName })
                        const { navigate } = this.props.navigation;
                        navigate('Steps')
                      }}>
@@ -178,7 +182,6 @@ export class Dash extends React.Component {
                   <TouchableHighlight
                      underlayColor='transparent'
                      onPress={() => {
-                       T.Track('event', 'Button/View Weight', { view: this.props.navigation.state.routeName })
                        const { navigate } = this.props.navigation;
                        navigate('Weight')
                      }}>

@@ -72,41 +72,47 @@ const views = {
     }
   },
   LogWeight: {
+    mode: "modal",
     screen: Screens.LogWeight,
     navigationOptions: {
       title: 'Log Weight'
     }
   },
   Steps: {
+    mode: "modal",
     screen: Screens.Steps,
     navigationOptions: {
       title: 'Steps Insights'
     }
   },
   Weight: {
+    mode: "modal",
     screen: Screens.Weight,
     navigationOptions: {
       title: 'Weight Insights'
     }
   },
   Profile: {
+    mode: "modal",
     screen: Screens.Profile,
     navigationOptions: {
       title: 'Profile'
     }
   },
   Notifications: {
+    mode: "modal",
     screen: Screens.Notifications,
     navigationOptions: {
       header: null,
     }
   },
   MyRating: {
+    mode: "modal",
     screen: Screens.MyRating,
     navigationOptions: {
       title: 'My Rating'
     }
-  }
+  },
 }
 
 const anatomy = StackNavigator(views);

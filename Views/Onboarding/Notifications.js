@@ -25,7 +25,6 @@ export class Notifications extends React.Component {
         });
 
         T.setStorage('Token', token.token);
-        T.Track('event', 'Enable Notifications');
       },
       onNotification: function(notification) {
         console.log('NOTIFICATION:', notification);
@@ -73,7 +72,6 @@ export class Notifications extends React.Component {
           <TouchableHighlight
              underlayColor='transparent'
              onPress={() => {
-               T.Track('event', 'Disable Notifications');
                T.setStorage('EnableNotifications', 'no');
                T.setStorage('Onboarding', 'yes');
                const { navigate } = this.props.navigation;
