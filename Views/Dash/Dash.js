@@ -12,8 +12,6 @@ import {
 import moment from 'moment'
 import AppleHealthkit from 'rn-apple-healthkit';
 import AnimatedLinearGradient, { presetColors } from 'react-native-animated-linear-gradient'
-import PushNotification from 'react-native-push-notification';
-import BackgroundTimer from 'react-native-background-timer';
 
 import * as T from '../../Tools'
 import * as C from '../../Components'
@@ -67,6 +65,21 @@ export class Dash extends React.Component {
           }
         });
 
+        /**
+         * Active Energy Burned
+         */
+         var energyBurnedOpts = {
+           startDate: moment().startOf('hour').toISOString()
+         }
+        AppleHealthkit.getActiveEnergyBurned(energyBurnedOpts, (err: Object, results: Object) => {
+          if (err) return;
+          if (results && results.length > 0) {
+            this.setState({
+              activeEnergyBurned: (results[0].value.toFixed(2))+' kcal'
+            })
+          }
+        })
+
         // Health Rating
         T.rating((result) => {
 
@@ -112,6 +125,11 @@ export class Dash extends React.Component {
             <View>
               <UI.UIListItem title="Steps Today" subTitle={this.state.steps} />
               <UI.UIListItem justtext={true} text={T.Speech.single.steps(this.state.steps)} />
+            </View>
+          }
+          { this.state.activeEnergyBurned &&
+            <View>
+              <UI.UIListItem small={true} title="Active Energy Burned Today" subTitle={this.state.activeEnergyBurned} subSubTitle="Active Energy includes walking slowly and household chores." />
             </View>
           }
           { this.state.distance && <UI.UIListItem title="Distance Today" subTitle={this.state.distance} /> }

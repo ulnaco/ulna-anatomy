@@ -1,9 +1,25 @@
 import * as T from '../../Tools'
 
 export const Speech = {
+  onboarding: {
+    welcome_title: 'Welcome',
+    welcome_sub_title: 'Ulna Anatomy is designed to help people live healthier & happier lives!',
+    welcome_button: 'Get Started',
+    apple_title: 'Apple Health',
+    apple_sub_title: 'Sync your Apple Health data with Ulna Anatomy. Steps, Height, Weight, BMI, Distance Walking + Running, and Date of Birth',
+    apple_button: 'Connect',
+    localization_title: 'Localization',
+    localization_sub_title: 'Choose a measuring system',
+    localization_metric: 'Metric (non-US)',
+    localization_imperial: 'Imperial (US)',
+  },
   ui: {
     weight_gain: 'Gain {var} pounds',
     weight_loss: 'Loss {var} pounds'
+  },
+  notification: {
+    Halfway: "Halfway to your step goal!",
+    Goal: "You reached your step goal!",
   },
   range: {
     bmi: (bmi) => {
@@ -93,8 +109,4 @@ export const Speech = {
       }
     }
   },
-  notification: {
-    Halfway: "Halfway to your step goal!",
-    Goal: "You reached your step goal!",
-  }
 }
