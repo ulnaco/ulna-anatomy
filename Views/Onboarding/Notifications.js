@@ -43,7 +43,7 @@ export class Notifications extends React.Component {
 
   render() {
     return (
-      <View style={[UI.UIStyles.window, UI.UIStyles.backgroundPrimary]}>
+      <View style={[UI.UIStyles.window, UI.UIStyles.backgroundAccent]}>
         <StatusBar barStyle="light-content" />
         <View style={{
             flex: 1,

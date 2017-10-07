@@ -1,6 +1,7 @@
 import * as T from '../../Tools'
 
 export const Speech = {
+  ratings: ['F', 'E', 'D', 'C', 'B', 'A+'],
   onboarding: {
     welcome_title: 'Welcome',
     welcome_sub_title: 'Ulna Anatomy is designed to help people live healthier & happier lives!',
@@ -29,33 +30,42 @@ export const Speech = {
         return 'Considered Underweight'
       }
       if (bmi > 20 && bmi < 24.9) {
-        return 'Ideal weight range'
+        return 'Your BMI is in the ideal range!'
       }
       if (bmi > 25 && bmi < 26.9) {
-        return 'Perfect weight range'
+        return 'Perfect weight range!'
       }
       if (bmi > 27 && bmi < 29.9) {
-        return 'Ideal weight range'
+        return 'Your BMI is in the ideal range!'
       }
       if (bmi > 29.9) { // Overweight
         return 'Considered Overweight'
       }
     },
     steps: (count) => {
+      if (count < 1000) { // No Steps
+        return '+7,000 steps under average'
+      }
+      if (count < 2000) { // No Steps
+        return '+6,000 steps under average'
+      }
+      if (count < 3000) { // No Steps
+        return '+5,000 steps under average'
+      }
       if (count > 4000) { // Trying
-        return 'Recommended you walk +1000 more steps a day'
+        return '+3,000 steps under average'
       }
       else if (count > 5000) { // Average
-        return 'Recommended you walk +1000 more steps a day'
+        return '+2,000 steps under average'
       }
       else if (count > 8000) { // Recommended
-        return 'Recommended you walk +1000 more steps a day'
+        return 'You walk the recommended 8,000 steps a day on average'
       }
       else if (count > 10000) { // Overachiever
-        return 'Recommended you walk +1000 more steps a day'
+        return 'You walk more than the recommended 8,000 steps a day on average'
       }
       if (count < 4000) { // No Steps
-        return 'Recommended you walk +1000 more steps a day'
+        return '+4,000 steps under average'
       }
     }
   },
@@ -111,4 +121,14 @@ export const Speech = {
       }
     }
   },
+  localization: {
+    metric: {
+      weight: 'Kilograms',
+      height: 'Centimeters',
+    },
+    us: {
+      weight: 'Pounds',
+      height: 'Feet',
+    }
+  }
 }

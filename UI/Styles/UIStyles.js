@@ -97,6 +97,14 @@ export const UIStyles = StyleSheet.create({
     borderTopWidth: 1,
     paddingVertical: UIStyleguide.spacing,
   },
+  ListItemOnboarding: {
+    backgroundColor: UIStyleguide.color.primaryLite,
+    flexDirection: 'row',
+    marginBottom: UIStyleguide.spacing/2,
+    paddingVertical: UIStyleguide.spacing/2,
+    paddingHorizontal: UIStyleguide.spacing,
+    borderRadius: UIStyleguide.spacing,
+  },
   ListItemInner: {
     width: width * .8,
   },

@@ -6,5 +6,5 @@ import AppleHealthkit from 'rn-apple-healthkit';
 import * as T from '../../Tools'
 
 export function Watchdog(view) {
-
+  
 }

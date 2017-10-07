@@ -10,6 +10,7 @@ export * from './Config/Permissions.js'
 export * from './Formats/Miles.js'
 export * from './Formats/Thousand.js'
 export * from './Formats/Speech.js'
+export * from './Formats/Localization.js'
 
 export * from './Storage/Get.js'
 export * from './Storage/Remove.js'
