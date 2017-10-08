@@ -25,6 +25,7 @@ export class Profile extends React.Component {
     T.Watchdog(this);
     AppleHealthkit.isAvailable((err: Object, available: boolean) => {
       if (available) {
+
         // Age
         AppleHealthkit.getDateOfBirth(null, (err: string, results: Object) => {
           if (results.age) {
@@ -74,12 +75,12 @@ export class Profile extends React.Component {
                 hidden: Number(this.state.hidden) + 1
               })
               if (this.state.hidden > 2) {
-                T.removeStorage('Onboarding');
-                T.removeStorage('Connected');
-                T.removeStorage('Person');
-                T.removeStorage('HealthStudy');
-                T.removeStorage('Ratings');
-                T.removeStorage('Localization');
+                T.removeStorage('O/Welcome');
+                T.removeStorage('O/Health');
+                T.removeStorage('O/Localization');
+                T.removeStorage('O/Inital');
+                T.removeStorage('O/Notifications');
+                T.removeStorage('O/Notifications');
                 const { navigate } = this.props.navigation;
                 navigate('Welcome')
               }

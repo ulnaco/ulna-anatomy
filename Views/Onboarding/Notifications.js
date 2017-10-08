@@ -38,7 +38,7 @@ export class Notifications extends React.Component {
              onPress={() => {
                this.enable(() => {
                  T.setStorage('EnableNotifications', 'yes');
-                 T.setStorage('Onboarding', 'yes');
+                 T.setStorage('O/Notifications', 'yes');
                  const { navigate } = this.props.navigation;
                  navigate('Dash')
                })
@@ -51,7 +51,7 @@ export class Notifications extends React.Component {
              underlayColor='transparent'
              onPress={() => {
                T.setStorage('EnableNotifications', 'no');
-               T.setStorage('Onboarding', 'yes');
+               T.setStorage('O/Notifications', 'yes');
                const { navigate } = this.props.navigation;
                navigate('Dash')
              }}>

@@ -9,6 +9,7 @@ import {
 
 import AnimatedLinearGradient, { presetColors } from 'react-native-animated-linear-gradient'
 
+import moment from 'moment'
 import * as UI from '../../UI'
 import * as T from '../../Tools'
 
@@ -37,6 +38,7 @@ export class Welcome extends React.Component {
           <TouchableHighlight
              underlayColor='transparent'
              onPress={() => {
+               T.setStorage('O/Welcome', moment().format());
                const { navigate } = this.props.navigation;
                navigate('Health')
              }}>

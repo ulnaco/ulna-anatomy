@@ -22,7 +22,7 @@ export class Health extends React.Component {
   }
 
   componentDidMount() {
-    T.getStorage('Onboarding', (results) => {
+    T.getStorage('O/Health', (results) => {
       if (results) {
         this.setState({
           new: false
@@ -39,14 +39,14 @@ export class Health extends React.Component {
         AppleHealthkit.initHealthKit(options: Object, (err: Object, results: Object) => {
           if (err) return;
           const { navigate } = this.props.navigation;
-          T.getStorage('Onboarding', (results) => {
+          T.getStorage('O/Localization', (results) => {
             if (results) {
               navigate('Dash')
             } else {
               navigate('Localization')
             }
           });
-          T.setStorage('Connected', JSON.stringify(options));
+          T.setStorage('O/Health', JSON.stringify(options));
         });
       }
     });

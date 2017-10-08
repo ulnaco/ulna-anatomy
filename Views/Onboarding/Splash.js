@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {
   View,
-  StatusBar
+  StatusBar,
+  AsyncStorage
 } from 'react-native';
 
 import AppleHealthkit from 'rn-apple-healthkit';
@@ -14,54 +15,41 @@ export class Splash extends React.Component {
 
   componentDidMount() {
     T.Watchdog(this);
-    setTimeout(() => {
 
-      // Start Inital Healthkit
-      AppleHealthkit.initHealthKit({}: Object, (err: Object, results: Object) => {});
+    // Start Inital Healthkit
+    AppleHealthkit.initHealthKit({}: Object, (err: Object, results: Object) => {});
 
-      AppleHealthkit.isAvailable((err: Object, available: boolean) => {
-        if (available) {
-          const { navigate } = this.props.navigation;
+    AppleHealthkit.isAvailable((err: Object, available: boolean) => {
+      if (available) {
+        this.router()
+      }
+    });
 
-          // Onboarding Lookup
-          T.getStorage('Onboarding', (results) => {
-            if (results) {
-              T.getStorage('Connected', (results) => {
+  }
 
-                // All Permissions match
-                if (results == JSON.stringify(T.Permissions())) {
-                  T.getStorage('EnableNotifications', (results) => {
-                    if (results) {
-                      T.getStorage('Localization', (results) => {
-                        if (results) {
-                          T.Notifications();
-                          navigate('Dash')
-                        } else {
-                          navigate('Localization')
-                        }
-                      });
-                    } else {
-                      navigate('Notifications')
-                    }
-                  });
-                } else {
-                  navigate('Health')
-                }
+  async router() {
+    let route = 'Dash'
 
-              });
-            }
-            else {
+    value = await AsyncStorage.getItem('@MySuperStore:O/Notifications');
+    if (!value) route = 'Notifications'
 
-              // New User
-              const { navigate } = this.props.navigation;
-              navigate('Welcome')
+    value = await AsyncStorage.getItem('@MySuperStore:O/Inital');
+    if (!value) route = 'Inital'
 
-            }
-          })
-        }
-      });
+    value = await AsyncStorage.getItem('@MySuperStore:O/Localization');
+    if (!value) route = 'Localization'
 
-    }, 1000);
+    value = await AsyncStorage.getItem('@MySuperStore:O/Health');
+    if (value !== JSON.stringify(T.Permissions())) route = 'Health'
+    if (!value) route = 'Health'
+
+    let value = await AsyncStorage.getItem('@MySuperStore:O/Welcome');
+    if (!value) route = 'Welcome'
+
+    const { navigate } = this.props.navigation;
+    console.log(route)
+    navigate(route)
+
   }
 
   render() {

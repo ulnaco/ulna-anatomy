@@ -163,6 +163,7 @@ export class InitalRating extends React.Component {
                 <TouchableHighlight
                    underlayColor='transparent'
                    onPress={() => {
+                     T.setStorage('O/Inital', 'yes');
                      const { navigate } = this.props.navigation;
                      navigate('Notifications')
                    }}>

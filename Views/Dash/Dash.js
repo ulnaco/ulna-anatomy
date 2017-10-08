@@ -149,7 +149,7 @@ export class Dash extends React.Component {
             </TouchableHighlight>
           </View>
 
-          {/* Today */}
+          {/* Activity */}
           <TouchableHighlight
              underlayColor='transparent'
              onPress={() => {
@@ -177,6 +177,7 @@ export class Dash extends React.Component {
               </View>
           </TouchableHighlight>
 
+          {/* Boby Measurements */}
           { this.state.weight &&
             <TouchableHighlight
                underlayColor='transparent'
@@ -191,7 +192,7 @@ export class Dash extends React.Component {
             </TouchableHighlight>
           }
 
-
+          {/* Log Weight */}
           <TouchableHighlight
              underlayColor='transparent'
              onPress={() => {
