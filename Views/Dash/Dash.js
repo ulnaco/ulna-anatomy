@@ -27,7 +27,14 @@ export class Dash extends React.Component {
 
   componentDidMount() {
     T.Watchdog(this);
-    this.Healthkit();
+
+    // Localization
+    T.getLocalization((results) => {
+      this.setState({
+        localization: results
+      })
+      this.Healthkit();
+    })
 
     // Update on AppState chnage
     AppState.addEventListener('change', (nextAppState) => {
@@ -60,10 +67,14 @@ export class Dash extends React.Component {
         /**
          * Distance Walked
          */
-        AppleHealthkit.getDistanceWalkingRunning({ unit: 'mile' }, (err: Object, results: Object) => {
+        AppleHealthkit.getDistanceWalkingRunning({ unit: this.state.localization.distance.unit }, (err: Object, results: Object) => {
           if (results) {
+            let distance = (results.value).toFixed(2)
+            if (this.state.localization.distance.unit == 'meter') {
+              distance = (results.value/1000).toFixed(2)
+            }
             this.setState({
-              distance: (results.value).toFixed(2)+' mi'
+              distance: distance+' '+this.state.localization.distance.display
             })
           }
         });
@@ -78,7 +89,7 @@ export class Dash extends React.Component {
           if (err) return;
           if (results && results.length > 0) {
             this.setState({
-              activeEnergyBurned: (results[0].value.toFixed(2))+' kcal'
+              activeEnergyBurned: (results[0].value.toFixed(1))+' kcal'
             })
           }
         })
@@ -99,6 +110,22 @@ export class Dash extends React.Component {
           this.setState({
             rating: result
           })
+        });
+
+        /**
+         * Weight
+         */
+        let weightOpts = {
+          unit: 'pound',
+          startDate: moment().subtract(1, 'years').toISOString(),
+          endDate: moment().toISOString()
+        }
+        AppleHealthkit.getWeightSamples(weightOpts: Object, (err: string, results: Object) => {
+          if (results && results[0] && results[1]) {
+            this.setState({
+              weight: true
+            })
+          }
         });
 
       }
@@ -128,19 +155,7 @@ export class Dash extends React.Component {
             </TouchableHighlight>
           </View>
 
-          { this.state.steps &&
-            <View>
-              <UI.UIListItem title="Steps Today" subTitle={this.state.steps} />
-              <UI.UIListItem justtext={true} text={T.Speech.single.steps(this.state.steps)} />
-            </View>
-          }
-          { this.state.activeEnergyBurned &&
-            <View>
-              <UI.UIListItem small={true} title="Active Energy Burned Today" subTitle={this.state.activeEnergyBurned} subSubTitle="Active Energy includes walking slowly and household chores." />
-            </View>
-          }
-          { this.state.distance && <UI.UIListItem title="Distance Today" subTitle={this.state.distance} /> }
-
+          {/* Today */}
           <TouchableHighlight
              underlayColor='transparent'
              onPress={() => {
@@ -148,51 +163,40 @@ export class Dash extends React.Component {
                navigate('Steps')
              }}>
              <View>
-              <C.StepsVsYesterday />
-             </View>
-          </TouchableHighlight>
+                { this.state.steps &&
+                  <View style={{marginTop: UI.UIStyleguide.spacing}}>
+                    <UI.UISubTitle text="Today" />
+                    <UI.UIListItem title="Steps" subTitle={this.state.steps} subSubTitle={T.Speech.single.steps(this.state.steps)}/>
+                  </View>
+                }
 
-          <TouchableHighlight
-             underlayColor='transparent'
-             onPress={() => {
-               const { navigate } = this.props.navigation;
-               navigate('Weight')
-             }}>
-             <View>
-              <C.VsLast />
-             </View>
-          </TouchableHighlight>
+                { this.state.distance && <UI.UIListItem title="Distance walked" subTitle={this.state.distance} /> }
 
-          <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-            <View style={UI.UIStyles.ListItemInner}>
-              <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
-                <View>
-                  <TouchableHighlight
-                     underlayColor='transparent'
-                     onPress={() => {
-                       const { navigate } = this.props.navigation;
-                       navigate('Steps')
-                     }}>
-                    <View style={{marginRight: 10}}>
-                      <UI.UIButton style="accent" text="Steps" />
-                    </View>
-                  </TouchableHighlight>
-                </View>
-                <View>
-                  <TouchableHighlight
-                     underlayColor='transparent'
-                     onPress={() => {
-                       const { navigate } = this.props.navigation;
-                       navigate('Weight')
-                     }}>
-                    <View>
-                      <UI.UIButton style="accent" text={this.state.weightBtn} />
-                    </View>
-                  </TouchableHighlight>
+                { this.state.activeEnergyBurned &&
+                  <View>
+                    <UI.UIListItem title="Active Energy Burned" subTitle={this.state.activeEnergyBurned} subSubTitle="Active Energy includes walking slowly and household chores, as well as exercise such as biking and dancing." />
+                  </View>
+                }
+                <View style={{marginTop: UI.UIStyleguide.spacing}}>
+                  <UI.UIButton style="accent" text="Activity Insights" />
                 </View>
               </View>
-            </View>
-          </View>
+          </TouchableHighlight>
+
+          { this.state.weight &&
+            <TouchableHighlight
+               underlayColor='transparent'
+               onPress={() => {
+                 const { navigate } = this.props.navigation;
+                 navigate('Weight')
+               }}>
+               <View>
+                <C.VsLast />
+                <UI.UIButton style="accent" text={this.state.weightBtn} />
+              </View>
+            </TouchableHighlight>
+          }
+
         </View>
       </ScrollView>
     )

@@ -7,7 +7,6 @@ import {
   StatusBar
 } from 'react-native';
 
-import PushNotification from 'react-native-push-notification';
 import AnimatedLinearGradient, {presetColors} from 'react-native-animated-linear-gradient'
 
 import * as UI from '../../UI'
@@ -16,28 +15,7 @@ import * as T from '../../Tools'
 export class Notifications extends React.Component {
 
   enable(fn) {
-    PushNotification.configure({
-      onRegister: function(token) {
-
-        // Update Profile
-        T.Person({
-          'Notification Token': token.token,
-        });
-
-        T.setStorage('Token', token.token);
-      },
-      onNotification: function(notification) {
-        console.log('NOTIFICATION:', notification);
-      },
-      permissions: {
-        alert: true,
-        badge: true,
-        sound: true
-      },
-      popInitialNotification: true,
-      requestPermissions: true,
-    });
-
+    T.Notifications();
     fn()
   }
 
@@ -78,7 +56,7 @@ export class Notifications extends React.Component {
                navigate('Dash')
              }}>
              <View>
-               <UI.UIButton style="primary" text="Maybe Later" />
+               <UI.UIButton style="accent" text="Maybe Later" />
              </View>
            </TouchableHighlight>
         </View>

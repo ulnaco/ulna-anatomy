@@ -14,7 +14,6 @@ export class Splash extends React.Component {
 
   componentDidMount() {
     T.Watchdog(this);
-    T.Background(this);
     setTimeout(() => {
 
       // Start Inital Healthkit
@@ -35,6 +34,7 @@ export class Splash extends React.Component {
                     if (results) {
                       T.getStorage('Localization', (results) => {
                         if (results) {
+                          T.Notifications();
                           navigate('Dash')
                         } else {
                           navigate('Localization')

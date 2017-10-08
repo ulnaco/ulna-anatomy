@@ -26,12 +26,13 @@ export class UIListItem extends React.Component {
               <View style={UIStyles.ListItemInner}>
                 <Text style={UIStyles.ListItemTitle}>{this.props.title}</Text>
                 <Text style={UIStyles.ListItemSubTitle}>{this.props.subTitle}</Text>
+                {this.props.subSubTitle && <Text style={[UIStyles.ListItemTitle,{marginTop: 5, color: '#777', fontSize: 11}]}>{this.props.subSubTitle}</Text> }
               </View>
             }
             {this.props.small &&
               <View style={UIStyles.ListItemInner}>
                 <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
-                  <View style={{width: '75%'}}>
+                  <View style={{width: '70%'}}>
                     <Text style={UIStyles.ListItemTitle}>{this.props.title}</Text>
                     <Text style={[UIStyles.ListItemTitle, {fontSize: 11}]}>{this.props.subSubTitle}</Text>
                   </View>

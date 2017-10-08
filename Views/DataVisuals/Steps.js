@@ -23,7 +23,14 @@ export class Steps extends React.Component {
   componentWillMount() {
     T.Watchdog(this);
 
-    this.Healthkit();
+    // Localization
+    T.getLocalization((results) => {
+      this.setState({
+        localization: results
+      })
+      this.Healthkit();
+    })
+
     AppState.addEventListener('change', (nextAppState) => {
       if (nextAppState == 'active') {
         this.Healthkit();
@@ -37,11 +44,17 @@ export class Steps extends React.Component {
     AppleHealthkit.isAvailable((err: Object, available: boolean) => {
       if (available) {
 
-        // Distance
-        AppleHealthkit.getDistanceWalkingRunning({ unit: 'mile' }, (err: Object, results: Object) => {
+        /**
+         * Distance Walked
+         */
+        AppleHealthkit.getDistanceWalkingRunning({ unit: this.state.localization.distance.unit }, (err: Object, results: Object) => {
           if (results) {
+            let distance = (results.value).toFixed(2)
+            if (this.state.localization.distance.unit == 'meter') {
+              distance = (results.value/1000).toFixed(2)
+            }
             this.setState({
-              distance: (results.value).toFixed(2)+' mi'
+              distance: distance+' '+this.state.localization.distance.display
             })
           }
         });
@@ -137,7 +150,7 @@ export class Steps extends React.Component {
               }
               { this.state.activeEnergyBurned &&
                 <View>
-                  <UI.UIListItem small={true} title="Active Energy Burned Today" subTitle={this.state.activeEnergyBurned} subSubTitle="Active Energy includes walking slowly and household chores." />
+                  <UI.UIListItem title="Active Energy Burned Today" subTitle={this.state.activeEnergyBurned} subSubTitle="Active Energy includes walking slowly and household chores, as well as exercise such as biking and dancing." />
                 </View>
               }
               { this.state.yesterday &&

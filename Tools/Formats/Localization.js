@@ -7,6 +7,13 @@ export function getLocalization(fn) {
   T.getStorage('Localization', (results) => {
     const localization = {}
 
+
+    if (results == 'Metric') {
+      localization.metric = true;
+    } else {
+      localization.us = true;
+    }
+
     // Weight
     localization.weight = {
       display: T.Speech.localization.us.weight,
@@ -32,6 +39,18 @@ export function getLocalization(fn) {
         display: T.Speech.localization.metric.height,
         unit: 'cm',
         placeholder: '185',
+      }
+    }
+
+    // Distance
+    localization.distance = {
+      unit: 'mile',
+      display: 'mi'
+    }
+    if (results == 'Metric') {
+      localization.distance = {
+        unit: 'meter',
+        display: 'km'
       }
     }
 

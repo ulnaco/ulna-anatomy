@@ -12,6 +12,9 @@ import {
 } from 'react-navigation';
 
 import * as Screens from './Views';
+import * as T from './Tools'
+
+T.Background(this);
 
 const views = {
   initialRouteName: {
@@ -82,7 +85,7 @@ const views = {
     mode: "modal",
     screen: Screens.Steps,
     navigationOptions: {
-      title: 'Steps Insights'
+      title: 'Activity Insights'
     }
   },
   Weight: {
