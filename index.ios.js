@@ -92,7 +92,7 @@ const views = {
     mode: "modal",
     screen: Screens.Weight,
     navigationOptions: {
-      title: 'Weight Insights'
+      title: 'Body Measurements'
     }
   },
   Profile: {

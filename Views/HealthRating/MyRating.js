@@ -25,6 +25,18 @@ export class MyRating extends React.Component {
 
   componentWillMount() {
     T.Watchdog(this);
+    // Localization
+    T.getLocalization((results) => {
+      this.setState({
+        localization: results
+      })
+      this.Healthkit()
+    })
+
+  }
+
+  Healthkit() {
+
     AppleHealthkit.isAvailable((err: Object, available: boolean) => {
       if (available) {
 
@@ -44,11 +56,15 @@ export class MyRating extends React.Component {
 
         });
 
-        // Weight (Pounds)
-        AppleHealthkit.getLatestWeight({ unit: 'pound' }: Object, (err: string, results: Object) => {
+        // Weight
+        AppleHealthkit.getLatestWeight({ unit: this.state.localization.weight.unit }: Object, (err: string, results: Object) => {
           if (results) {
+            let lastWeight = results.value.toFixed(2);
+            if (this.state.localization.weight.unit == 'gram') {
+              lastWeight = lastWeight/1000
+            }
             this.setState({
-              lastWeight: results.value
+              lastWeight: lastWeight+' '+this.state.localization.weight.display 
             })
           }
         });
@@ -98,13 +114,39 @@ export class MyRating extends React.Component {
             { this.state.rating && <Text style={[UI.UIStyles.largeTitle, {textAlign: 'center', fontWeight: 'bold', marginBottom: 0, fontSize: 80} ]}>{this.state.rating}</Text> }
           </View>
           <View style={{marginBottom: UI.UIStyleguide.spacing}}>
-            { this.state.fitness && <UI.UIListItem title="Fitness Rating" subTitle={this.state.fitness} /> }
+            <View style={{marginTop: UI.UIStyleguide.spacing}}>
+              <UI.UISubTitle text="Activity" />
+            </View>
+            { this.state.fitness && <UI.UIListItem title="Rating" subTitle={this.state.fitness} /> }
             { this.state.steps && <UI.UIListItem title="7 Day Step Average" subTitle={this.state.steps} /> }
+            <TouchableHighlight
+               underlayColor='transparent'
+               onPress={() => {
+                 const { navigate } = this.props.navigation;
+                 navigate('Steps')
+               }}>
+               <View style={{marginTop: UI.UIStyleguide.spacing}}>
+                <UI.UIButton style="accent" text="Activity Insights" />
+              </View>
+            </TouchableHighlight>
           </View>
           <View style={{marginBottom: UI.UIStyleguide.spacing}}>
-            { this.state.fitness && <UI.UIListItem title="Weight Rating" subTitle={this.state.weight} /> }
+            <View style={{marginTop: UI.UIStyleguide.spacing}}>
+              <UI.UISubTitle text="Body Measurements" />
+            </View>
+            { this.state.fitness && <UI.UIListItem title="Rating" subTitle={this.state.weight} /> }
             { this.state.lastWeight && <UI.UIListItem title="Weight" subTitle={this.state.lastWeight} /> }
             { this.state.bmi && <UI.UIListItem title="BMI" subTitle={this.state.bmi} /> }
+            <TouchableHighlight
+               underlayColor='transparent'
+               onPress={() => {
+                 const { navigate } = this.props.navigation;
+                 navigate('Weight')
+               }}>
+               <View style={{marginTop: UI.UIStyleguide.spacing}}>
+                <UI.UIButton style="accent" text="Body Measurements" />
+              </View>
+            </TouchableHighlight>
           </View>
           {this.state.goodExplanation.length > 0 &&
             <View style={{marginBottom: UI.UIStyleguide.spacing}}>
@@ -131,7 +173,7 @@ export class MyRating extends React.Component {
                navigate('Profile')
              }}>
             <View>
-              <UI.UIButton style="accent" text="Health Profile" />
+              <UI.UIButton style="primary" text="Health Profile" />
             </View>
           </TouchableHighlight>
           <UI.UISpace small={true} />

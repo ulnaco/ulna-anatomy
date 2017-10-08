@@ -17,8 +17,8 @@ export const Speech = {
     localization_imperial: 'Imperial (US)',
   },
   ui: {
-    weight_gain: 'Gain {var} pounds',
-    weight_loss: 'Loss {var} pounds'
+    weight_gain: 'Gained Weight',
+    weight_loss: 'Loss Weight'
   },
   notification: {
     Halfway: "Halfway to your step goal!",
@@ -123,7 +123,7 @@ export const Speech = {
   },
   localization: {
     metric: {
-      weight: 'Kilograms',
+      weight: 'kg',
       height: 'Centimeters',
     },
     us: {

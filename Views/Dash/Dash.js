@@ -41,12 +41,6 @@ export class Dash extends React.Component {
       this.Healthkit();
     })
 
-    if (this.state.width > 374) {
-      this.state.weightBtn = 'Weight Insights'
-    }
-    else {
-      this.state.weightBtn = 'Weight'
-    }
   }
 
   Healthkit() {
@@ -192,7 +186,7 @@ export class Dash extends React.Component {
                }}>
                <View>
                 <C.VsLast />
-                <UI.UIButton style="accent" text={this.state.weightBtn} />
+                <UI.UIButton style="accent" text="Body Measurements" />
               </View>
             </TouchableHighlight>
           }
