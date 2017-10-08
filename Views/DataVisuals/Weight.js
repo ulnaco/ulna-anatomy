@@ -21,12 +21,24 @@ export class Weight extends React.Component {
 
   componentWillMount() {
     T.Watchdog(this);
+
+    // Localization
+    T.getLocalization((results) => {
+      this.setState({
+        localization: results
+      })
+      this.Healthkit()
+    })
+
+  }
+
+  Healthkit() {
     AppleHealthkit.isAvailable((err: Object, available: boolean) => {
       if (available) {
 
         // Weight (Pounds)
         let weightOpts = {
-          unit: 'pound',
+          unit: this.state.localization.weight.unit,
           startDate: moment().subtract(1, 'years').toISOString(),
           endDate: moment().toISOString()
         }
@@ -35,26 +47,41 @@ export class Weight extends React.Component {
           var lowest = { value: 1000, startDate: 0 };
           var heaviest = { value: 0, startDate: 0 };
           for (var i = 0; i < results.length; i++) {
+            let weight = results[i].value;
+            if (this.state.localization.weight.unit == 'gram') {
+              weight = weight/1000
+            }
+            let weightTitle = `${weight} ${this.state.localization.weight.display}`
             if (i > 30) break;
             if (i == 0) {
               this.setState({
-                currentWeight: results[i].value,
+                currentWeight: weight+' '+this.state.localization.weight.display,
                 currentWeightUpdated: "Last Updated "+moment(results[i].startDate).fromNow()
               })
             }
             else {
-              timeline.push(<UI.UIListItem key={i} reverse={true} title={moment(results[i].startDate).fromNow()} subTitle={results[i].value} />);
+              timeline.push(<UI.UIListItem key={i} reverse={true} title={moment(results[i].startDate).fromNow()} subTitle={weightTitle} />);
             }
 
-            if (lowest.value > results[i].value) lowest = results[i]
-            if (heaviest.value < results[i].value) heaviest = results[i]
+            if (lowest.value > weight) lowest = results[i]
+            if (heaviest.value < weight) heaviest = results[i]
 
           }
 
+          if (this.state.localization.weight.unit == 'gram') {
+            this.setState({
+              lowestWeight: lowest.value/1000+' '+this.state.localization.weight.display,
+              heaviestWeight: heaviest.value/1000+' '+this.state.localization.weight.display,
+            })
+          } else {
+            this.setState({
+              lowestWeight: lowest.value+' '+this.state.localization.weight.display,
+              heaviestWeight: heaviest.value+' '+this.state.localization.weight.display,
+            })
+          }
+
           this.setState({
-            lowestWeight: lowest.value,
             lowestWeightDate: moment(lowest.startDate).fromNow(),
-            heaviestWeight: heaviest.value,
             heaviestWeightDate: moment(heaviest.startDate).fromNow(),
           })
 

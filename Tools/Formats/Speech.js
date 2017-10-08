@@ -127,7 +127,7 @@ export const Speech = {
       height: 'Centimeters',
     },
     us: {
-      weight: 'Pounds',
+      weight: 'lbs',
       height: 'Feet',
     }
   }

@@ -25,6 +25,7 @@ export class MyRating extends React.Component {
 
   componentWillMount() {
     T.Watchdog(this);
+    
     // Localization
     T.getLocalization((results) => {
       this.setState({
@@ -64,7 +65,7 @@ export class MyRating extends React.Component {
               lastWeight = lastWeight/1000
             }
             this.setState({
-              lastWeight: lastWeight+' '+this.state.localization.weight.display 
+              lastWeight: lastWeight+' '+this.state.localization.weight.display
             })
           }
         });
