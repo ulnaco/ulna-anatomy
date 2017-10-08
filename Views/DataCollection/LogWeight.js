@@ -89,6 +89,16 @@ export class LogWeight extends React.Component {
                     <UI.UIButton style="white" text="Save" />
                   </View>
               </TouchableHighlight>
+              <TouchableHighlight
+                 underlayColor='transparent'
+                 onPress={() => {
+                   const { navigate } = this.props.navigation;
+                   navigate('Dash')
+                 }}>
+                   <View>
+                     <UI.UIButton style="primary" text="Nevermind" />
+                   </View>
+               </TouchableHighlight>
             </View>
           }
         </View>

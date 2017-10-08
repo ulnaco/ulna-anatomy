@@ -191,6 +191,18 @@ export class Dash extends React.Component {
             </TouchableHighlight>
           }
 
+
+          <TouchableHighlight
+             underlayColor='transparent'
+             onPress={() => {
+               const { navigate } = this.props.navigation;
+               navigate('LogWeight')
+             }}>
+             <View>
+              <UI.UIButton style="primary" text="Log Weight" />
+            </View>
+          </TouchableHighlight>
+
         </View>
       </ScrollView>
     )
