@@ -47,9 +47,9 @@ export class Weight extends React.Component {
           var lowest = { value: 1000, startDate: 0 };
           var heaviest = { value: 0, startDate: 0 };
           for (var i = 0; i < results.length; i++) {
-            let weight = results[i].value;
+            let weight = results[i].value.toFixed(2);
             if (this.state.localization.weight.unit == 'gram') {
-              weight = weight/1000
+              weight = Number(weight/1000).toFixed(2)
             }
             let weightTitle = `${weight} ${this.state.localization.weight.display}`
             if (i > 30) break;
@@ -70,8 +70,8 @@ export class Weight extends React.Component {
 
           if (this.state.localization.weight.unit == 'gram') {
             this.setState({
-              lowestWeight: lowest.value/1000+' '+this.state.localization.weight.display,
-              heaviestWeight: heaviest.value/1000+' '+this.state.localization.weight.display,
+              lowestWeight: Number(lowest.value/1000).toFixed(2)+' '+this.state.localization.weight.display,
+              heaviestWeight: Number(heaviest.value/1000).toFixed(2)+' '+this.state.localization.weight.display,
             })
           } else {
             this.setState({
