@@ -44,43 +44,14 @@ export class Steps extends React.Component {
     AppleHealthkit.isAvailable((err: Object, available: boolean) => {
       if (available) {
 
-        /**
-         * Distance Walked
-         */
-        AppleHealthkit.getDistanceWalkingRunning({ unit: this.state.localization.distance.unit }, (err: Object, results: Object) => {
-          if (results) {
-            let distance = (results.value).toFixed(2)
-            if (this.state.localization.distance.unit == 'meter') {
-              distance = (results.value/1000).toFixed(2)
-            }
-            this.setState({
-              distance: distance+' '+this.state.localization.distance.display
-            })
-          }
-        });
-
-        /**
-         * Active Energy Burned
-         */
-         var energyBurnedOpts = {
-           startDate: moment().startOf('hour').toISOString()
-         }
-        AppleHealthkit.getActiveEnergyBurned(energyBurnedOpts, (err: Object, results: Object) => {
-          if (err) return;
-          if (results && results.length > 0) {
-            this.setState({
-              activeEnergyBurned: (results[0].value.toFixed(2))+' kcal'
-            })
-          }
-        })
-
-        // Steps
-        AppleHealthkit.getStepCount(null, (err: string, results: Object) => {
-          if (results) {
-            this.setState({
-              steps: T.thousand(results.value)
-            })
-          }
+        T.getStorage('Healthkit', (results) => {
+          results = JSON.parse(results)
+          this.setState({
+            StepCount: T.thousand(results.StepCount),
+            DistanceWalkingRunning: results.DistanceWalkingRunning,
+            ActiveEnergyBurned: results.ActiveEnergyBurned,
+            Rating: results.Rating,
+          })
         });
 
         // Steps Yesterday
@@ -142,15 +113,15 @@ export class Steps extends React.Component {
       <ScrollView style={UI.UIStyles.window}>
         <View>
             <View style={{marginBottom: UI.UIStyleguide.spacing}}>
-              { this.state.steps &&
+              { this.state.StepCount &&
                 <View>
-                  <UI.UIListItem title="Steps Today" subTitle={this.state.steps} />
-                  <UI.UIListItem reverse={true} title="Distance Today" subTitle={this.state.distance} />
+                  <UI.UIListItem title="Steps Today" subTitle={this.state.StepCount} />
+                  <UI.UIListItem reverse={true} title="Distance Today" subTitle={this.state.DistanceWalkingRunning} />
                 </View>
               }
-              { this.state.activeEnergyBurned &&
+              { this.state.ActiveEnergyBurned &&
                 <View>
-                  <UI.UIListItem title="Active Energy Burned Today" subTitle={this.state.activeEnergyBurned} subSubTitle="Active Energy includes walking slowly and household chores, as well as exercise such as biking and dancing." />
+                  <UI.UIListItem title="Active Energy Burned Today" subTitle={this.state.ActiveEnergyBurned} subSubTitle="Active Energy includes walking slowly and household chores, as well as exercise such as biking and dancing." />
                 </View>
               }
               { this.state.yesterday &&

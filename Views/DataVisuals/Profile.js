@@ -26,38 +26,16 @@ export class Profile extends React.Component {
     AppleHealthkit.isAvailable((err: Object, available: boolean) => {
       if (available) {
 
-        // Age
-        AppleHealthkit.getDateOfBirth(null, (err: string, results: Object) => {
-          if (results.age) {
-            this.setState({
-              age: results.age
-            })
-          }
-        });
-
-        // Height
-        AppleHealthkit.getLatestHeight({unit: 'foot'}, (err: string, results: Object) => {
-          if (results) {
-            const height = results.value.toFixed(1).replace(".", "'")
-            this.setState({
-              height: height
-            })
-          }
-        });
-
-        // BMI
-        T.bmi((result) => {
+        // Fetch Healthkit
+        T.getStorage('Healthkit', (results) => {
+          results = JSON.parse(results)
           this.setState({
-            bmi: result
+            Age: results.Age,
+            Height: results.Height,
+            BMI: results.BMI,
+            UUID: results.UUID,
           })
-        })
-
-        // Profile
-        T.getStorage('Person', (uuid) => {
-          this.setState({
-            uuid: uuid
-          })
-        })
+        });
 
         // Log
         T.getStorage('Log', (results) => {
@@ -81,7 +59,7 @@ export class Profile extends React.Component {
     return (
       <ScrollView style={UI.UIStyles.window}>
         <View>
-         {this.state.age && <UI.UIListItem reverse={true} title="Age" subTitle={this.state.age} /> }
+         {this.state.Age && <UI.UIListItem reverse={true} title="Age" subTitle={this.state.Age} /> }
           <TouchableHighlight
              underlayColor='transparent'
              onPress={() => {
@@ -100,10 +78,9 @@ export class Profile extends React.Component {
               }
              }}>
              <View>
-                {this.state.bmi && <UI.UIListItem reverse={true} title="BMI" subTitle={this.state.bmi} /> }
+                {this.state.BMI && <UI.UIListItem reverse={true} title="BMI" subTitle={this.state.BMI} /> }
              </View>
             </TouchableHighlight>
-          {this.state.height && <UI.UIListItem reverse={true} title="Height" subTitle={this.state.height} /> }
           {this.state.uuid && <UI.UIListItem reverse={true} subTitle={this.state.uuid} /> }
 
           <View style={{marginTop: 20}}>

@@ -53,7 +53,6 @@ export class Dash extends React.Component {
         Rating: results.Rating,
       })
     });
-
   }
 
   render() {

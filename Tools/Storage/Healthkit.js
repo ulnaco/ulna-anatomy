@@ -31,6 +31,9 @@ export function Healthkit(fn) {
     healthData.StepCount = await getStepCount(localization);
     healthData.DistanceWalkingRunning = await getDistanceWalkingRunning(localization);
     healthData.ActiveEnergyBurned = await getActiveEnergyBurned(localization);
+    healthData.Age = await getDateOfBirth();
+    healthData.BMI = await BMI();
+    healthData.UUID = await UUID();
 
     /**
      * Health Rating
@@ -59,6 +62,7 @@ export function Healthkit(fn) {
   function getStepCount(localization) {
     return new Promise((resolve, reject) => {
       AppleHealthkit.getStepCount(null, (err: string, results: Object) => {
+        if (err) resolve(false);
         if (results) resolve(results.value)
       });
     });
@@ -70,6 +74,7 @@ export function Healthkit(fn) {
   function getDistanceWalkingRunning(localization) {
     return new Promise((resolve, reject) => {
       AppleHealthkit.getDistanceWalkingRunning({ unit: localization.distance.unit }, (err: Object, results: Object) => {
+        if (err) resolve(false);
         if (results) {
           let distance = (results.value).toFixed(2)
           if (localization.distance.unit == 'meter') {
@@ -82,7 +87,7 @@ export function Healthkit(fn) {
   }
 
   /**
-   * Steps
+   * ActiveEnergyBurned
    */
   function getActiveEnergyBurned(localization) {
     return new Promise((resolve, reject) => {
@@ -90,12 +95,53 @@ export function Healthkit(fn) {
         startDate: moment().startOf('hour').toISOString()
       }
       AppleHealthkit.getActiveEnergyBurned(energyBurnedOpts, (err: Object, results: Object) => {
-        if (err) return;
+        if (err) resolve(false);
+        console.log(results)
         if (results && results.length > 0) {
           resolve(results[0].value.toFixed(1)+' kcal')
+        } else {
+          resolve(false);
         }
       })
     });
   }
+
+  /**
+   * Age
+   */
+  function getDateOfBirth() {
+    return new Promise((resolve, reject) => {
+      AppleHealthkit.getDateOfBirth(null, (err: string, results: Object) => {
+        if (results.age) {
+          resolve(results.age)
+        } else {
+          resolve(false);
+        }
+      });
+    });
+  }
+
+  /**
+   * BMI
+   */
+   function BMI() {
+     return new Promise((resolve, reject) => {
+       T.bmi((result) => {
+         resolve(result);
+       })
+     });
+   }
+
+   /**
+    * UUID
+    */
+   function UUID() {
+     return new Promise((resolve, reject) => {
+       T.getStorage('Person', (uuid) => {
+         resolve(uuid);
+       })
+     });
+   }
+
 
 }
