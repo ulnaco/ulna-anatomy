@@ -52,9 +52,23 @@ export class Profile extends React.Component {
           })
         })
 
+        // Profile
         T.getStorage('Person', (uuid) => {
           this.setState({
             uuid: uuid
+          })
+        })
+
+        // Log
+        T.getStorage('Log', (results) => {
+          var log = [];
+          results = JSON.parse(results)
+          results.reverse();
+          for (var i = 0; i < results.length; i++) {
+            log.push(<UI.UIListItem key={i} title={results[i].task} subTitle={moment(results[i].time).format('ddd, hA')} />);
+          }
+          this.setState({
+            log: log
           })
         })
 
@@ -91,6 +105,12 @@ export class Profile extends React.Component {
             </TouchableHighlight>
           {this.state.height && <UI.UIListItem reverse={true} title="Height" subTitle={this.state.height} /> }
           {this.state.uuid && <UI.UIListItem reverse={true} subTitle={this.state.uuid} /> }
+
+          <View style={{marginTop: 20}}>
+            <UI.UISubTitle text="Log" />
+            {this.state.log}
+          </View>
+
         </View>
       </ScrollView>
     )
