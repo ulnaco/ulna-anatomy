@@ -43,7 +43,6 @@ export function Background(view) {
         time: moment().format(),
       })
       T.setStorage('Log', JSON.stringify(log));
-      console.log(log)
     })
   }
 

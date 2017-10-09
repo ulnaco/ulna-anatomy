@@ -15,6 +15,7 @@ export * from './Formats/Localization.js'
 export * from './Storage/Get.js'
 export * from './Storage/Remove.js'
 export * from './Storage/Set.js'
+export * from './Storage/Healthkit.js'
 
 export * from './Task/Background.js'
 export * from './Task/Track.js'

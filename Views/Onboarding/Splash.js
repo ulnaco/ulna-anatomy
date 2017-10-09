@@ -15,16 +15,9 @@ export class Splash extends React.Component {
 
   componentDidMount() {
     T.Watchdog(this);
-
-    // Start Inital Healthkit
-    AppleHealthkit.initHealthKit({}: Object, (err: Object, results: Object) => {});
-
-    AppleHealthkit.isAvailable((err: Object, available: boolean) => {
-      if (available) {
-        this.router()
-      }
+    T.Healthkit(() => {
+      this.router()
     });
-
   }
 
   async router() {

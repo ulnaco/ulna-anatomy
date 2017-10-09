@@ -44,86 +44,16 @@ export class Dash extends React.Component {
   }
 
   Healthkit() {
-    AppleHealthkit.isAvailable((err: Object, available: boolean) => {
-      if (available) {
-
-        /**
-         * Steps
-         */
-        AppleHealthkit.getStepCount(null, (err: string, results: Object) => {
-          if (results) {
-            this.setState({
-              steps: T.thousand(results.value)
-            })
-          }
-        });
-
-        /**
-         * Distance Walked
-         */
-        AppleHealthkit.getDistanceWalkingRunning({ unit: this.state.localization.distance.unit }, (err: Object, results: Object) => {
-          if (results) {
-            let distance = (results.value).toFixed(2)
-            if (this.state.localization.distance.unit == 'meter') {
-              distance = (results.value/1000).toFixed(2)
-            }
-            this.setState({
-              distance: distance+' '+this.state.localization.distance.display
-            })
-          }
-        });
-
-        /**
-         * Active Energy Burned
-         */
-         var energyBurnedOpts = {
-           startDate: moment().startOf('hour').toISOString()
-         }
-        AppleHealthkit.getActiveEnergyBurned(energyBurnedOpts, (err: Object, results: Object) => {
-          if (err) return;
-          if (results && results.length > 0) {
-            this.setState({
-              activeEnergyBurned: (results[0].value.toFixed(1))+' kcal'
-            })
-          }
-        })
-
-        /**
-         * Health Rating
-         */
-        T.rating((result) => {
-
-          var RatingsArray = []
-          RatingsArray[moment().format('YYYY/WW')] = result;
-          T.setStorage('Ratings', JSON.stringify(RatingsArray))
-
-          T.Person({
-            'Rating': result,
-          });
-
-          this.setState({
-            rating: result
-          })
-        });
-
-        /**
-         * Weight
-         */
-        let weightOpts = {
-          unit: 'pound',
-          startDate: moment().subtract(1, 'years').toISOString(),
-          endDate: moment().toISOString()
-        }
-        AppleHealthkit.getWeightSamples(weightOpts: Object, (err: string, results: Object) => {
-          if (results && results[0] && results[1]) {
-            this.setState({
-              weight: true
-            })
-          }
-        });
-
-      }
+    T.getStorage('Healthkit', (results) => {
+      results = JSON.parse(results)
+      this.setState({
+        StepCount: T.thousand(results.StepCount),
+        DistanceWalkingRunning: results.DistanceWalkingRunning,
+        ActiveEnergyBurned: results.ActiveEnergyBurned,
+        Rating: results.Rating,
+      })
     });
+
   }
 
   render() {
@@ -135,7 +65,7 @@ export class Dash extends React.Component {
           {/* Rating Header */}
           <View style={{paddingVertical: UI.UIStyleguide.spacing*1.5, justifyContent: 'center'}}>
             <AnimatedLinearGradient customColors={UI.UIStyleguide.gradient} speed={4000}/>
-            <Text style={[UI.UIStyles.largeTitle, {textAlign: 'center', fontWeight: 'bold', color: '#ffffff', marginBottom: 0, backgroundColor: 'transparent'}]}>{this.state.rating}</Text>
+            <Text style={[UI.UIStyles.largeTitle, {textAlign: 'center', fontWeight: 'bold', color: '#ffffff', marginBottom: 0, backgroundColor: 'transparent'}]}>{this.state.Rating}</Text>
             <Text style={[UI.UIStyles.subTitle, {textAlign: 'center', color: '#ffffff', backgroundColor: 'transparent'}]}>Health Rating</Text>
             <TouchableHighlight
                underlayColor='transparent'
@@ -157,18 +87,18 @@ export class Dash extends React.Component {
                navigate('Steps')
              }}>
              <View>
-                { this.state.steps &&
+                { this.state.StepCount &&
                   <View style={{marginTop: UI.UIStyleguide.spacing}}>
                     <UI.UISubTitle text="Today" />
-                    <UI.UIListItem title="Steps" subTitle={this.state.steps} subSubTitle={T.Speech.single.steps(this.state.steps)}/>
+                    <UI.UIListItem title="Steps" subTitle={this.state.StepCount} subSubTitle={T.Speech.single.steps(this.state.StepCount)}/>
                   </View>
                 }
 
-                { this.state.distance && <UI.UIListItem title="Distance walked" subTitle={this.state.distance} /> }
+                { this.state.DistanceWalkingRunning && <UI.UIListItem title="Distance walked" subTitle={this.state.DistanceWalkingRunning} /> }
 
-                { this.state.activeEnergyBurned &&
+                { this.state.ActiveEnergyBurned &&
                   <View>
-                    <UI.UIListItem title="Active Energy Burned" subTitle={this.state.activeEnergyBurned} subSubTitle="Active Energy includes walking slowly and household chores, as well as exercise such as biking and dancing." />
+                    <UI.UIListItem title="Active Energy Burned" subTitle={this.state.ActiveEnergyBurned} subSubTitle="Active Energy includes walking slowly and household chores, as well as exercise such as biking and dancing." />
                   </View>
                 }
                 <View style={{marginTop: UI.UIStyleguide.spacing}}>
