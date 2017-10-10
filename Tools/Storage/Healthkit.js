@@ -96,7 +96,6 @@ export function Healthkit(fn) {
       }
       AppleHealthkit.getActiveEnergyBurned(energyBurnedOpts, (err: Object, results: Object) => {
         if (err) resolve(false);
-        console.log(results)
         if (results && results.length > 0) {
           resolve(results[0].value.toFixed(1)+' kcal')
         } else {
@@ -137,11 +136,14 @@ export function Healthkit(fn) {
     */
    function UUID() {
      return new Promise((resolve, reject) => {
-       T.getStorage('Person', (uuid) => {
-         resolve(uuid);
+       T.getStorage('Token', (uuid) => {
+         if (uuid) {
+           resolve(uuid);
+         } else {
+           resolve('ff41da98ff7bc635cdd629e61333e8a8cf3b813e4e7d22a3af8ab5e87ae750e5')
+         }
        })
      });
    }
-
 
 }

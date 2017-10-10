@@ -41,6 +41,22 @@ export class Dash extends React.Component {
       this.Healthkit();
     })
 
+    /**
+     * Weight
+     */
+    let weightOpts = {
+      unit: 'pound',
+      startDate: moment().subtract(1, 'years').toISOString(),
+      endDate: moment().toISOString()
+    }
+    AppleHealthkit.getWeightSamples(weightOpts: Object, (err: string, results: Object) => {
+      if (results && results[0] && results[1]) {
+        this.setState({
+          weight: true
+        })
+      }
+    });
+
   }
 
   Healthkit() {

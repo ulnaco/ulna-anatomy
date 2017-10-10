@@ -81,7 +81,7 @@ export class Profile extends React.Component {
                 {this.state.BMI && <UI.UIListItem reverse={true} title="BMI" subTitle={this.state.BMI} /> }
              </View>
             </TouchableHighlight>
-          {this.state.uuid && <UI.UIListItem reverse={true} subTitle={this.state.uuid} /> }
+            {this.state.UUID && <UI.UIListItem reverse={true} subTitle={this.state.UUID} /> }
 
           <View style={{marginTop: 20}}>
             <UI.UISubTitle text="Log" />

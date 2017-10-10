@@ -40,13 +40,5 @@ export function Track(type, event, properties=false) {
 }
 
 export function Person(update) {
-
-  // // Test Project
-  // if (DeviceInfo.isEmulator()) request['$token'] = "829c5f8b01d383f87032473ae3343132"
-  //
-  // // User Update
-  // if (update) {
-  //   request['$set'] = Object.assign(request['$set'], update);
-  // }
-
+  T.setStorage('Person', UUID())
 }

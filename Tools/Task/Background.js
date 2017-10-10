@@ -6,6 +6,7 @@ import {
 import moment from 'moment'
 import AppleHealthkit from 'rn-apple-healthkit';
 import BackgroundFetch from "react-native-background-fetch";
+import PushNotification from 'react-native-push-notification'
 
 import * as T from '../../Tools'
 
@@ -14,6 +15,7 @@ export function Background(view) {
   BackgroundFetch.configure({
     stopOnTerminate: false,
   }, function() {
+    SYNC()
     LOG('BackgroundFetch')
     BackgroundFetch.finish();
   })
@@ -44,6 +46,27 @@ export function Background(view) {
       })
       T.setStorage('Log', JSON.stringify(log));
     })
+  }
+
+  function SYNC() {
+    T.getStorage('Healthkit', (results) => {
+      fetch('https://ulna-identity.herokuapp.com/event', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: results
+      })
+      .then((response) => response.text())
+      .then((responseJson) => {
+        PushNotification.setApplicationIconBadgeNumber(0)
+        PushNotification.localNotification({
+          title: "Ulna Anatomy Notification",
+          message: "Ulna Anatomy Notification"
+        });
+      })
+    });
   }
 
 }
