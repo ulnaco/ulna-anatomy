@@ -8,5 +8,6 @@ import * as T from '../../Tools'
 export function Watchdog(view) {
   AppState.addEventListener('change', (nextAppState) => {
     T.Healthkit();
+    T.Sync();
   })
 }

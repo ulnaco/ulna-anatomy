@@ -6,7 +6,6 @@ import {
 import moment from 'moment'
 import AppleHealthkit from 'rn-apple-healthkit';
 import BackgroundFetch from "react-native-background-fetch";
-import PushNotification from 'react-native-push-notification'
 
 import * as T from '../../Tools'
 
@@ -15,7 +14,7 @@ export function Background(view) {
   BackgroundFetch.configure({
     stopOnTerminate: false,
   }, function() {
-    SYNC()
+    T.Sync()
     LOG('BackgroundFetch')
     BackgroundFetch.finish();
   })
@@ -29,7 +28,7 @@ export function Background(view) {
         LOG("BackgroundFetch denied");
         break;
       case BackgroundFetch.STATUS_AVAILABLE:
-        SYNC()
+        T.Sync()
         LOG("BackgroundFetch is enabled");
         break;
     }
@@ -47,30 +46,6 @@ export function Background(view) {
       })
       T.setStorage('Log', JSON.stringify(log));
     })
-  }
-
-  function SYNC() {
-    T.getStorage('Healthkit', (results) => {
-      fetch('https://h5ixokl4lk.execute-api.us-east-1.amazonaws.com/dev/event', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: results
-      })
-      .then((response) => response.json())
-      .then((responseJson) => {
-        console.log(responseJson)
-        if (responseJson.badge) PushNotification.setApplicationIconBadgeNumber(Number(responseJson.badge))
-        if (responseJson.message) {
-          PushNotification.localNotification({
-            title: responseJson.title,
-            message: responseJson.message
-          });
-        }
-      })
-    });
   }
 
 }
