@@ -29,6 +29,7 @@ export function Background(view) {
         LOG("BackgroundFetch denied");
         break;
       case BackgroundFetch.STATUS_AVAILABLE:
+        SYNC()
         LOG("BackgroundFetch is enabled");
         break;
     }
@@ -50,7 +51,7 @@ export function Background(view) {
 
   function SYNC() {
     T.getStorage('Healthkit', (results) => {
-      fetch('https://ulna-identity.herokuapp.com/event', {
+      fetch('https://h5ixokl4lk.execute-api.us-east-1.amazonaws.com/dev/event', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -60,6 +61,7 @@ export function Background(view) {
       })
       .then((response) => response.text())
       .then((responseJson) => {
+        console.log(responseJson)
         PushNotification.setApplicationIconBadgeNumber(0)
         PushNotification.localNotification({
           title: "Ulna Anatomy Notification",

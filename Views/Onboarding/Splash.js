@@ -40,7 +40,6 @@ export class Splash extends React.Component {
     if (!value) route = 'Welcome'
 
     const { navigate } = this.props.navigation;
-    console.log(route)
     navigate(route)
 
   }

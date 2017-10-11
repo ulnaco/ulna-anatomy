@@ -41,22 +41,6 @@ export class Dash extends React.Component {
       this.Healthkit();
     })
 
-    /**
-     * Weight
-     */
-    let weightOpts = {
-      unit: 'pound',
-      startDate: moment().subtract(1, 'years').toISOString(),
-      endDate: moment().toISOString()
-    }
-    AppleHealthkit.getWeightSamples(weightOpts: Object, (err: string, results: Object) => {
-      if (results && results[0] && results[1]) {
-        this.setState({
-          weight: true
-        })
-      }
-    });
-
   }
 
   Healthkit() {
@@ -67,6 +51,7 @@ export class Dash extends React.Component {
         DistanceWalkingRunning: results.DistanceWalkingRunning,
         ActiveEnergyBurned: results.ActiveEnergyBurned,
         Rating: results.Rating,
+        Weight: results.Weight
       })
     });
   }
@@ -116,6 +101,9 @@ export class Dash extends React.Component {
                     <UI.UIListItem title="Active Energy Burned" subTitle={this.state.ActiveEnergyBurned} subSubTitle="Active Energy includes walking slowly and household chores, as well as exercise such as biking and dancing." />
                   </View>
                 }
+
+                { this.state.Weight && <UI.UIListItem title="Weight" subTitle={`${this.state.Weight} ${this.state.localization.weight.display}`} /> }
+
                 <View style={{marginTop: UI.UIStyleguide.spacing}}>
                   <UI.UIButton style="accent" text="Activity Insights" />
                 </View>
@@ -123,7 +111,7 @@ export class Dash extends React.Component {
           </TouchableHighlight>
 
           {/* Boby Measurements */}
-          { this.state.weight &&
+          { this.state.Weight &&
             <TouchableHighlight
                underlayColor='transparent'
                onPress={() => {

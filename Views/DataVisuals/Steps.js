@@ -48,25 +48,23 @@ export class Steps extends React.Component {
           results = JSON.parse(results)
           this.setState({
             StepCount: T.thousand(results.StepCount),
+            StepCountYesterday: results.StepCountYesterday,
             DistanceWalkingRunning: results.DistanceWalkingRunning,
             ActiveEnergyBurned: results.ActiveEnergyBurned,
             Rating: results.Rating,
           })
-        });
 
-        // Steps Yesterday
-        var yesterdayOpts = {
-          date: moment().subtract(1, 'day').endOf('day').toISOString()
-        }
-        AppleHealthkit.getStepCount(yesterdayOpts, (err: string, results: Object) => {
-          if (results) {
-            T.StepScore(yesterdayOpts.date, (score) => {
-                this.setState({
-                  yesterday: T.thousand(results.value),
-                  yesterdayScore: score
-                })
-            })
+          // Steps Yesterday
+          var yesterdayOpts = {
+            date: moment().subtract(1, 'day').endOf('day').toISOString()
           }
+          T.StepScore(yesterdayOpts.date, (score) => {
+            this.setState({
+              yesterday: T.thousand(results.StepCountYesterday),
+              yesterdayScore: score
+            })
+          })
+
         });
 
         // Steps Over Time

@@ -17,6 +17,7 @@ export function Healthkit(fn) {
     AppleHealthkit.isAvailable((err: Object, available: boolean) => {
       if (available) {
         T.getLocalization((results) => {
+          console.log(results)
           sync(results);
         })
       }
@@ -29,8 +30,10 @@ export function Healthkit(fn) {
   async function sync(localization) {
     const healthData = {}
     healthData.StepCount = await getStepCount(localization);
+    healthData.StepCountYesterday = await getStepCountYesterday(localization);
     healthData.DistanceWalkingRunning = await getDistanceWalkingRunning(localization);
     healthData.ActiveEnergyBurned = await getActiveEnergyBurned(localization);
+    healthData.Weight = await getLatestWeight(localization);
     healthData.Age = await getDateOfBirth();
     healthData.BMI = await BMI();
     healthData.UUID = await UUID();
@@ -63,7 +66,22 @@ export function Healthkit(fn) {
     return new Promise((resolve, reject) => {
       AppleHealthkit.getStepCount(null, (err: string, results: Object) => {
         if (err) resolve(false);
-        if (results) resolve(results.value)
+        if (results) resolve(results.value.toFixed(0))
+      });
+    });
+  }
+
+  /**
+   * Steps Yesterday
+   */
+  function getStepCountYesterday(localization) {
+    return new Promise((resolve, reject) => {
+      var yesterdayOpts = {
+        date: moment().subtract(1, 'day').endOf('day').toISOString()
+      }
+      AppleHealthkit.getStepCount(yesterdayOpts, (err: string, results: Object) => {
+        if (err) resolve(false);
+        if (results) resolve(results.value.toFixed(0))
       });
     });
   }
@@ -89,7 +107,7 @@ export function Healthkit(fn) {
   /**
    * ActiveEnergyBurned
    */
-  function getActiveEnergyBurned(localization) {
+  function getActiveEnergyBurned() {
     return new Promise((resolve, reject) => {
       var energyBurnedOpts = {
         startDate: moment().startOf('hour').toISOString()
@@ -130,6 +148,21 @@ export function Healthkit(fn) {
        })
      });
    }
+
+   /**
+    * Weight
+    */
+    function getLatestWeight(localization) {
+      return new Promise((resolve, reject) => {
+        AppleHealthkit.getLatestWeight({ unit: localization.weight.unit }, (err: string, results: Object) => {
+          if (results) {
+            resolve(results.value.toFixed(1))
+          } else {
+            resolve(false)
+          }
+        });
+      });
+    }
 
    /**
     * UUID

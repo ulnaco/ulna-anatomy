@@ -30,13 +30,12 @@ export class LogWeight extends React.Component {
         localization: results
       })
 
-      AppleHealthkit.getLatestWeight({ unit: this.state.localization.weight.unit }, (err: string, results: Object) => {
-        if (results) {
-          this.setState({
-            weight: (this.state.localization.weight.unit == 'gram') ? results.value.toFixed(2)/1000 : results.value,
-            newWeight: (this.state.localization.weight.unit == 'gram') ? results.value.toFixed(2)/1000 : results.value,
-          })
-        }
+      T.getStorage('Healthkit', (results) => {
+        results = JSON.parse(results)
+        this.setState({
+          weight: results.Weight,
+          newWeight: results.Weight,
+        });
       });
 
     })
