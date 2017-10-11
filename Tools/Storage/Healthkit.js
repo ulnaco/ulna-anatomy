@@ -17,7 +17,6 @@ export function Healthkit(fn) {
     AppleHealthkit.isAvailable((err: Object, available: boolean) => {
       if (available) {
         T.getLocalization((results) => {
-          console.log(results)
           sync(results);
         })
       }
@@ -52,7 +51,7 @@ export function Healthkit(fn) {
       T.setStorage('Healthkit', JSON.stringify(healthData))
 
       // Done
-      fn()
+      if (fn) fn()
 
     });
 

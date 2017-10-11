@@ -59,14 +59,16 @@ export function Background(view) {
         },
         body: results
       })
-      .then((response) => response.text())
+      .then((response) => response.json())
       .then((responseJson) => {
         console.log(responseJson)
-        PushNotification.setApplicationIconBadgeNumber(0)
-        PushNotification.localNotification({
-          title: "Ulna Anatomy Notification",
-          message: "Ulna Anatomy Notification"
-        });
+        if (responseJson.badge) PushNotification.setApplicationIconBadgeNumber(Number(responseJson.badge))
+        if (responseJson.message) {
+          PushNotification.localNotification({
+            title: responseJson.title,
+            message: responseJson.message
+          });
+        }
       })
     });
   }
