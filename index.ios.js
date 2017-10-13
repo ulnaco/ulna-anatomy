@@ -102,6 +102,13 @@ const views = {
       title: 'Profile'
     }
   },
+  Preferences: {
+    mode: "modal",
+    screen: Screens.Preferences,
+    navigationOptions: {
+      title: 'Preferences'
+    }
+  },
   Badges:{
     mode: "modal",
     screen: Screens.Badges,

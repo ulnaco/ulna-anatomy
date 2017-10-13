@@ -44,16 +44,19 @@ export class Dash extends React.Component {
   }
 
   Healthkit() {
-    T.getStorage('Healthkit', (results) => {
-      results = JSON.parse(results)
-      this.setState({
-        StepCount: T.thousand(results.StepCount),
-        DistanceWalkingRunning: results.DistanceWalkingRunning,
-        ActiveEnergyBurned: results.ActiveEnergyBurned,
-        Rating: results.Rating,
-        Weight: results.Weight
-      })
-    });
+    T.Healthkit(() => {
+      T.getStorage('Healthkit', (results) => {
+        results = JSON.parse(results)
+        this.setState({
+          StepCount: T.thousand(results.StepCount),
+          DistanceWalkingRunning: results.DistanceWalkingRunning,
+          ActiveEnergyBurned: results.ActiveEnergyBurned,
+          Rating: results.Rating,
+          Weight: results.Weight,
+          DistanceCycling: results.DistanceCycling,
+        })
+      });
+    })
   }
 
   render() {
@@ -96,6 +99,8 @@ export class Dash extends React.Component {
 
                 { this.state.DistanceWalkingRunning && <UI.UIListItem title="Distance walked" subTitle={this.state.DistanceWalkingRunning} /> }
 
+                { this.state.DistanceCycling && <UI.UIListItem title="Distance Cycling" subTitle={this.state.DistanceCycling} subSubTitle="Cycling improves joint mobility, posture, coordination, and decreases stress levels!" /> }
+
                 { this.state.ActiveEnergyBurned &&
                   <View>
                     <UI.UIListItem title="Active Energy Burned" subTitle={this.state.ActiveEnergyBurned} subSubTitle="Active Energy includes walking slowly and household chores, as well as exercise such as biking and dancing." />
@@ -137,12 +142,12 @@ export class Dash extends React.Component {
             </View>
           </TouchableHighlight>
 
-          {/* Log Weight */}
+          {/* Preferences */}
           <TouchableHighlight
              underlayColor='transparent'
              onPress={() => {
                const { navigate } = this.props.navigation;
-               navigate('LogWeight')
+               navigate('Preferences')
              }}>
              <View>
               <UI.UIButton style="primary" text="Preferences" />

@@ -34,6 +34,7 @@ export function Healthkit(fn) {
     healthData.ActiveEnergyBurned = await getActiveEnergyBurned(localization);
     healthData.Weight = await getLatestWeight(localization);
     healthData.Age = await getDateOfBirth();
+    healthData.DistanceCycling = await getDistanceCycling(localization);
     healthData.BMI = await BMI();
     healthData.UUID = await UUID();
 
@@ -92,6 +93,25 @@ export function Healthkit(fn) {
       AppleHealthkit.getDistanceWalkingRunning({ unit: localization.distance.unit }, (err: Object, results: Object) => {
         if (err) resolve(false);
         if (results) {
+          let distance = (results.value).toFixed(2)
+          if (localization.distance.unit == 'meter') {
+            distance = (results.value/1000).toFixed(2)
+          }
+          resolve(distance+' '+localization.distance.display)
+        }
+      });
+    });
+  }
+
+  /**
+   * DistanceCycling
+   */
+  function getDistanceCycling(localization) {
+    return new Promise((resolve, reject) => {
+      AppleHealthkit.getDistanceCycling({ unit: localization.distance.unit }, (err: Object, results: Object) => {
+        if (err) resolve(false);
+        if (results) {
+          console.log(results)
           let distance = (results.value).toFixed(2)
           if (localization.distance.unit == 'meter') {
             distance = (results.value/1000).toFixed(2)
