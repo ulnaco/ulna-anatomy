@@ -72,6 +72,8 @@ export class Profile extends React.Component {
                 T.removeStorage('O/Localization');
                 T.removeStorage('O/Inital');
                 T.removeStorage('O/Notifications');
+                T.removeStorage('O/Badges');
+                T.removeStorage('EnableBadges');
                 const { navigate } = this.props.navigation;
                 navigate('Welcome')
               }

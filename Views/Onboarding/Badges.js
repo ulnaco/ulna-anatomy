@@ -4,7 +4,8 @@ import {
   Text,
   ScrollView,
   TouchableHighlight,
-  StatusBar
+  StatusBar,
+  Image
 } from 'react-native';
 
 import AnimatedLinearGradient, {presetColors} from 'react-native-animated-linear-gradient'
@@ -12,16 +13,16 @@ import AnimatedLinearGradient, {presetColors} from 'react-native-animated-linear
 import * as UI from '../../UI'
 import * as T from '../../Tools'
 
-export class Notifications extends React.Component {
+export class Badges extends React.Component {
 
   enable(fn) {
-    T.Notifications();
+    // T.Notifications();
     fn()
   }
 
   render() {
     return (
-      <View style={[UI.UIStyles.window, UI.UIStyles.backgroundAccent]}>
+      <View style={[UI.UIStyles.window, UI.UIStyles.backgroundPrimary]}>
         <StatusBar barStyle="light-content" />
         <View style={{
             flex: 1,
@@ -30,17 +31,21 @@ export class Notifications extends React.Component {
             alignItems: 'center',
             paddingHorizontal: UI.UIStyleguide.spacing*1.5,
           }}>
-          <UI.UITitle lite={true} text="Enable Notifications"/>
-          <UI.UISubTitle lite={true} text="Recieve friendly infrequent notifications about your health!"/>
+          <Image
+          style={{width: 200, height: 200}}
+          source={require('../../assets/badges.png')}
+        />
+          <UI.UITitle lite={true} text="Steps as badges?"/>
+          <UI.UISubTitle lite={true} text="Quickly preview your step count!"/>
           <UI.UISpace small={true} />
           <TouchableHighlight
              underlayColor='transparent'
              onPress={() => {
                this.enable(() => {
-                 T.setStorage('EnableNotifications', 'yes');
-                 T.setStorage('O/Notifications', 'yes');
+                 T.setStorage('EnableBadges', 'yes');
+                 T.setStorage('O/Badges', 'yes');
                  const { navigate } = this.props.navigation;
-                 navigate('Badges')
+                 navigate('Dash')
                })
              }}>
             <View>
@@ -50,13 +55,12 @@ export class Notifications extends React.Component {
           <TouchableHighlight
              underlayColor='transparent'
              onPress={() => {
-               T.setStorage('EnableNotifications', 'no');
-               T.setStorage('O/Notifications', 'yes');
+               T.setStorage('O/Badges', 'yes');
                const { navigate } = this.props.navigation;
                navigate('Dash')
              }}>
              <View>
-               <UI.UIButton style="accent" text="Maybe Later" />
+               <UI.UIButton style="primary" text="Maybe Later" />
              </View>
            </TouchableHighlight>
         </View>

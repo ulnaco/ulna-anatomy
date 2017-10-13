@@ -102,6 +102,13 @@ const views = {
       title: 'Profile'
     }
   },
+  Badges:{
+    mode: "modal",
+    screen: Screens.Badges,
+    navigationOptions: {
+      header: null,
+    }
+  },
   Notifications: {
     mode: "modal",
     screen: Screens.Notifications,
