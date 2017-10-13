@@ -49,7 +49,7 @@ export class Steps extends React.Component {
             results = JSON.parse(results)
             this.setState({
               StepCount: T.thousand(results.StepCount),
-              StepCountYesterday: results.StepCountYesterday,
+              StepCountYesterday: T.thousand(results.StepCountYesterday),
               DistanceWalkingRunning: results.DistanceWalkingRunning,
               ActiveEnergyBurned: results.ActiveEnergyBurned,
               Rating: results.Rating,
