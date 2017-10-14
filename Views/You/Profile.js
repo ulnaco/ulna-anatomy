@@ -36,20 +36,7 @@ export class Profile extends React.Component {
             UUID: results.UUID,
           })
         });
-
-        // Log
-        T.getStorage('Log', (results) => {
-          var log = [];
-          results = JSON.parse(results)
-          results.reverse();
-          for (var i = 0; i < results.length; i++) {
-            log.push(<UI.UIListItem key={i} title={results[i].task} subTitle={moment(results[i].time).format('ddd, hA')} />);
-          }
-          this.setState({
-            log: log
-          })
-        })
-
+        
       }
     });
 
@@ -83,11 +70,6 @@ export class Profile extends React.Component {
              </View>
             </TouchableHighlight>
             {this.state.UUID && <UI.UIListItem reverse={true} subTitle={this.state.UUID} /> }
-
-          <View style={{marginTop: 20}}>
-            <UI.UISubTitle text="Log" />
-            {this.state.log}
-          </View>
 
         </View>
       </ScrollView>

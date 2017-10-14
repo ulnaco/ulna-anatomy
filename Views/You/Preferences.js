@@ -24,6 +24,16 @@ export class Preferences extends React.Component {
 
   componentWillMount() {
 
+    // Fetch Healthkit
+    T.getStorage('Healthkit', (results) => {
+      results = JSON.parse(results)
+      if (results.UUID == 'ff41da98ff7bc635cdd629e61333e8a8cf3b813e4e7d22a3af8ab5e87ae750e5') {
+        this.setState({
+          UUID: results.UUID,
+        })
+      }
+    });
+
     T.getStorage('EnableBadges', (results) => {
       if (results) {
         this.setState({toggleBadges: true})
@@ -142,10 +152,12 @@ export class Preferences extends React.Component {
           </View>
 
           {/* Log */}
-          <View style={{marginTop: 20}}>
-            <UI.UISubTitle text="Log" />
-            {this.state.log}
-          </View>
+          {this.state.UUID &&
+            <View style={{marginTop: 20}}>
+              <UI.UISubTitle text="Log" />
+              {this.state.log}
+            </View>
+          }
 
         </View>
       </ScrollView>
