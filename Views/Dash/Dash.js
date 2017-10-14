@@ -114,22 +114,7 @@ export class Dash extends React.Component {
                 </View>
               </View>
           </TouchableHighlight>
-
-          {/* Boby Measurements */}
-          { this.state.Weight &&
-            <TouchableHighlight
-               underlayColor='transparent'
-               onPress={() => {
-                 const { navigate } = this.props.navigation;
-                 navigate('Weight')
-               }}>
-               <View>
-                <C.VsLast />
-                <UI.UIButton style="accent" text="Body Measurements" />
-              </View>
-            </TouchableHighlight>
-          }
-
+          
           {/* Log Weight */}
           <TouchableHighlight
              underlayColor='transparent'

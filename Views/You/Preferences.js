@@ -49,7 +49,7 @@ export class Preferences extends React.Component {
           var log = [];
           results = JSON.parse(results)
           results.reverse();
-          for (var i = 0; i < results.length; i++) {
+          for (var i = 0; i < 30; i++) {
             log.push(<UI.UIListItem key={i} title={results[i].task} subTitle={moment(results[i].time).format('ddd, h:mm A')} />);
           }
           this.setState({
@@ -125,6 +125,20 @@ export class Preferences extends React.Component {
               </View>
             </View>
 
+          </View>
+
+          {/* Save Preferences */}
+          <View style={{marginTop: 20}}>
+            <TouchableHighlight
+               underlayColor='transparent'
+               onPress={() => {
+                 const { navigate } = this.props.navigation;
+                 navigate('Dash')
+               }}>
+               <View>
+                <UI.UIButton style="accent" text="Update" />
+              </View>
+            </TouchableHighlight>
           </View>
 
           {/* Log */}

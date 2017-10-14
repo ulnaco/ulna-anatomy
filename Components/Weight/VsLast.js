@@ -56,6 +56,23 @@ export class VsLast extends React.Component {
       <View style={{marginBottom: UI.UIStyleguide.spacing}}>
        { this.state.weightDiff &&  <T.BarVertical values={this.state.chart} /> }
        { this.state.weightDiff && <UI.UIListItem title="Changes in Weight" subTitle={this.state.weightDiff} /> }
+
+
+       {/* Boby Measurements */}
+       { this.state.Weight &&
+         <TouchableHighlight
+            underlayColor='transparent'
+            onPress={() => {
+              const { navigate } = this.props.navigation;
+              navigate('Weight')
+            }}>
+            <View>
+             <C.VsLast />
+             <UI.UIButton style="accent" text="Body Measurements" />
+           </View>
+         </TouchableHighlight>
+       }
+
      </View>
     )
   }

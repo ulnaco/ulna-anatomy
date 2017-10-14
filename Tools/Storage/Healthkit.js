@@ -174,7 +174,12 @@ export function Healthkit(fn) {
       return new Promise((resolve, reject) => {
         AppleHealthkit.getLatestWeight({ unit: localization.weight.unit }, (err: string, results: Object) => {
           if (results) {
-            resolve(results.value.toFixed(1))
+            if (localization.weight.unit == 'gram') {
+              resolve((results.value/1000).toFixed(1))
+            } else {
+              resolve(results.value.toFixed(1))
+            }
+
           } else {
             resolve(false)
           }

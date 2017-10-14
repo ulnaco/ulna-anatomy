@@ -106,6 +106,8 @@ const views = {
     mode: "modal",
     screen: Screens.Preferences,
     navigationOptions: {
+      headerLeft: null,
+      gesturesEnabled: false,
       title: 'Preferences'
     }
   },
