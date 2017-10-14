@@ -11,6 +11,7 @@ import AppleHealthkit from 'rn-apple-healthkit';
 
 import * as UI from '../../UI'
 import * as T from '../../Tools'
+import * as C from '../../Components'
 
 export class MyRating extends React.Component {
 
@@ -20,6 +21,7 @@ export class MyRating extends React.Component {
       goodExplanation: [],
       okExplanation: [],
       badExplanation: [],
+      loading: true,
     };
   }
 
@@ -88,7 +90,8 @@ export class MyRating extends React.Component {
             okExplanation: okExplanations,
             badExplanation: badExplanations,
             fitness: more.scores.fitness,
-            weight: more.scores.weight
+            weight: more.scores.weight,
+            loading: false,
           })
         });
 
@@ -99,75 +102,81 @@ export class MyRating extends React.Component {
   render() {
     return (
       <ScrollView style={UI.UIStyles.window}>
-        <View>
-          <View style={{marginBottom: UI.UIStyleguide.spacing}}>
-            { this.state.rating && <Text style={[UI.UIStyles.largeTitle, {textAlign: 'center', fontWeight: 'bold', marginBottom: 0, fontSize: 80} ]}>{this.state.Rating}</Text> }
-          </View>
-          <View style={{marginBottom: UI.UIStyleguide.spacing}}>
-            <View style={{marginTop: UI.UIStyleguide.spacing}}>
-              <UI.UISubTitle text="Activity" />
+        { this.state.loading &&
+          <C.Loading />
+        }
+
+        { !this.state.loading &&
+          <View>
+            <View style={{marginBottom: UI.UIStyleguide.spacing}}>
+              { this.state.rating && <Text style={[UI.UIStyles.largeTitle, {textAlign: 'center', fontWeight: 'bold', marginBottom: 0, fontSize: 80} ]}>{this.state.Rating}</Text> }
             </View>
-            { this.state.fitness && <UI.UIListItem title="Rating" subTitle={this.state.fitness} /> }
-            { this.state.steps && <UI.UIListItem title="7 Day Step Average" subTitle={this.state.steps} /> }
+            <View style={{marginBottom: UI.UIStyleguide.spacing}}>
+              <View style={{marginTop: UI.UIStyleguide.spacing}}>
+                <UI.UISubTitle text="Activity" />
+              </View>
+              { this.state.fitness && <UI.UIListItem title="Rating" subTitle={this.state.fitness} /> }
+              { this.state.steps && <UI.UIListItem title="7 Day Step Average" subTitle={this.state.steps} /> }
+              <TouchableHighlight
+                 underlayColor='transparent'
+                 onPress={() => {
+                   const { navigate } = this.props.navigation;
+                   navigate('Steps')
+                 }}>
+                 <View style={{marginTop: UI.UIStyleguide.spacing}}>
+                  <UI.UIButton style="accent" text="Activity Insights" />
+                </View>
+              </TouchableHighlight>
+            </View>
+            <View style={{marginBottom: UI.UIStyleguide.spacing}}>
+              <View style={{marginTop: UI.UIStyleguide.spacing}}>
+                <UI.UISubTitle text="Body Measurements" />
+              </View>
+              { this.state.fitness && <UI.UIListItem title="Rating" subTitle={this.state.weight} /> }
+              { this.state.Weight && <UI.UIListItem title="Weight" subTitle={this.state.Weight} /> }
+              { this.state.BMI && <UI.UIListItem title="BMI" subTitle={this.state.BMI} /> }
+              <TouchableHighlight
+                 underlayColor='transparent'
+                 onPress={() => {
+                   const { navigate } = this.props.navigation;
+                   navigate('Weight')
+                 }}>
+                 <View style={{marginTop: UI.UIStyleguide.spacing}}>
+                  <UI.UIButton style="accent" text="Body Measurements" />
+                </View>
+              </TouchableHighlight>
+            </View>
+            {this.state.goodExplanation.length > 0 &&
+              <View style={{marginBottom: UI.UIStyleguide.spacing}}>
+                <UI.UISubTitle text="The Good" />
+                { this.state.goodExplanation }
+              </View>
+            }
+            {this.state.okExplanation.length > 0 &&
+              <View style={{marginBottom: UI.UIStyleguide.spacing}}>
+                <UI.UISubTitle text="The Ok" />
+                { this.state.okExplanation }
+              </View>
+            }
+            {this.state.badExplanation.length > 0 &&
+              <View style={{marginBottom: UI.UIStyleguide.spacing}}>
+                <UI.UISubTitle text="The Bad" />
+                { this.state.badExplanation }
+              </View>
+            }
             <TouchableHighlight
                underlayColor='transparent'
                onPress={() => {
                  const { navigate } = this.props.navigation;
-                 navigate('Steps')
+                 navigate('Profile')
                }}>
-               <View style={{marginTop: UI.UIStyleguide.spacing}}>
-                <UI.UIButton style="accent" text="Activity Insights" />
+              <View>
+                <UI.UIButton style="primary" text="Health Profile" />
               </View>
             </TouchableHighlight>
+            <UI.UISpace small={true} />
           </View>
-          <View style={{marginBottom: UI.UIStyleguide.spacing}}>
-            <View style={{marginTop: UI.UIStyleguide.spacing}}>
-              <UI.UISubTitle text="Body Measurements" />
-            </View>
-            { this.state.fitness && <UI.UIListItem title="Rating" subTitle={this.state.weight} /> }
-            { this.state.Weight && <UI.UIListItem title="Weight" subTitle={this.state.Weight} /> }
-            { this.state.BMI && <UI.UIListItem title="BMI" subTitle={this.state.BMI} /> }
-            <TouchableHighlight
-               underlayColor='transparent'
-               onPress={() => {
-                 const { navigate } = this.props.navigation;
-                 navigate('Weight')
-               }}>
-               <View style={{marginTop: UI.UIStyleguide.spacing}}>
-                <UI.UIButton style="accent" text="Body Measurements" />
-              </View>
-            </TouchableHighlight>
-          </View>
-          {this.state.goodExplanation.length > 0 &&
-            <View style={{marginBottom: UI.UIStyleguide.spacing}}>
-              <UI.UISubTitle text="The Good" />
-              { this.state.goodExplanation }
-            </View>
-          }
-          {this.state.okExplanation.length > 0 &&
-            <View style={{marginBottom: UI.UIStyleguide.spacing}}>
-              <UI.UISubTitle text="The Ok" />
-              { this.state.okExplanation }
-            </View>
-          }
-          {this.state.badExplanation.length > 0 &&
-            <View style={{marginBottom: UI.UIStyleguide.spacing}}>
-              <UI.UISubTitle text="The Bad" />
-              { this.state.badExplanation }
-            </View>
-          }
-          <TouchableHighlight
-             underlayColor='transparent'
-             onPress={() => {
-               const { navigate } = this.props.navigation;
-               navigate('Profile')
-             }}>
-            <View>
-              <UI.UIButton style="primary" text="Health Profile" />
-            </View>
-          </TouchableHighlight>
-          <UI.UISpace small={true} />
-        </View>
+        }
       </ScrollView>
     )
   }

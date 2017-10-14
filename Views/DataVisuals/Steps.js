@@ -17,7 +17,9 @@ import * as T from '../../Tools'
 export class Steps extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      loading: true
+    };
   }
 
   componentWillMount() {
@@ -31,6 +33,7 @@ export class Steps extends React.Component {
       this.Healthkit();
     })
 
+    // Add Reopen
     AppState.addEventListener('change', (nextAppState) => {
       if (nextAppState == 'active') {
         this.Healthkit();
@@ -99,6 +102,7 @@ export class Steps extends React.Component {
             if (timeline.length > 0) {
               this.setState({
                 stepsTimeline: timeline,
+                loading: false,
               })
             }
 
@@ -112,37 +116,45 @@ export class Steps extends React.Component {
   render() {
     return (
       <ScrollView style={UI.UIStyles.window}>
-        <View>
-            <View style={{marginBottom: UI.UIStyleguide.spacing}}>
-              { this.state.StepCount && this.state.DistanceWalkingRunning &&
-                <View>
-                  <UI.UIListItem title="Steps Today" subTitle={this.state.StepCount} />
-                  <UI.UIListItem reverse={true} title="Distance Today" subTitle={this.state.DistanceWalkingRunning} />
-                </View>
-              }
-              { this.state.ActiveEnergyBurned &&
-                <View>
-                  <UI.UIListItem title="Active Energy Burned Today" subTitle={this.state.ActiveEnergyBurned} subSubTitle="Active Energy includes walking slowly and household chores, as well as exercise such as biking and dancing." />
-                </View>
-              }
 
-              { this.state.StepCountYesterday &&
-                <View>
-                  <UI.UIListItem small={true} title="Steps Yesterday" subTitle={this.state.StepCountYesterday} subSubTitle={this.state.yesterdayScore} />
-                </View>
-              }
-              <UI.UIListItem small={true} title="Most Steps in a Day" subTitle={this.state.mostSteps} subSubTitle={this.state.mostStepsDate} />
-              <UI.UIListItem small={true} title="30 Day High" subTitle={this.state.mostSteps30} subSubTitle={this.state.mostStepsDate30} />
-            </View>
-          {this.state.stepsTimeline &&
-            <View>
-              <UI.UISubTitle text="Last 30 Days" />
-              <View style={{marginBottom: UI.UIStyleguide.spacing*2}}>
-                {this.state.stepsTimeline}
+        { this.state.loading &&
+          <C.Loading />
+        }
+
+        { !this.state.loading &&
+          <View>
+              <View style={{marginBottom: UI.UIStyleguide.spacing}}>
+                { this.state.StepCount && this.state.DistanceWalkingRunning &&
+                  <View>
+                    <UI.UIListItem title="Steps Today" subTitle={this.state.StepCount} />
+                    <UI.UIListItem reverse={true} title="Distance Today" subTitle={this.state.DistanceWalkingRunning} />
+                  </View>
+                }
+                { this.state.ActiveEnergyBurned &&
+                  <View>
+                    <UI.UIListItem title="Active Energy Burned Today" subTitle={this.state.ActiveEnergyBurned} subSubTitle="Active Energy includes walking slowly and household chores, as well as exercise such as biking and dancing." />
+                  </View>
+                }
+
+                { this.state.StepCountYesterday &&
+                  <View>
+                    <UI.UIListItem small={true} title="Steps Yesterday" subTitle={this.state.StepCountYesterday} subSubTitle={this.state.yesterdayScore} />
+                  </View>
+                }
+                <UI.UIListItem small={true} title="Most Steps in a Day" subTitle={this.state.mostSteps} subSubTitle={this.state.mostStepsDate} />
+                <UI.UIListItem small={true} title="30 Day High" subTitle={this.state.mostSteps30} subSubTitle={this.state.mostStepsDate30} />
               </View>
-            </View>
+            {this.state.stepsTimeline &&
+              <View>
+                <UI.UISubTitle text="Last 30 Days" />
+                <View style={{marginBottom: UI.UIStyleguide.spacing*2}}>
+                  {this.state.stepsTimeline}
+                </View>
+              </View>
           }
+
         </View>
+      }
       </ScrollView>
     )
   }
