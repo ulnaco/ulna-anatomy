@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 
 import moment from 'moment'
+import PushNotification from 'react-native-push-notification'
 import AppleHealthkit from 'rn-apple-healthkit';
 
 import * as UI from '../../UI'
@@ -79,9 +80,11 @@ export class Preferences extends React.Component {
     this.setState({toggleBadges: value})
     if (value) {
       T.setStorage('EnableBadges','yes');
+      PushNotification.setApplicationIconBadgeNumber(0)
     } else {
       T.removeStorage('EnableBadges');
     }
+    T.Sync();
   }
 
   /**

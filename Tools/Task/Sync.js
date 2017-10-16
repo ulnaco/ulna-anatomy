@@ -1,4 +1,3 @@
-import PushNotification from 'react-native-push-notification'
 import DeviceInfo from 'react-native-device-info'
 
 import * as T from '../../Tools'
@@ -21,41 +20,29 @@ export function Sync() {
       results.UUID = "ff41da98ff7bc635cdd629e61333e8a8cf3b813e4e7d22a3af8ab5e87ae750e5";
     }
 
-    // Payload
-    const payload = JSON.stringify(Object.assign(results, device));
-    console.log(payload)
+    T.getStorage('EnableBadges', (Badges) => {
+      if (Badges) {
+        results.Badges = 1
+      }
 
-    // Request
-    fetch('https://h5ixokl4lk.execute-api.us-east-1.amazonaws.com/dev/event', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: payload
-    })
-    .then((response) => response.json())
-    .then((responseJson) => {
-      console.log(responseJson)
-      //
-      // // Local Notifications Badge
-      // T.getStorage('EnableBadges', (results) => {
-      //   if (results) {
-      //     PushNotification.setApplicationIconBadgeNumber(Number(responseJson.badge))
-      //   } else {
-      //     PushNotification.setApplicationIconBadgeNumber(0)
-      //   }
-      // });
-      //
-      // // Local Notifications Alert
-      // if (!responseJson.notifications) return
-      // if (responseJson.message) {
-      //   PushNotification.localNotification({
-      //     title: responseJson.title,
-      //     message: responseJson.message
-      //   });
-      // }
+      // Payload
+      const payload = JSON.stringify(Object.assign(results, device));
+      console.log(payload)
 
-    })
+      // Request
+      fetch('https://h5ixokl4lk.execute-api.us-east-1.amazonaws.com/dev/event', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: payload
+      })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log(responseJson)
+      })
+    });
+
   });
 }
