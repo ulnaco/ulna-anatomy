@@ -32,7 +32,6 @@ export class Health extends React.Component {
   }
 
   syncAppleHealth() {
-    T.Watchdog(this);
     let options = T.Permissions()
     AppleHealthkit.isAvailable((err: Object, available: boolean) => {
       if (available) {

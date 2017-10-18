@@ -18,7 +18,6 @@ export class HealthStudy extends React.Component {
   }
 
   componentDidMount() {
-    T.Watchdog(this);
     this.setState({
       pg: {
         marginBottom: UI.UIStyleguide.spacing,

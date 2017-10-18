@@ -22,7 +22,6 @@ export class Profile extends React.Component {
   }
 
   componentWillMount() {
-    T.Watchdog(this);
     AppleHealthkit.isAvailable((err: Object, available: boolean) => {
       if (available) {
 
@@ -36,7 +35,7 @@ export class Profile extends React.Component {
             UUID: results.UUID,
           })
         });
-        
+
       }
     });
 

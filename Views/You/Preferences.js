@@ -51,7 +51,6 @@ export class Preferences extends React.Component {
       }
     });
 
-    T.Watchdog(this);
     AppleHealthkit.isAvailable((err: Object, available: boolean) => {
       if (available) {
 

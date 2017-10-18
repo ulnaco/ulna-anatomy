@@ -25,7 +25,6 @@ export class InitalRating extends React.Component {
   }
 
   async componentWillMount() {
-    T.Watchdog(this);
     this.verify();
 
     // Localization

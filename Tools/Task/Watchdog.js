@@ -6,9 +6,12 @@ import AppleHealthkit from 'rn-apple-healthkit';
 import * as T from '../../Tools'
 
 export function Watchdog(view) {
+  T.Background(view);
   AppState.addEventListener('change', (nextAppState) => {
     T.Healthkit(() => {
-      T.Sync();
+      if (nextAppState == 'active') {
+        T.Sync();
+      }
     });
   })
 }

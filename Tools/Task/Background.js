@@ -10,6 +10,7 @@ import BackgroundFetch from "react-native-background-fetch";
 import * as T from '../../Tools'
 
 export function Background(view) {
+  console.log('Background Lookout Started')
 
   BackgroundFetch.configure({
     stopOnTerminate: false,
@@ -28,7 +29,6 @@ export function Background(view) {
         LOG("BackgroundFetch denied");
         break;
       case BackgroundFetch.STATUS_AVAILABLE:
-        T.Sync()
         LOG("BackgroundFetch is enabled");
         break;
     }

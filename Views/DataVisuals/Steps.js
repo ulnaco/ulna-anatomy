@@ -23,7 +23,6 @@ export class Steps extends React.Component {
   }
 
   componentWillMount() {
-    T.Watchdog(this);
 
     // Localization
     T.getLocalization((results) => {

@@ -14,7 +14,7 @@ import {
 import * as Screens from './Views';
 import * as T from './Tools'
 
-T.Background(this);
+T.Watchdog(this);
 
 const views = {
   initialRouteName: {

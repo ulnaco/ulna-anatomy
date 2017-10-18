@@ -25,7 +25,6 @@ export class Dash extends React.Component {
   }
 
   componentDidMount() {
-    T.Watchdog(this);
 
     // Localization
     T.getLocalization((results) => {

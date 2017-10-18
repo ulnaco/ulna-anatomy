@@ -14,8 +14,8 @@ import * as T from '../../Tools'
 export class Splash extends React.Component {
 
   componentDidMount() {
-    T.Watchdog(this);
     T.Healthkit(() => {
+      T.Sync()
       this.router()
     });
   }

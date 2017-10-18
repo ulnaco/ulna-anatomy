@@ -17,7 +17,7 @@ export function Sync() {
 
     // Emulator
     if (DeviceInfo.isEmulator()) {
-      results.UUID = "ff41da98ff7bc635cdd629e61333e8a8cf3b813e4e7d22a3af8ab5e87ae750e5";
+      results.UUID = "123abc";
     }
 
     T.getStorage('EnableBadges', (Badges) => {
