@@ -49,8 +49,12 @@ export class UIListItem extends React.Component {
                     {this.props.crossout &&
                       <Text style={[UIStyles.ListItemSubTitle, {fontSize: 18, textDecorationLine: 'line-through'}]}>{this.props.subTitle}</Text>
                     }
-                    {!this.props.crossout &&
+                    {!this.props.crossout && this.props.title &&
                       <Text style={[UIStyles.ListItemSubTitle, {fontSize: 18}]}>{this.props.subTitle}</Text>
+                    }
+
+                    {!this.props.crossout && !this.props.title &&
+                      <Text style={[UIStyles.ListItemSubTitle, {fontSize: 18, color: UIStyleguide.color.accent}]}>{this.props.subTitle}</Text>
                     }
                   </View>
                   <View style={{paddingTop: 10}}>
