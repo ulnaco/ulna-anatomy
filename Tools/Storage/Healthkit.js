@@ -128,7 +128,7 @@ export function Healthkit(fn) {
   function getActiveEnergyBurned() {
     return new Promise((resolve, reject) => {
       var energyBurnedOpts = {
-        startDate: moment().startOf('hour').toISOString()
+        startDate: moment().subtract(1, 'day').endOf('day').toISOString()
       }
       AppleHealthkit.getActiveEnergyBurned(energyBurnedOpts, (err: Object, results: Object) => {
         if (err) resolve(false);
