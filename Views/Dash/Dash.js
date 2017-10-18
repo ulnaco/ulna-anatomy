@@ -134,7 +134,7 @@ export class Dash extends React.Component {
 
                     { this.state.ActiveEnergyBurned &&
                       <View>
-                        <UI.UIListItem title="Active Energy Burned" subTitle={this.state.ActiveEnergyBurned} subSubTitle="Active Energy includes walking slowly and household chores, as well as exercise such as biking and dancing." />
+                        <UI.UIListItem title="Active Energy Burned" subTitle={this.state.ActiveEnergyBurned} subSubTitle="Active Energy includes walking slowly and household chores, as well as exercise such as running, biking and dancing." />
                       </View>
                     }
 

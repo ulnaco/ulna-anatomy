@@ -129,12 +129,18 @@ export function Healthkit(fn) {
   function getActiveEnergyBurned() {
     return new Promise((resolve, reject) => {
       var energyBurnedOpts = {
-        startDate: moment().subtract(1, 'day').endOf('day').toISOString()
+        unit: 'kcal',
+        startDate: moment().startOf('day').toISOString()
       }
       AppleHealthkit.getActiveEnergyBurned(energyBurnedOpts, (err: Object, results: Object) => {
         if (err) resolve(false);
+        console.log(results)
+        var total = 0;
+        for (var i = 0; i < results.length; i++) {
+          total = total+results[i].value
+        }
         if (results && results.length > 0) {
-          resolve(results[0].value.toFixed(1)+' kcal')
+          resolve(T.thousand(total)+' kcal')
         } else {
           resolve(false);
         }
