@@ -58,6 +58,13 @@ export class Dash extends React.Component {
         });
       })
     }, 1000)
+
+    T.Badges((results) => {
+      this.setState({
+        achievements: (Object.keys(results).length-2)+' of '+results.numberOfTest
+      })
+
+    });
   }
 
   render() {
@@ -89,7 +96,6 @@ export class Dash extends React.Component {
                 </TouchableHighlight>
               </View>
 
-
               {/* Achievements */}
               <View style={{marginTop: UI.UIStyleguide.spacing}}>
                 <UI.UISubTitle text="Achievements" />
@@ -100,7 +106,7 @@ export class Dash extends React.Component {
                      navigate('Achievements')
                    }}>
                    <View>
-                    <UI.UIListItem subTitle="0 of 13" subSubTitle={T.Speech.single.steps(this.state.StepCount)}/>
+                    <UI.UIListItem subTitle={this.state.achievements} subSubTitle={T.Speech.single.steps(this.state.StepCount)}/>
                    </View>
                 </TouchableHighlight>
               </View>

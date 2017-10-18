@@ -2,7 +2,9 @@ import moment from 'moment'
 import AppleHealthkit from 'rn-apple-healthkit';
 
 export function Badges(fn) {
-  var status = {}
+  var status = {
+    numberOfTest: 0
+  }
   let stepsOverTimeOpts = {
     startDate: moment().subtract(1, 'years').toISOString(),
     endDate: moment().toISOString()
@@ -22,6 +24,7 @@ export function Badges(fn) {
         status.steps4 = true;
       }
     }
+    status.numberOfTest = status.numberOfTest+4
 
     status.loading = false
 
