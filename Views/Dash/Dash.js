@@ -5,7 +5,8 @@ import {
   ScrollView,
   TouchableHighlight,
   StatusBar,
-  AppState
+  AppState,
+  Image
 } from 'react-native';
 
 import moment from 'moment'
@@ -61,7 +62,23 @@ export class Dash extends React.Component {
 
     T.Badges((results) => {
       this.setState({
-        achievements: (Object.keys(results).length-2)+' of '+results.numberOfTest
+        achievements: (Object.keys(results).length-2)+' of '+results.numberOfTest+' Achievements'
+      })
+
+      var badges = [];
+      var key = 0;
+      for (var i = 0; i < (Object.keys(results).length-2); i++) {
+        badges.push(<Image key={key} style={{width: 65, height: 65, marginHorizontal: UI.UIStyleguide.spacing/3}} source={require('../../assets/achievement.png')} />);
+        key++
+      }
+
+      for (var i = 0; i < (results.numberOfTest - (Object.keys(results).length-2)); i++) {
+        badges.push(<Image key={key} style={{width: 75, height: 75, marginHorizontal: UI.UIStyleguide.spacing/3}} source={require('../../assets/achievement-muted.png')} />);
+        key++
+      }
+
+      this.setState({
+        badges: badges
       })
 
     });
@@ -93,21 +110,6 @@ export class Dash extends React.Component {
                   <View>
                     <UI.UIButton style="white" text="Explanation" />
                   </View>
-                </TouchableHighlight>
-              </View>
-
-              {/* Achievements */}
-              <View style={{marginTop: UI.UIStyleguide.spacing}}>
-                <UI.UISubTitle text="Achievements" />
-                <TouchableHighlight
-                   underlayColor='transparent'
-                   onPress={() => {
-                     const { navigate } = this.props.navigation;
-                     navigate('Achievements')
-                   }}>
-                   <View>
-                    <UI.UIListItem subTitle={this.state.achievements} subSubTitle={T.Speech.single.steps(this.state.StepCount)}/>
-                   </View>
                 </TouchableHighlight>
               </View>
 
@@ -143,6 +145,28 @@ export class Dash extends React.Component {
                     </View>
                   </View>
               </TouchableHighlight>
+
+
+              {/* Achievements */}
+              <View style={{marginTop: UI.UIStyleguide.spacing}}>
+                <UI.UISubTitle text="Achievements" />
+                <ScrollView style={{flex: 1, flexDirection: 'row', marginBottom: UI.UIStyleguide.spacing, paddingLeft: UI.UIStyleguide.spacing/2}} horizontal={true} showsHorizontalScrollIndicator={true}>
+                  {this.state.badges}
+                </ScrollView>
+                <TouchableHighlight
+                   underlayColor='transparent'
+                   onPress={() => {
+                     const { navigate } = this.props.navigation;
+                     navigate('Achievements')
+                   }}>
+                   <View>
+                    <UI.UIListItem subTitle={this.state.achievements} />
+                    <View style={{marginTop: UI.UIStyleguide.spacing}}>
+                      <UI.UIButton style="accent" text="Explore Achievements" />
+                    </View>
+                  </View>
+                </TouchableHighlight>
+              </View>
 
               {/* Log Weight */}
               <TouchableHighlight

@@ -47,10 +47,10 @@ export class UIListItem extends React.Component {
                 <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
                   <View style={{paddingTop: 5}}>
                     {this.props.crossout &&
-                      <Text style={[UIStyles.ListItemSubTitle, {fontSize: 20, textDecorationLine: 'line-through'}]}>{this.props.subTitle}</Text>
+                      <Text style={[UIStyles.ListItemSubTitle, {fontSize: 18, textDecorationLine: 'line-through'}]}>{this.props.subTitle}</Text>
                     }
                     {!this.props.crossout &&
-                      <Text style={[UIStyles.ListItemSubTitle, {fontSize: 20}]}>{this.props.subTitle}</Text>
+                      <Text style={[UIStyles.ListItemSubTitle, {fontSize: 18}]}>{this.props.subTitle}</Text>
                     }
                   </View>
                   <View style={{paddingTop: 10}}>
