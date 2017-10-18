@@ -24,7 +24,7 @@ export class UIListItem extends React.Component {
           <View style={UIStyles.ListItem}>
             {!this.props.small && !this.props.reverse && !this.props.justtext &&
               <View style={UIStyles.ListItemInner}>
-                <Text style={UIStyles.ListItemTitle}>{this.props.title}</Text>
+                {this.props.title && <Text style={UIStyles.ListItemTitle}>{this.props.title}</Text> }
                 <Text style={UIStyles.ListItemSubTitle}>{this.props.subTitle}</Text>
                 {this.props.subSubTitle && <Text style={[UIStyles.ListItemTitle,{marginTop: 5, color: '#777', fontSize: 11}]}>{this.props.subSubTitle}</Text> }
               </View>
@@ -46,7 +46,12 @@ export class UIListItem extends React.Component {
               <View style={UIStyles.ListItemInner}>
                 <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
                   <View style={{paddingTop: 5}}>
-                    <Text style={[UIStyles.ListItemSubTitle, {fontSize: 20}]}>{this.props.subTitle}</Text>
+                    {this.props.crossout &&
+                      <Text style={[UIStyles.ListItemSubTitle, {fontSize: 20, textDecorationLine: 'line-through'}]}>{this.props.subTitle}</Text>
+                    }
+                    {!this.props.crossout &&
+                      <Text style={[UIStyles.ListItemSubTitle, {fontSize: 20}]}>{this.props.subTitle}</Text>
+                    }
                   </View>
                   <View style={{paddingTop: 10}}>
                     <Text style={UIStyles.ListItemTitle}>{this.props.title}</Text>

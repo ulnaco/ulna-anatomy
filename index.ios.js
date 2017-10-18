@@ -88,6 +88,13 @@ const views = {
       title: 'Activity Insights'
     }
   },
+  Achievements: {
+    mode: "modal",
+    screen: Screens.Achievements,
+    navigationOptions: {
+      title: 'Achievements'
+    }
+  },
   Weight: {
     mode: "modal",
     screen: Screens.Weight,

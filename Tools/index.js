@@ -1,6 +1,7 @@
 export * from './Algorithms/BMI.js'
 export * from './Algorithms/Rating.js'
 export * from './Algorithms/StepScore.js'
+export * from './Algorithms/Badges.js'
 
 export * from './Charts/BarHorizontal.js'
 export * from './Charts/BarVertical.js'

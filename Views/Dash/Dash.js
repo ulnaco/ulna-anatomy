@@ -89,6 +89,22 @@ export class Dash extends React.Component {
                 </TouchableHighlight>
               </View>
 
+
+              {/* Achievements */}
+              <View style={{marginTop: UI.UIStyleguide.spacing}}>
+                <UI.UISubTitle text="Achievements" />
+                <TouchableHighlight
+                   underlayColor='transparent'
+                   onPress={() => {
+                     const { navigate } = this.props.navigation;
+                     navigate('Achievements')
+                   }}>
+                   <View>
+                    <UI.UIListItem subTitle="0 of 13" subSubTitle={T.Speech.single.steps(this.state.StepCount)}/>
+                   </View>
+                </TouchableHighlight>
+              </View>
+
               {/* Activity */}
               <TouchableHighlight
                  underlayColor='transparent'
