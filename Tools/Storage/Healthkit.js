@@ -37,6 +37,7 @@ export function Healthkit(fn) {
     healthData.DistanceCycling = await getDistanceCycling(localization);
     healthData.BMI = await BMI();
     healthData.UUID = await UUID();
+    healthData.Achievements = await Achievements();
 
     /**
      * Health Rating
@@ -201,5 +202,16 @@ export function Healthkit(fn) {
        })
      });
    }
+
+   /**
+    * Achievements
+    */
+   function Achievements() {
+     return new Promise((resolve, reject) => {
+      T.Badges((results) => {
+        resolve(Object.keys(results).length-2)
+      });
+    });
+  }
 
 }

@@ -3,6 +3,7 @@ import DeviceInfo from 'react-native-device-info'
 import * as T from '../../Tools'
 
 export function Sync() {
+  console.info('Started: Sync')
   T.getStorage('Healthkit', (results) => {
     results = JSON.parse(results)
     if (!results.UUID && !DeviceInfo.isEmulator()) return;
